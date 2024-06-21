@@ -15,3 +15,9 @@ const Client = new Discord.Client({
             Discord.Partials.GuildScheduledEvent
         ]
 });
+
+Client.on("ready", (client) => {
+    console.log("The bot is ready and online with the name of " + client.user.tag)
+});
+
+Client.login("");
