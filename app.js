@@ -42,7 +42,9 @@ Client.on("messageCreate", (message) => {
     }
 
     if (userInputText === "!age") {
-        console.log(message.channel);
+        console.log(message.guild.createdTimestamp);
+        console.log(message.guild.createdAt);
+        console.log(new Date(message.guild.createdTimestamp));
     }
 }
 )
