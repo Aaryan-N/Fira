@@ -23,8 +23,11 @@ Client.on("ready", (client) => {
 });
 
 Client.on("messageCreate", (message) => {
+
+    if (message.author.bot){ return }
     console.log("A new message was written!")
-    if (message.author.bot === false) {
+
+    if (!message.author.bot) {
         message.reply("Hello world! You're not a bot!")
     }
 }
