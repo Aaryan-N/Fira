@@ -42,9 +42,18 @@ Client.on("messageCreate", (message) => {
     }
 
     if (userInputText === "!age") {
-        console.log(message.guild.createdTimestamp);
+        console.log(message.guild.createdTimestamp); // milliseconds until 1 jan 1970 / epoch
         console.log(message.guild.createdAt);
-        console.log(new Date(message.guild.createdTimestamp));
+        console.log(new Date(message.guild.createdTimestamp).toString());
+
+        message.reply("Server was created " + message.guild.createdAt.toString());
+
+        message.guild.members.fetch().then((value) =>{
+            console.log(value);
+        }, (error) => {
+            console.log(error);
+        }
+        );
     }
 }
 )
