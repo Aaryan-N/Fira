@@ -1,5 +1,7 @@
 const Discord= require("discord.js");
 
+const { token } = require("./token.json")
+
 const Client = new Discord.Client({
         intents: [
             Discord.GatewayIntentBits.GuildMessages,
@@ -20,4 +22,4 @@ Client.on("ready", (client) => {
     console.log("The bot is ready and online with the name of " + client.user.tag)
 });
 
-Client.login("");
+Client.login(token);
