@@ -23,12 +23,16 @@ Client.on("ready", (client) => {
 });
 
 Client.on("messageCreate", (message) => {
+    const userInputText = message.content.toLowerCase();
 
     if (message.author.bot){ return }
     console.log("A new message was written!")
 
     if (!message.author.bot) {
         message.reply("Hello world! You're not a bot!")
+    }
+    if (userInputText === "!commands" || message.content === "!help"){
+        message.reply("This bot operates on these commands!")
     }
 }
 )
