@@ -22,4 +22,12 @@ Client.on("ready", (client) => {
     console.log("The bot is ready and online with the name of " + client.user.tag)
 });
 
+Client.on("messageCreate", (message) => {
+    console.log("A new message was written!")
+    if (message.author.bot === false) {
+        message.reply("Hello world! You're not a bot!")
+    }
+}
+)
+
 Client.login(token);
