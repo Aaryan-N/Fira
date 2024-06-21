@@ -15,3 +15,6 @@ let members = [{
 ]
 
 console.log(user.name);
+for (let i = 0; i < members.length; i++) {
+    console.log(members[i].id);
+}
