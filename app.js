@@ -53,13 +53,15 @@ Client.on("messageCreate", (message) => {
             value.forEach(user => {
                 console.log(user.user.id + " " + message.author.id);
                 console.log(user.joinedTimestamp);
+                let date = new Date(user.joinedTimestamp);
+                message.reply(user.user.tag + " joined\n" + date.toString());
             })
         }, (error) => {
             console.log(error);
         }
         );
+      }
     }
-}
 )
 
 Client.login(token);
