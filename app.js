@@ -24,7 +24,28 @@ Client.on("ready", (client) => {
 });
 
 Client.on("messageCreate", (message) => {
-    
+    if (message.author.bot === true) { return }
+
+    let userInputToLowerCase = message.content.toLowerCase();
+
+    const pcOptions = ["rock", "paper", "scissors"];
+
+    const pcChoice = Math.floor(Math.random() * 3)
+
+    if (userInputToLowerCase === "rock") {
+        let statusMessage = "";
+        if(pcOptions[pcChoice] === userInputToLowerCase) {
+            statusMessage = "Its a draw!"
+        }
+       // message.reply("You chose: " + userInputToLowerCase)
+    }
+    else if (userInputToLowerCase === "scissors") {
+        //message.reply("You chose: " + userInputToLowerCase)
+    }
+    else if (userInputToLowerCase === "paper") {
+       // message.reply("You chose: " + userInputToLowerCase)
+    }
+    }
 )
 
 Client.login(token);
