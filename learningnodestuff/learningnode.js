@@ -80,7 +80,7 @@ function myMath(number){
     console.log(number);
 }
 
-myMath("hi there");
+myMath("Hi there");
 
 function manyParameters(x, y, z, health, damage, movementSpeed, name){
     console.log(x * y * z);
