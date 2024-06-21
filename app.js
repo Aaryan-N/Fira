@@ -14,7 +14,8 @@ const Client = new Discord.Client({
             Discord.Partials.Channel,
             Discord.Partials.GuildMember,
             Discord.Partials.User,
-            Discord.Partials.GuildScheduledEvent
+            Discord.Partials.GuildScheduledEvent,
+            Discord.Partials.ThreadMember
         ]
 });
 
@@ -31,8 +32,17 @@ Client.on("messageCreate", (message) => {
     if (!message.author.bot) {
         message.reply("Hello world! You're not a bot!")
     }
+
     if (userInputText === "!commands" || message.content === "!help"){
         message.reply("This bot operates on these commands!")
+    }
+
+    if (userInputText === "!math") {
+        message.reply("5 + 2 - 1 * 5 /2 - 4 + 7 * 3 % 5 = " + (5 + 2 - 1 * 5 /2 - 4 + 7 * 3 % 5));
+    }
+
+    if (userInputText === "!age") {
+        console.log(message.channel);
     }
 }
 )
