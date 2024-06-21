@@ -49,7 +49,11 @@ Client.on("messageCreate", (message) => {
         message.reply("Server was created " + message.guild.createdAt.toString());
 
         message.guild.members.fetch().then((value) =>{
-            console.log(value);
+            //console.log(value);
+            value.forEach(user => {
+                console.log(user.user.id + " " + message.author.id);
+                console.log(user.joinedTimestamp);
+            })
         }, (error) => {
             console.log(error);
         }
