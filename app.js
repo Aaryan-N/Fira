@@ -113,6 +113,26 @@ Client.on("messageCreate", (message) => {
   }
 });
 
+function gamesList() {
+  const data = returnGameData();
+  let replyMessage = undefined;
+
+  if (data.length > 0) {
+    replyMessage = "";
+  }
+
+  //The data should be populated first
+  for (let i = 0; i < data.length; i++) {
+    replyMessage += "Write <" + data[i].ID + "> to view results of this game\n";
+  }
+
+  if ((replyMessage = undefined)) {
+    return "No games exist.";
+  }
+
+  return replyMessage;
+}
+
 function saveGame(userID, name, gameStatus) {
   let gameData = returnGameData();
   let newGame = true;
