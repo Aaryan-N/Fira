@@ -43,10 +43,13 @@ Client.on("messageCreate", (message) => {
   if (userInputToLowerCase === "rock") {
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
+      saveGame(message.author.id, message.author.tag, "draw");
     } else if (pcOptions[pcChoice] === "scissors") {
       statusMessage = "You won!";
+      saveGame(message.author.id, message.author.tag, "win");
     } else if (pcOptions[pcChoice] === "paper") {
       statusMessage = "You lost!";
+      saveGame(message.author.id, message.author.tag, "lose");
     } else {
       message.reply("Error in the code :(");
     }
@@ -57,16 +60,20 @@ Client.on("messageCreate", (message) => {
         pcOptions[pcChoice],
     );
     message.reply(statusMessage);
-    let obj = returnNewGameObject(message.author.id, message.author.tag);
+
+    //let obj = returnNewGameObject(message.author.id, message.author.tag);
     //saveGameData(obj);
-    console.log(returnGameData());
+    //console.log(returnGameData());
   } else if (userInputToLowerCase === "scissors") {
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
+      saveGame(message.author.id, message.author.tag, "draw");
     } else if (pcOptions[pcChoice] === "rock") {
       statusMessage = "You lost!";
+      saveGame(message.author.id, message.author.tag, "lose");
     } else if (pcOptions[pcChoice] === "paper") {
       statusMessage = "You won!";
+      saveGame(message.author.id, message.author.tag, "win");
     } else {
       message.reply("Error in the code :(");
     }
@@ -82,10 +89,13 @@ Client.on("messageCreate", (message) => {
   } else if (userInputToLowerCase === "paper") {
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
+      saveGame(message.author.id, message.author.tag, "draw");
     } else if (pcOptions[pcChoice] === "scissors") {
       statusMessage = "You lost!";
+      saveGame(message.author.id, message.author.tag, "lose");
     } else if (pcOptions[pcChoice] === "rock") {
       statusMessage = "You won!";
+      saveGame(message.author.id, message.author.tag, "win");
     } else {
       message.reply("Error in the code :(");
     }
@@ -108,6 +118,17 @@ Client.on("messageCreate", (message) => {
     );
   }
 });
+
+function saveGame(userID, name, gameStatus) {
+  let gameData = returnGameData();
+
+  gameData.userID = userID;
+  gameData.name = name;
+  gameData[gameStatus]++;
+  gameData.rounds++;
+
+  console.log(gameData);
+}
 
 function saveGameData(data) {
   fs.writeFileSync(path, JSON.stringify(data));
