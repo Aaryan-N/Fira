@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
-
+const fs = require("fs");
 const { token } = require("./token.json");
+const path = "./gamedata.json";
 
 const Client = new Discord.Client({
   intents: [
@@ -32,10 +33,12 @@ Client.on("messageCreate", (message) => {
   }
 
   function saveGameData(data) {
-    const fs = require("fs");
-    const path = "./gamedata.json";
+    fs.writeFileSync(path, JSON.stringify(data));
+  }
 
-    fs.writeFileSync(path, data);
+  function returnGameData() {
+    const encoding = "utf-8";
+    return JSON.parse(fs.readFileSync(path, encoding));
   }
 
   let rawUserInput = message.content;
@@ -64,7 +67,8 @@ Client.on("messageCreate", (message) => {
     );
     message.reply(statusMessage);
     let obj = returnNewGameObject(message.author.id, message.author.tag);
-    saveGameData(JSON.stringify(obj));
+    //saveGameData(obj);
+    console.log(returnGameData());
   } else if (userInputToLowerCase === "scissors") {
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
@@ -83,7 +87,7 @@ Client.on("messageCreate", (message) => {
     );
     message.reply(statusMessage);
     let obj = returnNewGameObject(message.author.id, message.author.tag);
-    saveGameData(JSON.stringify(obj));
+    saveGameData(obj);
   } else if (userInputToLowerCase === "paper") {
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
@@ -102,7 +106,7 @@ Client.on("messageCreate", (message) => {
     );
     message.reply(statusMessage);
     let obj = returnNewGameObject(message.author.id, message.author.tag);
-    saveGameData(JSON.stringify(obj));
+    saveGameData(obj);
   } else {
     message.reply("Not a valid option, champ!");
     message.reply(
