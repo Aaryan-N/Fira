@@ -32,15 +32,6 @@ Client.on("messageCreate", (message) => {
     return;
   }
 
-  function saveGameData(data) {
-    fs.writeFileSync(path, JSON.stringify(data));
-  }
-
-  function returnGameData() {
-    const encoding = "utf-8";
-    return JSON.parse(fs.readFileSync(path, encoding));
-  }
-
   let rawUserInput = message.content;
   let userInputToLowerCase = message.content.toLowerCase();
   let statusMessage = "";
@@ -117,6 +108,15 @@ Client.on("messageCreate", (message) => {
     );
   }
 });
+
+function saveGameData(data) {
+  fs.writeFileSync(path, JSON.stringify(data));
+}
+
+function returnGameData() {
+  const encoding = "utf-8";
+  return JSON.parse(fs.readFileSync(path, encoding));
+}
 
 function returnNewGameObject(userID, name) {
   return {
