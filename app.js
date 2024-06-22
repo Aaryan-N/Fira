@@ -20,7 +20,7 @@ const Client = new Discord.Client({
 });
 
 Client.on("ready", (client) => {
-    console.log("The bot is ready and online with the name of " + client.user.tag)
+    console.log("The bot is ready and online with the name of " + client.user.tag);
 });
 
 Client.on("messageCreate", (message) => {
