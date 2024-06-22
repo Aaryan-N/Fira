@@ -102,13 +102,14 @@ Client.on("messageCreate", (message) => {
         pcOptions[pcChoice],
     );
     message.reply(statusMessage);
+  } else if (userInputToLowerCase == "games") {
+    message.reply(gamesList());
+  } else if (Number(userInputToLowerCase)) {
+    message.reply(displayGame(Number(userInputToLowerCase)));
   } else {
     message.reply("Not a valid option, champ!");
     message.reply(
-      "You chose: " +
-        rawUserInput +
-        " and computer selected: " +
-        pcOptions[pcChoice],
+      "You chose: " + rawUserInput + " and computer selected: " + statusMessage,
     );
   }
 });
@@ -126,8 +127,43 @@ function gamesList() {
     replyMessage += "Write <" + data[i].ID + "> to view results of this game\n";
   }
 
-  if ((replyMessage = undefined)) {
+  if (replyMessage == undefined) {
     return "No games exist.";
+  }
+
+  return replyMessage;
+}
+
+function displayGame(ID) {
+  const data = returnGameData();
+  let replyMessage = undefined;
+  let found = false;
+
+  if (data.length > 0) {
+    replyMessage = "";
+  }
+
+  for (let i = 0; i < data.length; i++) {
+    if (ID == data[i].ID) {
+      found = true;
+      replyMessage =
+        data[i].name +
+        " vs Scythe\n" +
+        data[i].win +
+        " wins" +
+        "\n" +
+        data[i].lose +
+        " losses" +
+        "\n" +
+        data[i].draw +
+        " draws";
+    }
+  }
+
+  if (replyMessage == undefined) {
+    return "No games exist.";
+  } else if (found == false) {
+    return "Couldn't find the specific game!";
   }
 
   return replyMessage;
