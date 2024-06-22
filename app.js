@@ -26,25 +26,71 @@ Client.on("ready", (client) => {
 Client.on("messageCreate", (message) => {
     if (message.author.bot === true) { return }
 
+    let rawUserInput = message.content;
     let userInputToLowerCase = message.content.toLowerCase();
+    let statusMessage = "";
 
     const pcOptions = ["rock", "paper", "scissors"];
 
     const pcChoice = Math.floor(Math.random() * 3)
 
     if (userInputToLowerCase === "rock") {
-        let statusMessage = "";
         if(pcOptions[pcChoice] === userInputToLowerCase) {
             statusMessage = "Its a draw!"
         }
-       // message.reply("You chose: " + userInputToLowerCase)
+        else if(pcOptions[pcChoice] === "scissors") {
+            statusMessage = "You won!"
+        }
+        else if(pcOptions[pcChoice] === "paper") {
+            statusMessage = "You lost!"
+        }
+        else {
+            message.reply("Error in the code :(")
+        }
+        message.reply("You chose: " + rawUserInput + " and computer selected: " + pcOptions[pcChoice]);
+        message.reply(statusMessage);
     }
+
+
     else if (userInputToLowerCase === "scissors") {
-        //message.reply("You chose: " + userInputToLowerCase)
+        if(pcOptions[pcChoice] === userInputToLowerCase) {
+            statusMessage = "Its a draw!"
+        }
+        else if(pcOptions[pcChoice] === "rock") {
+            statusMessage = "You lost!"
+        }
+        else if(pcOptions[pcChoice] === "paper") {
+            statusMessage = "You won!"
+        }
+        else {
+            message.reply("Error in the code :(")
+        }
+        message.reply("You chose: " + rawUserInput + " and computer selected: " + pcOptions[pcChoice]);
+        message.reply(statusMessage);
     }
+
+
+
     else if (userInputToLowerCase === "paper") {
-       // message.reply("You chose: " + userInputToLowerCase)
+    if(pcOptions[pcChoice] === userInputToLowerCase) {
+        statusMessage = "Its a draw!"
     }
+        else if(pcOptions[pcChoice] === "scissors") {
+        statusMessage = "You lost!"
+    }
+        else if(pcOptions[pcChoice] === "rock") {
+        statusMessage = "You won!"
+    }
+        else {
+        message.reply("Error in the code :(")
+    }
+    message.reply("You chose: " + rawUserInput + " and computer selected: " + pcOptions[pcChoice]);
+    message.reply(statusMessage);
+    }
+        else {
+        message.reply("Not a valid option, champ!")
+    }
+
     }
 )
 
