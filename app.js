@@ -132,8 +132,18 @@ function saveGame(userID, name, gameStatus) {
   }
   if (newGame === true) {
     let newGameObject = returnNewGameObject(userID, name);
+    newGameObject.ID === gameData.length + 1;
+    newGameObject.rounds++;
+    newGameObject[gameStatus]++;
+    if (gameData.length < 1) {
+      gameData = [newGameObject];
+    } else if (gameData.length > 1) {
+      gameData.push([newGameObject]);
+    }
+
     console.log(newGameObject);
   }
+  saveGameData(gameData);
 }
 
 function saveGameData(data) {
