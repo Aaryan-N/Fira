@@ -30,7 +30,7 @@ const rest = new REST().setToken(process.env.token);
   console.log("Started refreshing application (/) commands.");
   console.log(commands);
 
-  const data = await rest.put(Routes.applicationCommands(process.env.clientID), {
+  const data = await rest.put(Routes.applicationCommands(process.env.clientID,process.env.guildID), {
     body: commands});
 
   console.log("Successfully reloaded application (/) commands.");
