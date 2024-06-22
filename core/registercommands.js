@@ -28,6 +28,7 @@ const rest = new REST().setToken(process.env.token);
 (async ()=> {
   try {
   console.log("Started refreshing application (/) commands.");
+  console.log(commands);
 
   const data = await rest.put(Routes.applicationCommands(process.env.clientID), {
     body: commands});
