@@ -1,30 +1,42 @@
-import { token } from "./token.json";
-import { REST, Routes } from "discord.js";
+import { Client, GatewayIntentBits, Partials, REST, Routes } from "discord.js";
+import dotenv from "dotenv";
 
-const Client = new Discord.Client({
+dotenv.config();
+
+console.log(process.env.token);
+const client = new Client({
   intents: [
-    Discord.GatewayIntentBits.GuildMessages,
-    Discord.GatewayIntentBits.GuildMembers,
-    Discord.GatewayIntentBits.DirectMessages,
-    Discord.GatewayIntentBits.MessageContent,
-    Discord.GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.Guilds,
   ],
   partials: [
-    Discord.Partials.Message,
-    Discord.Partials.Channel,
-    Discord.Partials.GuildMember,
-    Discord.Partials.User,
-    Discord.Partials.GuildScheduledEvent,
-    Discord.Partials.ThreadMember,
+    Partials.Message,
+    Partials.Channel,
+    Partials.GuildMember,
+    Partials.User,
+    Partials.GuildScheduledEvent,
+    Partials.ThreadMember,
   ],
 });
 
-const rest = new REST({ version: "10" }).setToken(token);
+const commands = [
+  {
+    name: "ping",
+    description: "Replies with Pong!",
+  },
+];
+
+const rest = new REST({ version: "10" }).setToken(process.env.token);
 
 try {
   console.log("Started refreshing application (/) commands.");
 
-  await rest.put(Routes.applicationCommands(CLIENT_ID), { body: commands });
+  await rest.put(Routes.applicationCommands(process.env.clientID), {
+    body: commands,
+  });
 
   console.log("Successfully reloaded application (/) commands.");
 } catch (error) {
