@@ -49,6 +49,7 @@ Client.on("messageCreate", (message) => {
         }
         message.reply("You chose: " + rawUserInput + " and computer selected: " + pcOptions[pcChoice]);
         message.reply(statusMessage);
+        console.log(returnNewGameObject(message.author.id, message.author.tag));
     }
 
 
@@ -67,6 +68,7 @@ Client.on("messageCreate", (message) => {
         }
         message.reply("You chose: " + rawUserInput + " and computer selected: " + pcOptions[pcChoice]);
         message.reply(statusMessage);
+        console.log(returnNewGameObject(message.author.id, message.author.tag));
     }
 
 
@@ -83,15 +85,31 @@ Client.on("messageCreate", (message) => {
     }
         else {
         message.reply("Error in the code :(")
+
     }
     message.reply("You chose: " + rawUserInput + " and computer selected: " + pcOptions[pcChoice]);
     message.reply(statusMessage);
+    console.log(returnNewGameObject(message.author.id, message.author.tag));
     }
         else {
         message.reply("Not a valid option, champ!")
-    }
+        message.reply("You chose: " + rawUserInput + " and computer selected: " + pcOptions[pcChoice]);
 
     }
-)
+
+    });
+
+function returnNewGameObject(userID,  name) {
+    return {
+        ID: 0,
+        userID: userID,
+        name: name,
+        draw: 0,
+        win: 0,
+        lose: 0,
+        rounds: 0,
+        time : new Date().toString()
+    }
+}
 
 Client.login(token);
