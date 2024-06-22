@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const fs = require("fs");
 const { token } = require("./token.json");
 
 const Client = new Discord.Client({
@@ -26,6 +25,21 @@ Client.on("ready", (client) => {
   );
 });
 
-Client.on("messageCreate", (message) => {});
+Client.on("messageCreate", (message) => {
+  if (message.author.bot === false) {
+    const inputToLowerCase = message.content.toLowerCase();
+
+    if (inputToLowerCase == "!help" || inputToLowerCase == "!commands") {
+      message.reply(
+        "The !polls command displays all the polls that are currently active. \n" +
+          "The !closedpolls command displays all polls that are closed.\n" +
+          "The !poll <number> command displays a specific poll and the description.\n" +
+          "The !vote <number> yes/no give you the ability to vote on a specific poll.\n" +
+          "The !close <number> closes a poll that you ahve created .\n" +
+          "The ! create <question> creates a poll that user's can vote yes or no on",
+      );
+    }
+  }
+});
 
 Client.login(token);
