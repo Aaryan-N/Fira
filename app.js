@@ -1,4 +1,5 @@
 import { Client, GatewayIntentBits, Partials, REST, Routes } from "discord.js";
+import { helpCommand } from "./src/commands/helpCommand.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -22,20 +23,13 @@ const client = new Client({
   ],
 });
 
-const commands = [
-  {
-    name: "ping",
-    description: "Replies with Pong!",
-  },
-];
-
 const rest = new REST({ version: "10" }).setToken(process.env.token);
 
 try {
   console.log("Started refreshing application (/) commands.");
 
   await rest.put(Routes.applicationCommands(process.env.clientID), {
-    body: commands,
+    body: helpCommand,
   });
 
   console.log("Successfully reloaded application (/) commands.");
