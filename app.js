@@ -124,15 +124,15 @@ function saveGame(userID, name, gameStatus) {
   let newGame = true;
 
   for (let i = 0; i < gameData.length; i++) {
-    if (gameData[i].userID === userID && gameData[i].rounds < 3) {
+    if (gameData[i].userID == userID && gameData[i].rounds < 3) {
       newGame = false;
       gameData[i].rounds++;
       gameData[i][gameStatus]++;
     }
   }
-  if (newGame === true) {
+  if (newGame == true) {
     let newGameObject = returnNewGameObject(userID, name);
-    newGameObject.ID === gameData.length + 1;
+    newGameObject.ID = gameData.length + 1;
     newGameObject.rounds++;
     newGameObject[gameStatus]++;
     if (gameData.length < 1) {
