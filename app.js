@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const { token } = require("./token.json");
+const pollFunctions = require("./pollFunctions.js");
 
 const Client = new Discord.Client({
   intents: [
@@ -38,6 +39,10 @@ Client.on("messageCreate", (message) => {
           "The !close <number> closes a poll that you ahve created .\n" +
           "The ! create <question> creates a poll that user's can vote yes or no on",
       );
+    } else if ("!create") {
+      let data = pollFunctions.createPoll();
+
+      message.reply(data);
     }
   }
 });
