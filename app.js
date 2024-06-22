@@ -34,13 +34,13 @@ Client.on("messageCreate", (message) => {
 
   let rawUserInput = message.content;
   let userInputToLowerCase = message.content.toLowerCase();
-  let statusMessage = "";
 
   const pcOptions = ["rock", "paper", "scissors"];
 
   const pcChoice = Math.floor(Math.random() * 3);
 
   if (userInputToLowerCase === "rock") {
+    let statusMessage = "";
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
       saveGame(message.author.id, message.author.tag, "draw");
@@ -60,11 +60,8 @@ Client.on("messageCreate", (message) => {
         pcOptions[pcChoice],
     );
     message.reply(statusMessage);
-
-    //let obj = returnNewGameObject(message.author.id, message.author.tag);
-    //saveGameData(obj);
-    //console.log(returnGameData());
   } else if (userInputToLowerCase === "scissors") {
+    let statusMessage = "";
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
       saveGame(message.author.id, message.author.tag, "draw");
@@ -84,9 +81,8 @@ Client.on("messageCreate", (message) => {
         pcOptions[pcChoice],
     );
     message.reply(statusMessage);
-    let obj = returnNewGameObject(message.author.id, message.author.tag);
-    saveGameData(obj);
   } else if (userInputToLowerCase === "paper") {
+    let statusMessage = "";
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
       saveGame(message.author.id, message.author.tag, "draw");
@@ -106,8 +102,6 @@ Client.on("messageCreate", (message) => {
         pcOptions[pcChoice],
     );
     message.reply(statusMessage);
-    let obj = returnNewGameObject(message.author.id, message.author.tag);
-    saveGameData(obj);
   } else {
     message.reply("Not a valid option, champ!");
     message.reply(
@@ -126,22 +120,23 @@ function saveGame(userID, name, gameStatus) {
   for (let i = 0; i < gameData.length; i++) {
     if (gameData[i].userID == userID && gameData[i].rounds < 3) {
       newGame = false;
+
       gameData[i].rounds++;
       gameData[i][gameStatus]++;
     }
   }
+
   if (newGame == true) {
     let newGameObject = returnNewGameObject(userID, name);
     newGameObject.ID = gameData.length + 1;
+
     newGameObject.rounds++;
     newGameObject[gameStatus]++;
     if (gameData.length < 1) {
       gameData = [newGameObject];
-    } else if (gameData.length > 1) {
-      gameData.push([newGameObject]);
+    } else if (gameData.length > 0) {
+      gameData.push(newGameObject);
     }
-
-    console.log(newGameObject);
   }
   saveGameData(gameData);
 }
