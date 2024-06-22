@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 
 const {token} = require("./token.json")
-const fs = require("fs");
 
 const Client = new Discord.Client({
     intents: [
