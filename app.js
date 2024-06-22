@@ -121,13 +121,19 @@ Client.on("messageCreate", (message) => {
 
 function saveGame(userID, name, gameStatus) {
   let gameData = returnGameData();
+  let newGame = true;
 
-  gameData.userID = userID;
-  gameData.name = name;
-  gameData[gameStatus]++;
-  gameData.rounds++;
-
-  console.log(gameData);
+  for (let i = 0; i < gameData.length; i++) {
+    if (gameData[i].userID === userID && gameData[i].rounds < 3) {
+      newGame = false;
+      gameData[i].rounds++;
+      gameData[i][gameStatus]++;
+    }
+  }
+  if (newGame === true) {
+    let newGameObject = returnNewGameObject(userID, name);
+    console.log(newGameObject);
+  }
 }
 
 function saveGameData(data) {
