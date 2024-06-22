@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const { token } = require("./token.json");
 const path = "./gamedata.json";
+let statusMessage = "";
 
 const Client = new Discord.Client({
   intents: [
@@ -40,7 +41,6 @@ Client.on("messageCreate", (message) => {
   const pcChoice = Math.floor(Math.random() * 3);
 
   if (userInputToLowerCase === "rock") {
-    let statusMessage = "";
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
       saveGame(message.author.id, message.author.tag, "draw");
@@ -61,7 +61,6 @@ Client.on("messageCreate", (message) => {
     );
     message.reply(statusMessage);
   } else if (userInputToLowerCase === "scissors") {
-    let statusMessage = "";
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
       saveGame(message.author.id, message.author.tag, "draw");
@@ -82,7 +81,6 @@ Client.on("messageCreate", (message) => {
     );
     message.reply(statusMessage);
   } else if (userInputToLowerCase === "paper") {
-    let statusMessage = "";
     if (pcOptions[pcChoice] === userInputToLowerCase) {
       statusMessage = "Its a draw!";
       saveGame(message.author.id, message.author.tag, "draw");
@@ -93,7 +91,7 @@ Client.on("messageCreate", (message) => {
       statusMessage = "You won!";
       saveGame(message.author.id, message.author.tag, "win");
     } else {
-      message.reply("Error in the code :(");
+      message.reply("Error in the code :( or invalid choice");
     }
     message.reply(
       "You chose: " +
@@ -156,7 +154,10 @@ function displayGame(ID) {
         " losses" +
         "\n" +
         data[i].draw +
-        " draws";
+        " draws" +
+        "\n" +
+        "Played at: " +
+        data[i].time;
     }
   }
 
