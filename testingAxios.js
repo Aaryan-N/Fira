@@ -1,9 +1,11 @@
-const {request} = require("undici");
+const axios = require("axios");
 
-async function lol(){
-const jokeResult = await request('https://uselessfacts.jsph.pl/api/v2/facts/random?language=en');
-const file  = await jokeResult.body.text;
-console.log(file);
-}
-
-lol();
+const serverAddress = "mc.hypixel.net"
+axios({
+    method: 'get',
+    url: `https://api.mcsrvstat.us/3/${serverAddress}`,
+    responseType: 'json'
+})
+    .then(function (response) {
+        console.log(response.data.motd.clean);
+    });
