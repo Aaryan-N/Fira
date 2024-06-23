@@ -16,7 +16,10 @@ module.exports = {
             responseType: 'json'
         })
             .then(function (res) {
-                response = res.data.motd.clean.toString();
+                unformattedResponse = res.data.motd.clean.toString();
+                console.log(unformattedResponse);
+                const response = unformattedResponse.replace(/^\s+|\s+$/g, "").replace(/,/g, "");
+                console.log(response);
                 interaction.editReply(response);
             })
             .catch((err) => {
