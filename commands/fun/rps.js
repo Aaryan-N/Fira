@@ -52,7 +52,7 @@ module.exports = {
       }
     } catch (err) {
       console.log(
-        "Woah there has been an error with the rps command. Here it is: " + err,
+        "Woah there has been an error with the rps command. Here it is: \n" + err,
       );
       await interaction.reply(
         "We are sorry, something has gone terribly wrong. The developer has been notified!",
