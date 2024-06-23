@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, bold } = require("discord.js");
 const { rando } = require("@nastyox/rando.js");
 
 module.exports = {
@@ -58,12 +58,35 @@ module.exports = {
         "We are sorry, something has gone terribly wrong. The developer has been notified!",
       );
     }
-    const finalBufferResponseToUser =
-      "The computer selected " +
-      pcOptions[pcChoice] +
-      " and you selected " +
-      userInput +
-      " so....";
-    await interaction.reply(finalBufferResponseToUser + " " + statusMessage);
+
+    const unformattedPcChoice = pcOptions[pcChoice];
+
+    const formattedPcChoice = unformattedPcChoice.charAt(0).toUpperCase() + unformattedPcChoice.slice(1);
+
+    const formattedUserInput = userInput.charAt(0).toUpperCase()
+        + userInput.slice(1)
+
+    const rpsEmbed = new EmbedBuilder()
+        .setTitle("RPS")
+        .addFields(
+            { name: "Your choice"  , value: formattedUserInput },
+            { name: "The computer's choice", value: formattedPcChoice },
+            { name: "Result", value: bold(statusMessage)}
+        )
+        .setTimestamp()
+        .setFooter({ text: "Sent using Scythe discord bot!" })
+
+    if(statusMessage.includes("won") === true) {
+      rpsEmbed.setColor(0x00FF00)
+    } else if(statusMessage.includes("lost") === true) {
+      rpsEmbed.setColor(0xFF0000)
+    } else if(statusMessage.includes("draw") === true) {
+      rpsEmbed.setColor(0x808080)
+    } else {
+      rpsEmbed.setColor(0x0099FF)
+    }
+
+    interaction.reply({embeds : [rpsEmbed]});
+
   },
 };

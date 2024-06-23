@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const axios = require("axios");
 module.exports = {
   data: new SlashCommandBuilder()
@@ -12,7 +12,6 @@ module.exports = {
     ),
   async execute(interaction) {
     const serverAddress = interaction.options.getString("serveraddress");
-
     axios({
       method: "get",
       url: `https://api.mcsrvstat.us/3/${serverAddress}`,
@@ -23,7 +22,17 @@ module.exports = {
         const response = unformattedResponse
           .replace(/^\s+|\s+$/g, "")
           .replace(/,/g, "");
-        interaction.editReply(response);
+
+        const motdEmbed = new EmbedBuilder()
+            .setColor(0x0099FF)
+            .setTitle("Minecraft Server Message of the Day")
+            .addFields(
+                { name: "Server: " + serverAddress , value: response },
+            )
+            .setTimestamp()
+            .setFooter({ text: "Sent using Scythe discord bot!" })
+        interaction.reply({embeds : [motdEmbed]});
+
       })
       .catch((err) => {
         console.log(err);

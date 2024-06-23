@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const axios = require('axios');
 module.exports = {
   data: new SlashCommandBuilder()
@@ -11,7 +11,15 @@ module.exports = {
           responseType: 'json'
       })
           .then(function (response) {
-              interaction.reply(response.data.joke);
+              const jokeEmbed = new EmbedBuilder()
+                  .setColor(0x0099FF)
+                  .setTitle("Jokes")
+                  .addFields(
+                      { name: "Category: " + response.data.category , value: response.data.joke },
+                  )
+                  .setTimestamp()
+                  .setFooter({ text: "Sent using Scythe discord bot!" })
+              interaction.reply({embeds : [jokeEmbed]});
           })
           .catch((err) => {
           console.log(err)
