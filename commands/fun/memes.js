@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder,EmbedBuilder } = require("discord.js");
 const axios = require('axios');
 module.exports = {
     data: new SlashCommandBuilder()
@@ -11,7 +11,13 @@ module.exports = {
             responseType: 'json'
         })
             .then(function (response) {
-                interaction.reply(response.data.title + "\n" + response.data.url);
+                const memesEmbed = new EmbedBuilder()
+                    .setTitle(response.data.title)
+                    .setURL(response.data.postLink)
+                    .setImage(response.data.url)
+                    .setTimestamp()
+                    .setFooter({ text: "Sent using Scythe discord bot!" })
+                interaction.reply({ embeds: [memesEmbed] });
             })
             .catch((err) => {
                 console.log(err)
