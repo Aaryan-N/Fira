@@ -1,13 +1,9 @@
-const axios = require("axios");
+const {request} = require("undici");
 
-let finalJoke = "";
-
-async function fetchJoke() {
-    try {
-        const { data }  = await axios.get("https://uselessfacts.jsph.pl/api/v2/facts/random?language=en");
-        this.chart = data;
-        console.log(this.chart);
-    } catch (error) {
-        console.log(error)
-    }
+async function lol(){
+const jokeResult = await request('https://uselessfacts.jsph.pl/api/v2/facts/random?language=en');
+const file  = await jokeResult.body.text;
+console.log(file);
 }
+
+lol();
