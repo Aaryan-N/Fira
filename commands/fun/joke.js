@@ -13,6 +13,10 @@ module.exports = {
       })
           .then(function (response) {
               interaction.editReply(response.data.joke);
-          });
+          })
+          .catch((err) => {
+          console.log(err)
+          interaction.editReply("Did you type that in right?");
+      });
   },
 };
