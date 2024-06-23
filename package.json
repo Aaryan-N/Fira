@@ -10,6 +10,7 @@
   "author": "Aaryan Narayan",
   "license": "ISC",
   "dependencies": {
+    "@nastyox/rando.js": "^2.0.6",
     "async": "^3.2.5",
     "axios": "^1.7.2",
     "discord.js": "^14.15.3",
