@@ -6,8 +6,7 @@ module.exports = {
     execute(client) {
         console.log(
             "Client ready and logged in as " +
-            client.user.username +
-            " is now logged in.",
+            client.user.username
         );
     },
 };
