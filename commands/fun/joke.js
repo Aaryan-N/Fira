@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require("discord.js");
 const axios = require('axios');
 
 let finalJoke = "";
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("joke")
