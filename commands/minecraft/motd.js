@@ -11,8 +11,6 @@ module.exports = {
         .setRequired(true),
     ),
   async execute(interaction) {
-    await interaction.reply({ content: "Fetching..." });
-
     const serverAddress = interaction.options.getString("serveraddress");
 
     axios({
@@ -29,7 +27,7 @@ module.exports = {
       })
       .catch((err) => {
         console.log(err);
-        interaction.editReply("Did you type that in right?");
+        interaction.reply("Did you type that in right?");
       });
   },
 };
