@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const economySchema = require('../../schemas/economySchema')
 
 const dailyAmount = 500;
@@ -39,18 +39,26 @@ module.exports = {
 
             await userProfile.save();
 
-            interaction.editReply(
-                `${dailyAmount} was added to your balance!`
-            )
+            console.log(dailyAmount)
+            console.log(userProfile.balance)
+
+            const dailiesEmbed = new EmbedBuilder()
+                .setColor(0x0099FF)
+                .addFields(
+                    { name: "Amount added" , value: dailyAmount.toString() },
+                          { name: "Current Balance" , value: userProfile.balance.toString() },
+                )
+                .setTimestamp()
+                .setFooter({ text: "Sent using Hydra" })
+
+            interaction.editReply({embeds : [dailiesEmbed]});
         } catch(err) {
             console.log(
                 "Woah there has been an error with the rps command. Here it is: \n" + err,
             );
-            await interaction.reply(
+            await interaction.editReply(
                 "We are sorry, something has gone terribly wrong. The developer has been notified!",
             );
         }
-
-        await interaction.reply("Collecting the dailies!");
     },
 };
