@@ -13,7 +13,7 @@ module.exports = {
         .addBooleanOption(option => option.setName('lucky').setDescription("Feeling lucky? Set this to true!")),
 
     async execute(interaction) {
-        const userLuckyChoice = interaction.options.getBoolean("lucky");
+        const userLuckyChoice = interaction.options.get("lucky")?.value;
         const userBallQuery = interaction.options.getString("query");
         const formattedUserBallQuery = userBallQuery.replace(/ /g, '+')
         console.log(userLuckyChoice)
@@ -26,11 +26,12 @@ module.exports = {
             responseType: "json",
         })
             .then(function (response) {
+                console.log(response.data.reading)
                 const ballEmbed = new EmbedBuilder()
                     .setColor(0x0099FF)
                     .setTitle("8 Ball")
                     .addFields(
-                        { name: "The 8 Ball's verdict!" , value: response.reading },
+                        { name: "The 8 Ball's verdict:" , value: response.data.reading },
                     )
                     .setTimestamp()
                     .setFooter({ text: "Sent using Scythe discord bot!" })
