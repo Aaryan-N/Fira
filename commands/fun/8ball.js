@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const axios = require("axios");
+const errorEmbed = require("../../templates/embed/errorEmbed");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("8ball")
@@ -35,8 +36,11 @@ module.exports = {
 
             })
             .catch((err) => {
-                console.log(err);
-                interaction.reply("Did you type that in right?");
+                console.log(
+                    `Woah there has been an error with the 8 ball command. Here it is: 
+` + err,
+                )
+                interaction.editReply({ embeds: [errorEmbed] });
             });
     },
 };

@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const axios = require("axios");
+const errorEmbed = require("../../templates/embed/errorEmbed");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("motd")
@@ -23,6 +24,7 @@ module.exports = {
           .replace(/^\s+|\s+$/g, "")
           .replace(/,/g, "");
 
+
         const motdEmbed = new EmbedBuilder()
             .setColor(0x0099FF)
             .setTitle("Minecraft Server Message of the Day")
@@ -35,8 +37,11 @@ module.exports = {
 
       })
       .catch((err) => {
-        console.log(err);
-        interaction.reply("Did you type that in right?");
+          console.log(
+              `Woah there has been an error with the message of the day command. Here it is: 
+` + err,
+          )
+          interaction.editReply({ embeds: [errorEmbed] });
       });
   },
 };

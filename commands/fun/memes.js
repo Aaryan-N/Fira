@@ -1,5 +1,7 @@
 const { SlashCommandBuilder,EmbedBuilder } = require("discord.js");
 const axios = require('axios');
+const errorEmbed = require("../../templates/embed/errorEmbed")
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("memes")
@@ -21,8 +23,11 @@ module.exports = {
                 interaction.reply({ embeds: [memesEmbed] });
             })
             .catch((err) => {
-                console.log(err)
-                interaction.editReply("Did you type that in right?");
+                console.log(
+                    `Woah there has been an error with the message of the day command. Here it is: 
+` + err,
+                )
+                interaction.editReply({ embeds: [errorEmbed] });
             });
     },
 };

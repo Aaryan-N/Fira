@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const economySchema = require('../../schemas/economySchema')
+const errorEmbed = require("../../templates/embed/errorEmbed")
 
 const dailyAmount = 500;
 
@@ -39,9 +40,6 @@ module.exports = {
 
             await userProfile.save();
 
-            console.log(dailyAmount)
-            console.log(userProfile.balance)
-
             const dailiesEmbed = new EmbedBuilder()
                 .setColor(0x0099FF)
                 .addFields(
@@ -54,11 +52,9 @@ module.exports = {
             interaction.editReply({embeds : [dailiesEmbed]});
         } catch(err) {
             console.log(
-                "Woah there has been an error with the rps command. Here it is: \n" + err,
+                "Woah there has been an error with the economy daily command. Here it is: \n" + err,
             );
-            await interaction.editReply(
-                "We are sorry, something has gone terribly wrong. The developer has been notified!",
-            );
+            await interaction.editReply({ embeds: [errorEmbed] });
         }
     },
 };

@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, bold } = require("discord.js");
 const { rando } = require("@nastyox/rando.js");
+const errorEmbed = require("../../templates/embed/errorEmbed")
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -52,11 +53,10 @@ module.exports = {
       }
     } catch (err) {
       console.log(
-        "Woah there has been an error with the rps command. Here it is: \n" + err,
-      );
-      await interaction.reply(
-        "We are sorry, something has gone terribly wrong. The developer has been notified!",
-      );
+          `Woah there has been an error with the message of the day command. Here it is: 
+` + err,
+      )
+      interaction.editReply({ embeds: [errorEmbed] });
     }
 
     const unformattedPcChoice = pcOptions[pcChoice];
