@@ -1,26 +1,18 @@
-const { Events } = require('discord.js');
+const { Events, PresenceUpdateStatus } = require('discord.js');
 const mongoose = require('mongoose')
-const mongoURL = process.env.MONGODB_URL
+require('dotenv').config()
 
 module.exports = {
     name: Events.ClientReady,
     once: true,
-    async execute(client) {
+    execute(client) {
+        client.user.setStatus(PresenceUpdateStatus.DoNotDisturb);
         console.log(
             "Client ready and logged in as " +
             client.user.username
         );
-        if (!mongoURL) return;
 
-        await mongoose.connect(mongoURL || '', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-
-        if (mongoose.connect) {
-            console.log("I have connected to the db!")
-        } else {
-            console.log("Failed to connect to the db!");
-        }
+        mongoose.connect(process.env.mongoURL || '', {
+        }).then(() => console.log("Connected to the database!"))
     },
 };
