@@ -20,7 +20,7 @@ module.exports = {
                         { name: "Dad Joke" , value: response.data.joke },
                     )
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Scythe discord bot!" })
+                    .setFooter({ text: "Sent using Hydra" })
                 interaction.reply({embeds : [dadJokeEmbed]});
             })
             .catch((err) => {

@@ -74,7 +74,7 @@ module.exports = {
             { name: "Result", value: bold(statusMessage)}
         )
         .setTimestamp()
-        .setFooter({ text: "Sent using Scythe discord bot!" })
+        .setFooter({ text: "Sent using Hydra" })
 
     if(statusMessage.includes("won") === true) {
       rpsEmbed.setColor(0x00FF00)

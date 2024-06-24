@@ -18,7 +18,7 @@ module.exports = {
                       { name: "Category: " + response.data.category , value: response.data.joke },
                   )
                   .setTimestamp()
-                  .setFooter({ text: "Sent using Scythe discord bot!" })
+                  .setFooter({ text: "Sent using Hydra" })
               interaction.reply({embeds : [jokeEmbed]});
           })
           .catch((err) => {

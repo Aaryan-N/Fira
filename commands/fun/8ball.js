@@ -30,7 +30,7 @@ module.exports = {
                         { name: "The 8 Ball's verdict:" , value: response.data.reading },
                     )
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Scythe discord bot!" })
+                    .setFooter({ text: "Sent using Hydra" })
                 interaction.reply({embeds : [ballEmbed]});
 
             })

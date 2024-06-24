@@ -30,7 +30,7 @@ module.exports = {
                 { name: "Server: " + serverAddress , value: response },
             )
             .setTimestamp()
-            .setFooter({ text: "Sent using Scythe discord bot!" })
+            .setFooter({ text: "Sent using Hydra!" })
         interaction.reply({embeds : [motdEmbed]});
 
       })
