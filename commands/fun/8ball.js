@@ -16,9 +16,6 @@ module.exports = {
         const userLuckyChoice = interaction.options.get("lucky")?.value;
         const userBallQuery = interaction.options.getString("query");
         const formattedUserBallQuery = userBallQuery.replace(/ /g, '+')
-        console.log(userLuckyChoice)
-        console.log(userBallQuery)
-        console.log(formattedUserBallQuery)
 
         axios({
             method: "get",
@@ -26,7 +23,6 @@ module.exports = {
             responseType: "json",
         })
             .then(function (response) {
-                console.log(response.data.reading)
                 const ballEmbed = new EmbedBuilder()
                     .setColor(0x0099FF)
                     .setTitle("8 Ball")
