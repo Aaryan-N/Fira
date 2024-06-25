@@ -1,5 +1,5 @@
 const { economyConnection } = require("../events/ready");
-const { mongoose, Schema, model } = require("mongoose");
+const { mongoose, Schema, model} = require("mongoose");
 
 const economyDailiesSchema = new mongoose.Schema({
     userId: {
