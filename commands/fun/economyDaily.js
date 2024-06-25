@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
-const economySchema = require('../../schemas/economySchema')
+const economyDailiesSchema = require('../../schemas/economySchema')
 const errorEmbed = require("../../templates/embed/errorEmbed")
 
 const dailyAmount = 500;
@@ -17,7 +17,7 @@ module.exports = {
         try {
             await interaction.deferReply();
 
-            let userProfile = await economySchema.findOne({
+            let userProfile = await economyDailiesSchema.findOne({
                 userId: interaction.member.id
             });
 
@@ -30,7 +30,7 @@ module.exports = {
                     return;
                 }
             } else {
-               userProfile = new economySchema({
+               userProfile = new economyDailiesSchema({
                    userId: interaction.member.id,
                });
             }

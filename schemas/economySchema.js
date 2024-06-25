@@ -1,6 +1,7 @@
-const { Schema, model} = require("mongoose");
+const { economyConnection } = require("../events/ready");
+const { mongoose, Schema, model } = require("mongoose");
 
-const economySchema = new Schema({
+const economyDailiesSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true
@@ -13,7 +14,10 @@ const economySchema = new Schema({
         type: Date,
     },
 },
-    {timestamps:true}
-);
+ {timestamps: true}
+)
 
-module.exports = model("economySchema", economySchema);
+
+const economyDailiesModel = mongoose.models?.economydailies || mongoose.model('economydailies', economyDailiesSchema)
+
+module.exports = economyDailiesModel;

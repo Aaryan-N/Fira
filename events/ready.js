@@ -12,7 +12,7 @@ module.exports = {
             client.user.username
         );
 
-        mongoose.connect(process.env.mongoURL || '', {
-        }).then(() => console.log("Connected to the database!"))
+        const economyConnection = mongoose.createConnection(process.env.mongoURlEconomy, {})
+        module.exports = economyConnection;
     },
 };
