@@ -2,7 +2,7 @@
   "name": "discordbot",
   "version": "1.0.0",
   "description": "",
-  "main": "scythe.js",
+  "main": "hydra.js",
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,7 +15,7 @@
     "axios": "^1.7.2",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
-    "mongoose": "^8.4.3",
+    "mongoose": "^8.4.4",
     "node-fetch": "^2.7.0",
     "node-fetch-commonjs": "^3.3.2",
     "react": "^18.3.1",

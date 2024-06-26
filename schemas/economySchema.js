@@ -1,7 +1,7 @@
-const { economyConnection } = require("../events/ready");
-const { mongoose, Schema, model} = require("mongoose");
+const { connectDBs } = require("../hydra");
+const { default : mongoose } = require("mongoose");
 
-const economyDailiesSchema = new mongoose.Schema({
+const economyDailiesSchema = mongoose.Schema({
     userId: {
         type: String,
         required: true
@@ -13,11 +13,9 @@ const economyDailiesSchema = new mongoose.Schema({
     lastDailyCollected: {
         type: Date,
     },
-},
- {timestamps: true}
-)
+})
 
+const { economyDb } = connectDBs()
 
-const economyDailiesModel = mongoose.models?.economydailies || mongoose.model('economydailies', economyDailiesSchema)
+module.exports = economyDb.model('economyDailiesSchema', economyDailiesSchema)
 
-module.exports = economyDailiesModel;

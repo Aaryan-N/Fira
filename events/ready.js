@@ -11,8 +11,6 @@ module.exports = {
             "Client ready and logged in as " +
             client.user.username
         );
-
-        const economyConnection = mongoose.createConnection(process.env.mongoURlEconomy, {})
-        module.exports = economyConnection;
     },
 };
+

@@ -1,6 +1,7 @@
 const fs= require('node:fs');
 const path = require('path');
-const { Client, Collection, Events, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
+const mongoose = require("mongoose");
 require('dotenv').config()
 
 const client = new Client({
@@ -20,6 +21,21 @@ const client = new Client({
     Partials.ThreadMember,
   ],
 });
+
+const connectDBs = () => {
+    try {
+        const economyDb = mongoose.createConnection(process.env.mongoURlEconomy, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true
+        })
+        return {economyDb}
+    } catch (error) {
+        console.log(error);
+        process.exit(1)
+    }
+}
+
+module.exports = { connectDBs }
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
