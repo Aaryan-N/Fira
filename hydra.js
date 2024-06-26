@@ -24,10 +24,7 @@ const client = new Client({
 
 const connectDBs = () => {
     try {
-        const economyDb = mongoose.createConnection(process.env.mongoURlEconomy, {
-            useUnifiedTopology: true,
-            useNewUrlParser: true
-        })
+        const economyDb = mongoose.createConnection(process.env.mongoURlEconomy, {})
         return {economyDb}
     } catch (error) {
         console.log(error);
