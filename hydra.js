@@ -25,7 +25,9 @@ const client = new Client({
 const connectDBs = () => {
     try {
         const economyDb = mongoose.createConnection(process.env.mongoURlEconomy, {})
-        return {economyDb}
+        const birthdayDb = mongoose.createConnection(process.env.mongoURlBirthday, {})
+        console.log("Connected to the cluster, all connections to the databases have been established!")
+        return {economyDb, birthdayDb}
     } catch (error) {
         console.log(error);
         process.exit(1)

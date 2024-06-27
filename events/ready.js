@@ -9,7 +9,7 @@ module.exports = {
         client.user.setStatus(PresenceUpdateStatus.DoNotDisturb);
         console.log(
             "Client ready and logged in as " +
-            client.user.username
+            client.user.username + "!"
         );
     },
 };
