@@ -1,6 +1,6 @@
 const { SlashCommandBuilder,EmbedBuilder } = require("discord.js");
 const axios = require('axios');
-const errorEmbed = require("../../templates/embed/errorEmbed")
+const errorEmbed = require("../../templates/embeds/errorEmbed")
 
 module.exports = {
     data: new SlashCommandBuilder()

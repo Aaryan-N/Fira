@@ -26,8 +26,10 @@ const connectDBs = () => {
     try {
         const economyDb = mongoose.createConnection(process.env.mongoURlEconomy, {})
         const birthdayDb = mongoose.createConnection(process.env.mongoURlBirthday, {})
+
         console.log("Connected to the cluster, all connections to the databases have been established!")
-        return {economyDb, birthdayDb}
+
+        return { economyDb, birthdayDb }
     } catch (error) {
         console.log(error);
         process.exit(1)
@@ -68,4 +70,4 @@ for (const file of eventFiles) {
 }
 
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN).then(console.log("Successfully logged in!"));
