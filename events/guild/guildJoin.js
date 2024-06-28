@@ -1,39 +1,21 @@
 const { Events, Guild } = require("discord.js");
 const guildJoinSchema = require("../../schemas/guild/guildJoinSchema");
 
+/**
+ * @param {import('@src/structures').BotClient} client
+ * @param {import('discord.js').Guild} guild
+ */
+
 module.exports = {
   name: Events.GuildCreate,
   once: true,
-  async execute() {
-      let guildCreatedProfile = await guildJoinSchema.findOne({
-          guildId: Guild.id,
-          guildCreatedAt: Guild.createdAt,
-          guildCreatedAtTimestamp: Guild.createdTimestamp,
-          guildClientJoinedAt: Guild.joinedAt,
-      });
-
-      if (guildCreatedProfile) {
-          const guildCreatedProfileId = guildCreatedProfile.guildId;
-          if (guildCreatedProfileId !== null) {
-              console.log("Guild has already been registered somehow. Investigate")
-              return;
-          }
-      }
-
-      else {
-          const guildSetId = Guild.id;
-          const guildSetCreatedAt = Guild.createdAt;
-          const guildSetCreatedAtTimestamp = Guild.createdTimestamp;
-          const guildClientJoinedAt = Guild.joinedAt;
-
-          guildCreatedProfile = new guildJoinSchema({
-              guildId: guildSetId,
-              guildCreatedAt: guildSetCreatedAt,
-              guildCreatedAtTimestamp: guildSetCreatedAtTimestamp,
-              guildClientJoinedAt: guildClientJoinedAt,
-          });
-
-          guildCreatedProfile.save();
-      }
-  }
-};
+  async execute(client, guild) {
+      const guildSetId = guild.id.toString();
+      const guildSetCreatedAt = guild.createdAt;
+      const guildSetCreatedAtTimestamp = guild.createdTimestamp;
+      const guildClientJoinedAt = guild.joinedAt;
+      console.log(guildSetId);
+      console.log(guildSetCreatedAt);
+      console.log(guildSetCreatedAtTimestamp);
+      console.log(guildClientJoinedAt);
+}}
