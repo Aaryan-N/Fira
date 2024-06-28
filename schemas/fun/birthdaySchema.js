@@ -1,4 +1,4 @@
-const { connectDBs } = require("../hydra");
+const { connectDBs } = require("../../hydra");
 const { default : mongoose } = require("mongoose");
 
 const birthdaySchema = mongoose.Schema({

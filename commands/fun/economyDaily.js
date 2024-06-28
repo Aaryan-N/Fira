@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
-const economySchema = require('../../schemas/economySchema')
+const economySchema = require('../../schemas/fun/economySchema')
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed")
 
 const dailyAmount = 500;

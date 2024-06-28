@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, bold} = require("discord.js");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed")
-const birthdaySchema = require("../../schemas/birthdaySchema");
+const birthdaySchema = require("../../schemas/fun/birthdaySchema");
 
 module.exports = {
     data: new SlashCommandBuilder()
