@@ -26,14 +26,17 @@ const connectDBs = () => {
     try {
         const economyDb = mongoose.createConnection(process.env.mongoURlEconomy, {})
         const birthdayDb = mongoose.createConnection(process.env.mongoURlBirthday, {})
-
-        console.log("Connected to the cluster, all connections to the databases have been established!")
-
         return { economyDb, birthdayDb }
     } catch (error) {
         console.log(error);
         process.exit(1)
     }
+}
+
+try {
+    console.log("Connected to the cluster, all connections to the databases have been established!");
+} catch(err) {
+    console.error(err);
 }
 
 module.exports = { connectDBs }
@@ -56,7 +59,7 @@ for (const folder of commandFolders) {
     }
 }
 
-const eventsPath = path.join(__dirname, 'events');
+const eventsPath = path.join(__dirname, 'events/');
 const eventFiles= fs.readdirSync(eventsPath).filter(file => file.endsWith(".js"));
 
 for (const file of eventFiles) {
@@ -70,4 +73,9 @@ for (const file of eventFiles) {
 }
 
 
-client.login(process.env.TOKEN).then(console.log("Successfully logged in!"));
+try {
+    client.login(process.env.TOKEN)
+    console.log("Successfully logged in!")
+} catch (err) {
+    console.log("Something went wrong with logging in. how have you messed up logging in?")
+}

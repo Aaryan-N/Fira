@@ -37,6 +37,7 @@ const rest = new REST().setToken(process.env.token, process.env.guildID);
     });
 
     console.log("Successfully reloaded application (/) commands.");
+
   } catch (error) {
     console.error(error);
   }

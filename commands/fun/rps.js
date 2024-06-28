@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, bold } = require("discord.js");
 const { rando } = require("@nastyox/rando.js");
-const errorEmbed = require("../../templates/embeds/errorEmbed")
+const errorEmbed = require("../../templates/embeds/errors/errorEmbed")
 
 module.exports = {
   data: new SlashCommandBuilder()

@@ -1,7 +1,7 @@
 const { connectDBs } = require("../hydra");
 const { default : mongoose } = require("mongoose");
 
-const economyDailiesSchema = mongoose.Schema({
+const economySchema = mongoose.Schema({
     userId: {
         type: String,
         required: true
@@ -21,5 +21,5 @@ const economyDailiesSchema = mongoose.Schema({
 
 const { economyDb } = connectDBs()
     
-module.exports = economyDb.model('economyDailies', economyDailiesSchema)
+module.exports = economyDb.model('economyDailies', economySchema)
 
