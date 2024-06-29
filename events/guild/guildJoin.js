@@ -1,5 +1,5 @@
 const { Events } = require("discord.js");
-const guildJoinSchema = require("../../schemas/guild/guildJoinSchema");
+const guildJoinSchema = require("../../schemas/guild/guildSchema");
 
 
 module.exports = {
@@ -9,13 +9,15 @@ module.exports = {
       const guildSetId = guild.id;
       const guildSetCreatedAt = guild.createdAt;
       const guildSetCreatedAtTimestamp = guild.createdTimestamp;
-      const guildClientJoinedAt = guild.joinedAt;
+      const guildSetClientJoinedAt = guild.joinedAt;
+      const guildSetJoinedCurrently = true;
 
       let guildCreatedProfile = await guildJoinSchema.findOne({
           guildId: guildSetId,
           guildCreatedAt: guildSetCreatedAt,
           guildCreatedAtTimestamp: guildSetCreatedAtTimestamp,
-          guildClientJoinedAt: guildClientJoinedAt,
+          guildClientJoinedAt: guildSetClientJoinedAt,
+          guildJoinedCurrently: guildSetJoinedCurrently,
       });
 
       if (guildCreatedProfile) {
@@ -30,7 +32,8 @@ module.exports = {
               guildId: guildSetId,
               guildCreatedAt: guildSetCreatedAt,
               guildCreatedAtTimestamp: guildSetCreatedAtTimestamp,
-              guildClientJoinedAt: guildClientJoinedAt,
+              guildClientJoinedAt: guildSetClientJoinedAt,
+              guildJoinedCurrently: guildSetJoinedCurrently,
           });
 
           guildCreatedProfile.save();
