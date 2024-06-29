@@ -20,6 +20,7 @@ const guildSchema = mongoose.Schema({
     }, guildJoinedCurrently: {
         type: Boolean,
         required: true,
+        default: false,
     }
 })
 
