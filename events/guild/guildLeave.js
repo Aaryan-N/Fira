@@ -10,7 +10,6 @@ module.exports = {
 
     let guildLeftProfile = await guildJoinSchema.findOne({
       guildId: guildSetId,
-
       guildJoinedCurrently: true,
     });
 

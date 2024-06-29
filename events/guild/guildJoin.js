@@ -15,19 +15,14 @@ module.exports = {
     let guildCreatedProfile = await guildJoinSchema.findOne({
       guildId: guildSetId,
       guildName: guildSetName,
-      guildJoinedCurrently: guildSetJoinedCurrently,
     });
-
     if (guildCreatedProfile) {
-      const guildCreatedProfileId = guildCreatedProfile.guildId;
-      if (guildCreatedProfileId !== null) {
-        console.log("Guild has already been registered somehow. Investigate");
-    } if(guildCreatedProfile.guildJoinedCurrently === false ) {
-            guildCreatedProfile.guildJoinedCurrently = true;
-            await guildCreatedProfile.save();
-        }
-    }
-    else {
+      const guildJoinedChecker = guildCreatedProfile.guildJoinedCurrently;
+      if (guildJoinedChecker === false) {
+        guildCreatedProfile.guildJoinedCurrently = true;
+        guildCreatedProfile.save();
+      }
+    } else {
       guildCreatedProfile = new guildJoinSchema({
         guildId: guildSetId,
         guildName: guildSetName,
@@ -36,8 +31,7 @@ module.exports = {
         guildClientJoinedAt: guildSetClientJoinedAt,
         guildJoinedCurrently: guildSetJoinedCurrently,
       });
-
       await guildCreatedProfile.save();
     }
-  }
-}
+  },
+};

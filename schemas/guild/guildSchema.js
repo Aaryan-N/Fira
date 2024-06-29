@@ -10,17 +10,13 @@ const guildSchema = mongoose.Schema({
         required: true
     }, guildCreatedAt: {
         type: Date,
-        required: true,
     }, guildCreatedAtTimestamp: {
         type: Number,
-        required: true,
     }, guildClientJoinedAt: {
         type: Date,
-        required: true,
     }, guildJoinedCurrently: {
         type: Boolean,
         required: true,
-        default: false,
     }
 })
 
