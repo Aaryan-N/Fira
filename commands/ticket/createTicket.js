@@ -4,8 +4,9 @@ const {
   TextInputBuilder,
   TextInputStyle,
   ActionRowBuilder,
+  Events,
 } = require("discord.js");
-const ticketSchema = require("../../schemas/guild/guildSchema");
+const ticketSchema = require("../../schemas/ticketing/ticketSchema");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed");
 
 module.exports = {
@@ -28,7 +29,7 @@ module.exports = {
       });
 
       const ticketingModal = new ModalBuilder()
-        .setCustomId(`ticketModal-${interaction.user.id}`)
+        .setCustomId(`ticketModal`)
         .setTitle("Create a ticket for mods to review!");
 
       const ticketSubjectInput = new TextInputBuilder()
@@ -37,7 +38,7 @@ module.exports = {
         .setStyle(TextInputStyle.Short);
 
       const ticketMainInput = new TextInputBuilder()
-        .setCustomId("ticketInput")
+        .setCustomId("ticketInputMain")
         .setLabel("Enter the body of your ticket here!")
         .setStyle(TextInputStyle.Paragraph);
 
@@ -48,39 +49,46 @@ module.exports = {
         ticketMainInput,
       );
 
-      ticketingModal.addComponents(ticketSubjectInputActionRow, ticketMainInputActionRow,);
+      ticketingModal.addComponents(
+        ticketSubjectInputActionRow,
+        ticketMainInputActionRow,
+      );
 
-      await interaction.showModal(ticketingModal);
+      interaction.showModal(ticketingModal);
 
+      let modalSubjectContent;
+      let modalMainContent;
 
-      let ticketSubjectContent;
-      let ticketMainInputContent;
-
-      const filter = (interaction) => interaction.customId === `ticketModal-${interaction.user.id}`;
-
-      interaction.awaitModalSubmit({ filter, time: 30_000})
-          .then((modalInteraction) => {
-              ticketSubjectContent = modalInteraction.field.getTextInputValue("ticketInputSubject")
-              ticketMainInputContent = modalInteraction.field.getTextInputValue("ticketMainInput")
-              modalInteraction.reply("Your request has been sent!")
-          })
-
-        console.log(ticketSubjectContent)
-        console.log(ticketMainInputContent)
-
-      ticketingProfile = new ticketSchema({
-        userId: interaction.member.id,
-        guildId: interaction.guild.id,
-        ticketSubjectContent: ticketSubjectContent,
-        ticketBodyContent: ticketMainInputContent,
-        timeTicketCreated: interaction.createdAt,
-      });
+      const filter = (interaction) => interaction.customId === "ticketModal";
+      interaction
+        .awaitModalSubmit({ filter, time: 15_000 })
+        .then((interaction) => {
+          interaction.reply({
+            content: "Your ticket was successfully created!",
+            ephemeral: true,
+          });
+          modalSubjectContent =
+            interaction.fields.getTextInputValue("ticketInputSubject");
+          modalMainContent =
+            interaction.fields.getTextInputValue("ticketInputMain");
+        })
+        .then(() => {
+          ticketingProfile = new ticketSchema({
+            userId: interaction.member.id,
+            guildId: interaction.guild.id,
+            ticketSubjectContent: modalSubjectContent,
+            ticketBodyContent: modalMainContent,
+            timeTicketCreated: interaction.createdAt,
+          });
+          ticketingProfile.save();
+        })
+        .catch(console.error);
     } catch (err) {
       console.error(
         "Something went badly wrong in the ticketing command. Here it is!" +
           err,
       );
-      interaction.editReply({ embeds: [errorEmbed] });
+      interaction.reply({ embeds: [errorEmbed] });
     }
   },
 };
