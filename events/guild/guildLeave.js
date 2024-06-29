@@ -6,15 +6,9 @@ module.exports = {
     async execute(args) {
         const guild = args;
         const guildSetId = guild.id;
-        const guildSetCreatedAt = guild.createdAt;
-        const guildSetCreatedAtTimestamp = guild.createdTimestamp;
-        const guildSetClientJoinedAt = guild.joinedAt;
 
         let guildLeftProfile = await guildJoinSchema.findOne({
             guildId: guildSetId,
-            guildCreatedAt: guildSetCreatedAt,
-            guildCreatedAtTimestamp: guildSetCreatedAtTimestamp,
-            guildClientJoinedAt: guildSetClientJoinedAt,
             guildJoinedCurrently: true,
         });
 

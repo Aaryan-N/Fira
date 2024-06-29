@@ -1,14 +1,12 @@
-const {connectDBs} = require("../../hydra");
+const { connectDBs } = require("../../hydra");
 const { default : mongoose } = require("mongoose");
 
-const guildSchema = mongoose.Schema({
+const ticketSchema = mongoose.Schema({
     guildId: {
         type: String,
         required: true
-    }, guildName: {
-        type: String,
-        required: true
-    }, guildCreatedAt: {
+    },
+    guildCreatedAt: {
         type: Date,
         required: true,
     }, guildCreatedAtTimestamp: {
@@ -23,7 +21,7 @@ const guildSchema = mongoose.Schema({
     }
 })
 
-const { usersDb } = connectDBs();
+const { ticketingDb } = connectDBs();
 
-module.exports = usersDb.model('guilds', guildSchema)
+module.exports = ticketingDb.model('tickets', ticketSchema)
 

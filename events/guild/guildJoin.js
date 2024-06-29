@@ -7,6 +7,7 @@ module.exports = {
   async execute(args) {
       const guild = args;
       const guildSetId = guild.id;
+      const guildSetName = guild.name;
       const guildSetCreatedAt = guild.createdAt;
       const guildSetCreatedAtTimestamp = guild.createdTimestamp;
       const guildSetClientJoinedAt = guild.joinedAt;
@@ -14,9 +15,6 @@ module.exports = {
 
       let guildCreatedProfile = await guildJoinSchema.findOne({
           guildId: guildSetId,
-          guildCreatedAt: guildSetCreatedAt,
-          guildCreatedAtTimestamp: guildSetCreatedAtTimestamp,
-          guildClientJoinedAt: guildSetClientJoinedAt,
           guildJoinedCurrently: guildSetJoinedCurrently,
       });
 
@@ -30,13 +28,14 @@ module.exports = {
       else {
           guildCreatedProfile = new guildJoinSchema({
               guildId: guildSetId,
+              guildName: guildSetName,
               guildCreatedAt: guildSetCreatedAt,
               guildCreatedAtTimestamp: guildSetCreatedAtTimestamp,
               guildClientJoinedAt: guildSetClientJoinedAt,
               guildJoinedCurrently: guildSetJoinedCurrently,
           });
 
-          guildCreatedProfile.save();
+          await guildCreatedProfile.save();
       }
   }
 }

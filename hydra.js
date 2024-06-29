@@ -27,7 +27,8 @@ function connectDBs() {
         const economyDb = mongoose.createConnection(process.env.mongoURlEconomy, {})
         const birthdayDb = mongoose.createConnection(process.env.mongoURlBirthday, {})
         const usersDb = mongoose.createConnection(process.env.mongoURLGuild, {})
-        return { economyDb, birthdayDb, usersDb }
+        const ticketingDb = mongoose.createConnection(process.env.mongoURLTicket, {})
+        return { economyDb, birthdayDb, usersDb, ticketingDb }
     } catch (error) {
         console.log(error);
         process.exit(1)
