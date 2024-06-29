@@ -1,27 +1,29 @@
 const { connectDBs } = require("../../hydra");
-const { default : mongoose } = require("mongoose");
+const { default: mongoose } = require("mongoose");
 
 const ticketSchema = mongoose.Schema({
-    guildId: {
-        type: String,
-        required: true
-    },
-    guildCreatedAt: {
-        type: Date,
-        required: true,
-    }, guildCreatedAtTimestamp: {
-        type: Number,
-        required: true,
-    }, guildClientJoinedAt: {
-        type: Date,
-        required: true,
-    }, guildJoinedCurrently: {
-        type: Boolean,
-        required: true,
-    }
-})
+  userId: {
+    type: String,
+    required: true,
+  },
+  guildId: {
+    type: String,
+    required: true,
+  },
+  ticketSubjectContent: {
+    type: String,
+    required: true,
+  },
+  ticketBodyContent: {
+    type: String,
+    required: true,
+  },
+  timeTicketCreated: {
+    type: Date,
+    required: true,
+  },
+});
 
 const { ticketingDb } = connectDBs();
 
-module.exports = ticketingDb.model('tickets', ticketSchema)
-
+module.exports = ticketingDb.model("tickets", ticketSchema);

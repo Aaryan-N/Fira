@@ -14,12 +14,13 @@ module.exports = {
 
     let guildCreatedProfile = await guildJoinSchema.findOne({
       guildId: guildSetId,
-      guildName: guildSetName,
+      guildCreatedAt: guildSetCreatedAt,
     });
     if (guildCreatedProfile) {
       const guildJoinedChecker = guildCreatedProfile.guildJoinedCurrently;
       if (guildJoinedChecker === false) {
         guildCreatedProfile.guildJoinedCurrently = true;
+        guildCreatedProfile.guildClientJoinedAt = guildSetClientJoinedAt;
         guildCreatedProfile.save();
       }
     } else {
