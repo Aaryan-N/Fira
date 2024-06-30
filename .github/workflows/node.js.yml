@@ -30,6 +30,11 @@ jobs:
           echo TOKEN = ${{ secrets.TOKEN }} >> .env
           echo CLIENTID = ${{ secrets.CLIENTID }} >> .env
           echo GUILDID = ${{ secrets.GUILDID }} >> .env
+          echo MONGOURL = ${{ secrets.MONGOURL }} >> .env
+          echo MONGOURLECONOMY = ${{ secrets.MONGOURLECONOMY }} >> .env
+          echo MONGOURLBIRTHDAY = ${{ secrets.MONGOURLBIRTHDAY }} >> .env
+          echo MONGOURLUSERS = ${{ secrets.MONGOURLUSERS }} >> .env
+          echo MONGOURLTICKET = ${{ secrets.MONGOURLTICKET }} >> .env
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
