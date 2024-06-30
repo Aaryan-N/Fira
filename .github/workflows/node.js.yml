@@ -43,3 +43,11 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm test
+
+    - name: Run command and stop output
+      id: condition
+      run: | 
+        ${"Client ready as Hydra!"}
+        if[[ $output == *"Client ready as Hydra!"*]]
+        echo "String found indicating successful run"
+        exit 0
