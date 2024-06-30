@@ -24,10 +24,10 @@ const client = new Client({
 
 function connectDBs() {
     try {
-        const economyDb = mongoose.createConnection(process.env.mongoURlEconomy, {})
-        const birthdayDb = mongoose.createConnection(process.env.mongoURlBirthday, {})
-        const usersDb = mongoose.createConnection(process.env.mongoURLGuild, {})
-        const ticketingDb = mongoose.createConnection(process.env.mongoURLTicket, {})
+        const economyDb = mongoose.createConnection(process.env.MONGOURLECONOMY, {})
+        const birthdayDb = mongoose.createConnection(process.env.MONGOURLBIRTHDAY, {})
+        const usersDb = mongoose.createConnection(process.env.MONGOURLUSERS, {})
+        const ticketingDb = mongoose.createConnection(process.env.MONGOURLTICKET, {})
         return { economyDb, birthdayDb, usersDb, ticketingDb }
     } catch (error) {
         console.log(error);

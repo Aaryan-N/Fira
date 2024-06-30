@@ -25,14 +25,14 @@ for (const folder of commandFolders) {
   }
 }
 
-const rest = new REST().setToken(process.env.token, process.env.guildID);
+const rest = new REST().setToken(process.env.TOKEN, process.env.GUILDID);
 
 (async () => {
   try {
     console.log("Started refreshing application (/) commands.");
     console.log(commands);
 
-    await rest.put(Routes.applicationCommands(process.env.clientID), {
+    await rest.put(Routes.applicationCommands(process.env.CLIENTID), {
       body: commands,
     });
 
