@@ -22,13 +22,16 @@ const client = new Client({
   ],
 });
 
+module.exports = client;
+
 function connectDBs() {
     try {
         const economyDb = mongoose.createConnection(process.env.MONGOURLECONOMY, {})
         const birthdayDb = mongoose.createConnection(process.env.MONGOURLBIRTHDAY, {})
         const usersDb = mongoose.createConnection(process.env.MONGOURLUSERS, {})
         const ticketingDb = mongoose.createConnection(process.env.MONGOURLTICKET, {})
-        return { economyDb, birthdayDb, usersDb, ticketingDb }
+        const configDb = mongoose.createConnection(process.env.MONGOURLCONFIG, {})
+        return { economyDb, birthdayDb, usersDb, ticketingDb, configDb }
     } catch (error) {
         console.log(error);
         process.exit(1)

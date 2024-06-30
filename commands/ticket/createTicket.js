@@ -4,7 +4,6 @@ const {
   TextInputBuilder,
   TextInputStyle,
   ActionRowBuilder,
-  Events,
 } = require("discord.js");
 const ticketSchema = require("../../schemas/ticketing/ticketSchema");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed");
@@ -61,7 +60,7 @@ module.exports = {
 
       const filter = (interaction) => interaction.customId === "ticketModal";
       interaction
-        .awaitModalSubmit({ filter, time: 15_000 })
+        .awaitModalSubmit({ filter, time: 30_000 })
         .then((interaction) => {
           interaction.reply({
             content: "Your ticket was successfully created!",
@@ -72,17 +71,22 @@ module.exports = {
           modalMainContent =
             interaction.fields.getTextInputValue("ticketInputMain");
         })
-        .then(() => {
-          ticketingProfile = new ticketSchema({
-            userId: interaction.member.id,
-            guildId: interaction.guild.id,
-            ticketSubjectContent: modalSubjectContent,
-            ticketBodyContent: modalMainContent,
-            timeTicketCreated: interaction.createdAt,
-          });
-          ticketingProfile.save();
-        })
-        .catch(console.error);
+        .then(
+          () => {
+            ticketingProfile = new ticketSchema({
+              userId: interaction.member.id,
+              guildId: interaction.guild.id,
+              ticketSubjectContent: modalSubjectContent,
+              ticketBodyContent: modalMainContent,
+              timeTicketCreated: interaction.createdAt,
+            });
+            ticketingProfile.save();}
+        ).then(async () => {
+        //TODO Change this to go to mongo db instead
+        const channelTicketConfig = interaction.channel.id;
+        const channel = interaction.guild.channels.cache.get(channelTicketConfig);
+        await channel.send("Nsdfs")
+      }).catch(console.error);
     } catch (err) {
       console.error(
         "Something went badly wrong in the ticketing command. Here it is!" +
