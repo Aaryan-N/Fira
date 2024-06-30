@@ -23,11 +23,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Create .env file based on Github Secrets
-      uses: ozaytsev86/create-env-file-action@v1
-      with:
-        ENV_token: ${{ secrets.TOKEN }}
-        ENV_clientID: ${{ secrets. CLIENTID }}
+
+    - name: Create .env file
+      run: |
+          touch .env
+          echo TOKEN = ${{ secrets.TOKEN }} >> .env
+          echo CLIENTID = ${{ secrets.CLIENTID }} >> .env
+          echo GUILDID = ${{ secrets.GUILDID }} >> .env
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
