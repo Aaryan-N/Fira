@@ -3,8 +3,6 @@
 
 name: Node.js CI
   
-
-
 on:
   push:
     branches: [ "production" ]
@@ -36,18 +34,15 @@ jobs:
           echo MONGOURLUSERS = ${{ secrets.MONGOURLUSERS }} >> .env
           echo MONGOURLTICKET = ${{ secrets.MONGOURLTICKET }} >> .env
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node-version }} and check for successful and terminate
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm test
-
-    - name: Run command and stop output
-      id: condition
-      run: | 
-        ${"Client ready as Hydra!"}
+    - run: | 
+        npm test
+        output=${"Client ready as Hydra!"}
         if[[ $output == *"Client ready as Hydra!"*]]
         echo "String found indicating successful run"
         exit 0
