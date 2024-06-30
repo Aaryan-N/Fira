@@ -2,6 +2,8 @@
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
 name: Node.js CI
+  
+
 
 on:
   push:
@@ -21,6 +23,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: 'Create env file'
+      run: |
+          touch .env
+          echo token=${{ secrets.TOKEN }} >> .env
+          echo clientID=${{ secrets.CLIENTID }} >> .env
+          cat .env
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
