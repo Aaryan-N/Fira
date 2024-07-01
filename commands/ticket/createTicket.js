@@ -79,6 +79,7 @@ module.exports = {
               ticketSubjectContent: modalSubjectContent,
               ticketBodyContent: modalMainContent,
               timeTicketCreated: interaction.createdAt,
+              isOpen: true
             });
             ticketingProfile.save();}
         ).then(async () => {

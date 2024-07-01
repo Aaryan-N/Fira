@@ -21,7 +21,10 @@ const ticketSchema = mongoose.Schema({
   timeTicketCreated: {
     type: Date,
     required: true,
-  },
+  }, isOpen: {
+    type: Boolean,
+    required: true,
+  }
 });
 
 const { ticketingDb } = connectDBs();

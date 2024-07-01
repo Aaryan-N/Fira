@@ -1,26 +1,27 @@
 const { Events } = require('discord.js');
 const currentDate = require('./currentDate');
 const birthdayDb = require('../../hydra')
+const birthdaySchema = require('../../schemas/fun/birthdaySchema');
 
 module.exports = {
-    name: Events.MessageUpdate,
+    name: Events.MessageCreate,
     once: true,
     execute() {
-
-
-        function sleep(ms) {
-            return new Promise((resolve) => {
-                setTimeout(resolve, 79200000);
-            });
-
-        while (1 === 1) {
-            if (birthdayDb.birth_date == currentDate) [
-
-            ]
-            sleep(ms).then(r => 32)
+        const formattedCurrentDate = currentDate.toDateString();
+        const queryAllBirthdays = () => {
+            birthdaySchema.find({} , (err, birthday) => {
+                if(err) {
+                    console.error(err + "The birthday updater has broken");
+                }
+                    birthday.map(birthdays => {
+                        const fetchBDay = birthdays.get("birth_date")
+                        const formattedFetchBDay = fetchBDay.toDateString();
+                        if (formattedFetchBDay == formattedCurrentDate) {
+                            ;
+                        }
+                    })
+            })
         }
-        }
-
 
 
 
