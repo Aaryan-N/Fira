@@ -3,22 +3,19 @@ const currentDate = require('./currentDate');
 const birthdaySchema = require('../../schemas/fun/birthdaySchema');
 
 module.exports = {
-    name: Events.MessageCreate,
+    name: Events.ClientReady,
     once: true,
     execute() {
-        const fetchCurrentDate = currentDate.toDateString();
-        const formattedCurrentDate = fetchCurrentDate.replace((19|20)[0-9][0-9]);
-        const queryAllBirthdays = () => {
-            function findGermanShepard(dogs){
-                for (let i=0; i<dogs.length; i++){
-                    const dog = dogs[i];
-                    if(dog.name == formattedCurrentDate){
-                        return dog
-                    }
-                }
-                return null;
-            }
-        }
+        const fetchCurrentDateMonth = currentDate.getMonth();
+        const fetchCurrentDateDate = currentDate.getDate();
+        const formattedDateMonth = fetchCurrentDateMonth.toString();
+        const formattedDateDate = fetchCurrentDateDate.toString();
+        const formattedDate = formattedDateDate.concat(" ")
+        const formattedDateAndMonth = formattedDate.concat(formattedDateMonth)
+
+        birthdaySchema
+
+}
 
 
 

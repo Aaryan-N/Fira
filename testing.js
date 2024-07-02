@@ -1,6 +1,11 @@
-const currentDate = new Date(2008,6,12)
+const currentDate = new Date(2008, 6, 12)
 
-const fetchCurrentDate = currentDate.toDateString();
-const formattedCurrentDate = fetchCurrentDate.replace(/(19|20)[0-9][0-9]/);
+const fetchCurrentDateMonth = currentDate.getMonth();
+const fetchCurrentDateDate = currentDate.getDate();
+const formattedDateMonth = fetchCurrentDateMonth.toString();
+const formattedDateDate = fetchCurrentDateDate.toString();
+const formattedDate = formattedDateDate.concat(" ")
+const formattedDateAndMonth = formattedDate.concat(formattedDateMonth)
+console.log(formattedDateAndMonth);
 
-console.log(formattedCurrentDate);
+console.log(formattedDateAndMonth === "12 6");

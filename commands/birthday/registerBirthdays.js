@@ -67,9 +67,11 @@ module.exports = {
             const birthDateFormatted = birthDay.toString() + "/" + birthMonth.toString()+ "/" + birthYear.toString();
 
             const formattedBirthDateJoined = birthDay.toString() + " " + birthMonth.toString();
-            console.log(formattedBirthDateJoined)
 
-            userProfileBirthday.birth_date = formattedBirthDateJoined;
+            userProfileBirthday.birthDateConcat = formattedBirthDateJoined;
+            userProfileBirthday.day = birthDay;
+            userProfileBirthday.month = birthMonth;
+            userProfileBirthday.year = birthYear;
 
             await userProfileBirthday.save();
 
