@@ -11,7 +11,7 @@ const birthdaySchema = mongoose.Schema({
         required: true
     },
     birth_date: {
-        type: Date,
+        type: String,
         required: true
     },
 })

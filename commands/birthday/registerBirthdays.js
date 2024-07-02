@@ -62,11 +62,14 @@ module.exports = {
 
             const birthYear = interaction.options.getInteger("year");
             const birthMonthUnformatted = interaction.options.getInteger("month");
-            const birthMonth = birthMonthUnformatted -1;
+            const birthMonth = birthMonthUnformatted;
             const birthDay = interaction.options.getInteger("day");
             const birthDateFormatted = birthDay.toString() + "/" + birthMonth.toString()+ "/" + birthYear.toString();
 
-            userProfileBirthday.birth_date = new Date(birthYear, birthMonth, birthDay);
+            const formattedBirthDateJoined = birthDay.toString() + " " + birthMonth.toString();
+            console.log(formattedBirthDateJoined)
+
+            userProfileBirthday.birth_date = formattedBirthDateJoined;
 
             await userProfileBirthday.save();
 
@@ -87,7 +90,5 @@ module.exports = {
             );
             await interaction.editReply({ embeds: [errorEmbed] });
         }
-
-
     },
 };
