@@ -10,7 +10,7 @@ module.exports = {
         const fetchCurrentDateDate = currentDate.getDate();
         const formattedDateMonth = fetchCurrentDateMonth.toString();
         const formattedDateDate = fetchCurrentDateDate.toString();
-        const formattedDate = formattedDateDate.concat(" ")``
+        const formattedDate = formattedDateDate.concat(" ")
         const formattedDateAndMonth = formattedDate.concat(formattedDateMonth)
 
         for await (const birthdayPerson of birthdaySchema.find({ birthDateConcat: formattedDateAndMonth })) {

@@ -1,7 +1,7 @@
 const { connectDBs } = require("../../hydra");
 const { default : mongoose } = require("mongoose");
 
-const configGuildSchema = mongoose.Schema({
+const configSchema = mongoose.Schema({
     guildId: {
         type: String,
         required: true
@@ -22,5 +22,5 @@ const configGuildSchema = mongoose.Schema({
 
 const { configDb } = connectDBs()
 
-module.exports = configDb.model('guildconfigs', configGuildSchema)
+module.exports = configDb.model('guildconfigs', configSchema)
 

@@ -1,6 +1,10 @@
-const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const axios = require("axios");
+const validator = require("validator");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed");
+function isValidUrl(str) {
+    return validator.isURL(str);
+}
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("motd")
@@ -13,35 +17,38 @@ module.exports = {
     ),
   async execute(interaction) {
     const serverAddress = interaction.options.getString("serveraddress");
-    axios({
-      method: "get",
-      url: `https://api.mcsrvstat.us/3/${serverAddress}`,
-      responseType: "json",
-    })
-      .then(function (res) {
-        unformattedResponse = res.data.motd.clean.toString();
-        const response = unformattedResponse
-          .replace(/^\s+|\s+$/g, "")
-          .replace(/,/g, "");
-
-
-        const motdEmbed = new EmbedBuilder()
-            .setColor(0x0099FF)
-            .setTitle("Minecraft Server Message of the Day")
-            .addFields(
-                { name: "Server: " + serverAddress , value: response },
-            )
-            .setTimestamp()
-            .setFooter({ text: "Sent using Hydra!" })
-        interaction.reply({embeds : [motdEmbed]});
-
+    if (isValidUrl(serverAddress) === true) {
+      axios({
+        method: "get",
+        url: `https://api.mcsrvstat.us/3/${serverAddress}`,
+        responseType: "json",
       })
-      .catch((err) => {
-          console.log(
-              `Woah there has been an error with the message of the day command. Here it is: 
-` + err,
-          )
-          interaction.editReply({ embeds: [errorEmbed] });
-      });
+        .then(async function (res) {
+            if (res.data.ping === true) {
+                unformattedResponse = res.data.motd.clean.toString();
+                const response = unformattedResponse
+                    .replace(/^\s+|\s+$/g, "")
+                    .replace(/,/g, "");
+
+                const motdEmbed = new EmbedBuilder()
+                    .setColor(0x0099ff)
+                    .setTitle("Minecraft Server Message of the Day")
+                    .addFields({name: "Server: " + serverAddress, value: response})
+                    .setTimestamp()
+                    .setFooter({text: "Sent using Hydra!"});
+
+                interaction.reply({embeds: [motdEmbed]});
+            } else {
+                interaction.reply("This is not a valid minecraft server!")
+            }
+        })
+        .catch(async (err) => {
+                console.log(
+                    `Woah there has been an error with the message of the day command. Here it is:` + err);
+                await interaction.reply({embeds: [errorEmbed]});
+        });
+    } else {
+      interaction.reply("This is not an valid url!");
+    }
   },
 };

@@ -37,7 +37,7 @@ module.exports = {
             )
             .setTimestamp()
             .setFooter({ text: "Sent using Hydra!" });
-          interaction.reply({ embeds: [dailyCollectedTodayEmbed] });
+          interaction.editReply({ embeds: [dailyCollectedTodayEmbed] });
           return;
         }
       } else {
