@@ -2,6 +2,8 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const axios = require("axios");
 const validator = require("validator");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed");
+const invalidServer = require("../../templates/embeds/motd/invalidServer")
+const invalidUrl = require("../../templates/embeds/motd/invalidUrl");
 function isValidUrl(str) {
     return validator.isURL(str);
 }
@@ -39,7 +41,7 @@ module.exports = {
 
                 interaction.reply({embeds: [motdEmbed]});
             } else {
-                interaction.reply("This is not a valid minecraft server!")
+                interaction.reply({embeds: [invalidServer]})
             }
         })
         .catch(async (err) => {
@@ -48,7 +50,7 @@ module.exports = {
                 await interaction.reply({embeds: [errorEmbed]});
         });
     } else {
-      interaction.reply("This is not an valid url!");
+      interaction.reply({embeds: [invalidUrl]});
     }
   },
 };
