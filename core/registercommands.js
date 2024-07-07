@@ -1,6 +1,7 @@
 const { REST, Routes } = require("discord.js");
 const path = require("node:path");
 const fs = require("node:fs");
+const {redBright} = require("chalk");
 require("dotenv").config();
 
 const commands = [];
@@ -18,9 +19,7 @@ for (const folder of commandFolders) {
     if ("data" in command && "execute" in command) {
       commands.push(command.data.toJSON());
     } else {
-      console.log(
-        `WARNING - The command at ${filePath} is missing a data or execute property`,
-      );
+      console.log(redBright(`WARNING - The command at ${filePath} is missing a data or execute property`));
     }
   }
 }
@@ -39,6 +38,6 @@ const rest = new REST().setToken(process.env.TOKEN, process.env.GUILDID);
     console.log("Successfully reloaded application (/) commands.");
 
   } catch (error) {
-    console.error(error);
+    console.error(redBright(error));
   }
 })();

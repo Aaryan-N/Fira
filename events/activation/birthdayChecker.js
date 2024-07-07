@@ -1,6 +1,7 @@
 const { Events } = require('discord.js');
 const currentDate = new Date();
 const birthdaySchema = require('../../schemas/fun/birthdaySchema');
+const {blueBright} = require("chalk");
 
 module.exports = {
     name: Events.ClientReady,
@@ -14,7 +15,8 @@ module.exports = {
         const formattedDateAndMonth = formattedDate.concat(formattedDateMonth)
 
         for await (const birthdayPerson of birthdaySchema.find({ birthDateConcat: formattedDateAndMonth })) {
-            console.log(birthdayPerson.userId);
+            //TODO fix up this mess
+            console.log(blueBright(birthdayPerson.userId));
         }
 
 }

@@ -1,7 +1,9 @@
-const { SlashCommandBuilder, EmbedBuilder, bold} = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed")
 const birthdaySchema = require("../../schemas/fun/birthdaySchema");
+const invalidDate = require("../../templates/embeds/birthday/invalidDate");
 const moment = require("moment");
+const {redBright} = require("chalk");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -62,17 +64,15 @@ module.exports = {
             }
 
             const birthYear = interaction.options.getInteger("year");
-            const birthMonthUnformatted = interaction.options.getInteger("month");
-            const birthMonth = birthMonthUnformatted;
+            const birthMonth = interaction.options.getInteger("month");
             const birthDay = interaction.options.getInteger("day");
             const birthDateFormatted = birthDay.toString() + "/" + birthMonth.toString()+ "/" + birthYear.toString();
-            const jsDateValidator = new Date(birthYear, birthMonth, birthDay)
+            const jsDateValidator = birthYear+"-"+birthMonth+"-"+birthDay
             const formattedBirthDateJoined = birthDay.toString() + " " + birthMonth.toString();
-
-            if (moment(jsDateValidator).isValid() === false) {
-                interaction.reply("Invalid Date!")
+            const momentJsDateValidator = moment(jsDateValidator, "YYYY MM DD");
+            if (momentJsDateValidator.isValid() === false) {
+                await interaction.editReply({embeds: [invalidDate]})
             } else {
-
                 userProfileBirthday.birthDateConcat = formattedBirthDateJoined;
                 userProfileBirthday.day = birthDay;
                 userProfileBirthday.month = birthMonth;
@@ -89,13 +89,10 @@ module.exports = {
                     .setTimestamp()
                     .setFooter({text: "Sent using Hydra"})
 
-
                 interaction.editReply({embeds: [successfulBirthdayRegisterEmbed]});
             }
         } catch(err) {
-            console.log(
-                "Woah there has been an error with the birthday daily command. Here it is: \n" + err,
-            );
+            console.log(redBright("Woah there has been an error with the birthday daily command. Here it is: \n" + err))
             await interaction.editReply({ embeds: [errorEmbed] });
         }
     },

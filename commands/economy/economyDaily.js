@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const economySchema = require("../../schemas/fun/economySchema");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed");
+const {redBright} = require("chalk");
 
 const dailyAmount = 500;
 
@@ -63,10 +64,7 @@ module.exports = {
 
       interaction.editReply({ embeds: [dailiesEmbed] });
     } catch (err) {
-      console.log(
-        "Woah there has been an error with the economy daily command. Here it is: \n" +
-          err,
-      );
+      console.log(redBright("Woah there has been an error with the economy daily command. Here it is: \n" + err));
       await interaction.editReply({ embeds: [errorEmbed] });
     }
   },

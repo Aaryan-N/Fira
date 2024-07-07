@@ -4,6 +4,7 @@ const validator = require("validator");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed");
 const invalidServer = require("../../templates/embeds/motd/invalidServer")
 const invalidUrl = require("../../templates/embeds/motd/invalidUrl");
+const {redBright} = require("chalk");
 function isValidUrl(str) {
     return validator.isURL(str);
 }
@@ -45,8 +46,7 @@ module.exports = {
             }
         })
         .catch(async (err) => {
-                console.log(
-                    `Woah there has been an error with the message of the day command. Here it is:` + err);
+                console.log(redBright(`Woah there has been an error with the message of the day command. Here it is:` + err));
                 await interaction.reply({embeds: [errorEmbed]});
         });
     } else {

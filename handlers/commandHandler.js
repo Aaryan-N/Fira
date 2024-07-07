@@ -1,6 +1,7 @@
 const {Collection} = require("discord.js");
 const path = require("path");
 const fs = require("node:fs");
+const {redBright} = require("chalk");
 
 const commandHandler = (client)=> {
     client.commands = new Collection();
@@ -16,7 +17,7 @@ const commandHandler = (client)=> {
             if ('data' in command && 'execute' in command) {
                 client.commands.set(command.data.name, command);
             } else {
-                console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+                console.log(redBright(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`));
             }
         }
     }

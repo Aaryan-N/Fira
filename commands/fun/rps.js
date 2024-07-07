@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder, bold } = require("discord.js");
 const { rando } = require("@nastyox/rando.js");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed")
+const {redBright} = require("chalk");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -52,10 +53,7 @@ module.exports = {
         }
       }
     } catch (err) {
-      console.log(
-          `Woah there has been an error with the message of the day command. Here it is: 
-` + err,
-      )
+      console.log(redBright(`Woah there has been an error with the message of the day command. Here it is:` + err))
       interaction.editReply({ embeds: [errorEmbed] });
     }
 
