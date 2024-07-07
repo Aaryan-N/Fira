@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder, bold} = require("discord.js");
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed")
 const birthdaySchema = require("../../schemas/fun/birthdaySchema");
+const moment = require("moment");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -65,27 +66,32 @@ module.exports = {
             const birthMonth = birthMonthUnformatted;
             const birthDay = interaction.options.getInteger("day");
             const birthDateFormatted = birthDay.toString() + "/" + birthMonth.toString()+ "/" + birthYear.toString();
-
+            const jsDateValidator = new Date(birthYear, birthMonth, birthDay)
             const formattedBirthDateJoined = birthDay.toString() + " " + birthMonth.toString();
 
-            userProfileBirthday.birthDateConcat = formattedBirthDateJoined;
-            userProfileBirthday.day = birthDay;
-            userProfileBirthday.month = birthMonth;
-            userProfileBirthday.year = birthYear;
+            if (moment(jsDateValidator).isValid() === false) {
+                interaction.reply("Invalid Date!")
+            } else {
 
-            await userProfileBirthday.save();
+                userProfileBirthday.birthDateConcat = formattedBirthDateJoined;
+                userProfileBirthday.day = birthDay;
+                userProfileBirthday.month = birthMonth;
+                userProfileBirthday.year = birthYear;
 
-            const successfulBirthdayRegisterEmbed = new EmbedBuilder()
-                .setColor(0x0099FF)
-                .setTitle("Birthday Registered!")
-                .addFields(
-                    { name: "Your birthday has been set to:"  , value: birthDateFormatted }
-                )
-                .setTimestamp()
-                .setFooter({ text: "Sent using Hydra" })
+                await userProfileBirthday.save();
+
+                const successfulBirthdayRegisterEmbed = new EmbedBuilder()
+                    .setColor(0x0099FF)
+                    .setTitle("Birthday Registered!")
+                    .addFields(
+                        {name: "Your birthday has been set to:", value: birthDateFormatted}
+                    )
+                    .setTimestamp()
+                    .setFooter({text: "Sent using Hydra"})
 
 
-            interaction.editReply({ embeds: [successfulBirthdayRegisterEmbed] });
+                interaction.editReply({embeds: [successfulBirthdayRegisterEmbed]});
+            }
         } catch(err) {
             console.log(
                 "Woah there has been an error with the birthday daily command. Here it is: \n" + err,

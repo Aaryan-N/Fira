@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const mongoose = require("mongoose");
 const {commandHandler} = require("./handlers/commandHandler");
 const {eventHandler} = require("./handlers/eventHandler");
+const chalk = require("chalk");
 require('dotenv').config()
 
 const client = new Client({
@@ -40,9 +41,9 @@ function connectDBs() {
 module.exports = { connectDBs }
 
 try {
-    console.log("Connected to the cluster, all connections to the databases have been established!");
+    console.log(chalk.greenBright("Connected to the cluster, all connections to the databases have been established!"));
 } catch(err) {
-    console.error(err);
+    console.error(chalk.redBright("DB connection failed!" + err));
 }
 
 commandHandler(client);
@@ -50,7 +51,7 @@ eventHandler(client);
 
 try {
     client.login(process.env.TOKEN)
-    console.log("Successfully logged in!")
+    console.log(chalk.greenBright("Successfully logged in!"));
 } catch (err) {
-    console.log("Something went wrong with logging in. how have you messed up logging in?")
+    console.log(chalk.redBright("Something went wrong with logging in. Here is the problem" + err));
 }
