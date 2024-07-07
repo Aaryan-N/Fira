@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const axios = require('axios');
 const errorEmbed = require("../../templates/embeds/errors/errorEmbed")
+const {redBright} = require("chalk");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("joke")
@@ -23,10 +24,10 @@ module.exports = {
               interaction.reply({embeds : [jokeEmbed]});
           })
           .catch((err) => {
-              console.log(
+              console.log(redBright(
                   `Woah there has been an error with the joke command. Here it is: 
 ` + err,
-              )
+              ));
               interaction.editReply({ embeds: [errorEmbed] });
       });
   },
