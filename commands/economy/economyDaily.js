@@ -17,7 +17,6 @@ module.exports = {
       });
       return;
     }
-
     try {
       await interaction.deferReply();
 
