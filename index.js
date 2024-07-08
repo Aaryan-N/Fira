@@ -13,3 +13,4 @@ const manager = new ClusterManager(`${__dirname}/inferna.js`, {
 manager.on('clusterCreate', cluster => console.log(chalk.greenBright(`Launched shard ${cluster.id}`)));
 
 manager.spawn();
+
