@@ -1,5 +1,6 @@
-const { connectDBs } = require("../../hydra");
-const { default: mongoose } = require("mongoose");
+import { connectDBs } from "../../hydra.js";
+import mongoose from "mongoose";
+
 const birthdaySchema = mongoose.Schema({
     userId: {
         type: String,
@@ -22,6 +23,9 @@ const birthdaySchema = mongoose.Schema({
         type: Number,
         required: true
     }
-});
-const { birthdayDb } = connectDBs();
-module.exports = birthdayDb.model('birthday', birthdaySchema);
+})
+
+const { birthdayDb } = connectDBs()
+
+export const birthdaySchemaExport= birthdayDb.model('birthday', birthdaySchema)
+

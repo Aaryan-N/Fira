@@ -1,5 +1,6 @@
-const { connectDBs } = require("../../hydra");
-const { default: mongoose } = require("mongoose");
+import { connectDBs } from "../../hydra.js";
+import mongoose from "mongoose";
+
 const economySchema = mongoose.Schema({
     userId: {
         type: String,
@@ -16,6 +17,9 @@ const economySchema = mongoose.Schema({
     lastDailyCollected: {
         type: Date,
     },
-});
+})
+
 const { economyDb } = connectDBs();
-module.exports = economyDb.model('economyDailies', economySchema);
+    
+export const economySchemaExport = economyDb.model('economyDailies', economySchema)
+

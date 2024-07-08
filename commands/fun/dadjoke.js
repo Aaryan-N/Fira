@@ -1,6 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const axios = require('axios');
-const errorEmbed = require("../../templates/embeds/errors/errorEmbed");
+import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
+import axios from "axios";
+import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("dadjoke")
@@ -15,17 +15,21 @@ module.exports = {
             }
         })
             .then(function (response) {
-            const dadJokeEmbed = new EmbedBuilder()
-                .setColor(0x0099FF)
-                .addFields({ name: "Dad Joke", value: response.data.joke })
-                .setTimestamp()
-                .setFooter({ text: "Sent using Hydra" });
-            interaction.reply({ embeds: [dadJokeEmbed] });
-        })
+                const dadJokeEmbed = new EmbedBuilder()
+                    .setColor(0x0099FF)
+                    .addFields(
+                        { name: "Dad Joke" , value: response.data.joke },
+                    )
+                    .setTimestamp()
+                    .setFooter({ text: "Sent using Hydra" })
+                interaction.reply({embeds : [dadJokeEmbed]});
+            })
             .catch((err) => {
-            console.log(`Woah there has been an error with the dad joke command. Here it is: 
-` + err);
-            interaction.editReply({ embeds: [errorEmbed] });
-        });
+                console.log(
+                    `Woah there has been an error with the dad joke command. Here it is: 
+` + err,
+                )
+                interaction.editReply({ embeds: [errorEmbed] });
+            });
     },
 };

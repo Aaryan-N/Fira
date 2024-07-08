@@ -2,10 +2,10 @@
   "name": "discordbot",
   "version": "1.0.0",
   "description": "",
-  "type": "commonjs",
-  "main": "hydra.ts",
+  "type": "module",
+  "main": "hydra.js",
   "scripts": {
-    "test": "node hydra.ts"
+    "test": "node hydra.js"
   },
   "author": "Aaryan Narayan",
   "license": "ISC",
@@ -13,7 +13,7 @@
     "@nastyox/rando.js": "^2.0.6",
     "async": "^3.2.5",
     "axios": "^1.7.2",
-    "chalk": "^4.1.2",
+    "chalk": "^5.3.0",
     "discord-hybrid-sharding": "^2.2.0",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",

@@ -1,12 +1,12 @@
-const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
-const economySchema = require("../../schemas/fun/economySchema");
+import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
+import {economySchemaExport} from "../../schemas/fun/economySchema.js";
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("checkbalance")
         .setDescription("Check your balance!"),
     async execute(interaction) {
-            let economyProfile = await economySchema.findOne({
+            let economyProfile = await economySchemaExport.findOne({
             userId: interaction.member.id,
             guildId: interaction.guild.id,
             });

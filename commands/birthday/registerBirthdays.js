@@ -1,9 +1,9 @@
-const { SlashCommandBuilder, EmbedBuilder} = require("discord.js");
-const errorEmbed = require("../../templates/embeds/errors/errorEmbed")
-const birthdaySchema = require("../../schemas/fun/birthdaySchema");
-const invalidDate = require("../../templates/embeds/birthday/invalidDate");
-const moment = require("moment");
-const {redBright} = require("chalk");
+import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
+import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
+import {birthdaySchemaExport} from "../../schemas/fun/birthdaySchema.js";
+import {invalidDate} from "../../templates/embeds/birthday/invalidDate.js";
+import moment from "moment";
+import redBright from 'chalk';
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -36,7 +36,7 @@ module.exports = {
         try {
             await interaction.deferReply();
 
-            let userProfileBirthday = await birthdaySchema.findOne({
+            let userProfileBirthday = await birthdaySchemaExport.findOne({
                 userId: interaction.member.id,
                 guildId: interaction.guild.id
             });
@@ -56,7 +56,7 @@ module.exports = {
 
             }
             else {
-                userProfileBirthday = new birthdaySchema({
+                userProfileBirthday = new birthdaySchemaExport({
                     userId: interaction.member.id,
                     guildId: interaction.guild.id,
                     birth_date: ""

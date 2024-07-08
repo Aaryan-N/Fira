@@ -1,7 +1,7 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const economySchema = require("../../schemas/fun/economySchema");
-const errorEmbed = require("../../templates/embeds/errors/errorEmbed");
-const {redBright} = require("chalk");
+import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
+import {economySchemaExport} from "../../schemas/fun/economySchema.js";
+import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
+import redBright from 'chalk';
 
 const dailyAmount = 500;
 
@@ -20,7 +20,7 @@ module.exports = {
     try {
       await interaction.deferReply();
 
-      let userProfile = await economySchema.findOne({
+      let userProfile = await economySchemaExport.findOne({
         userId: interaction.member.id,
         guildId: interaction.guild.id,
       });
@@ -41,7 +41,7 @@ module.exports = {
           return;
         }
       } else {
-        userProfile = new economySchema({
+        userProfile = new economySchemaExport({
           userId: interaction.member.id,
           guildId: interaction.guild.id,
         });
