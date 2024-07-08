@@ -85,7 +85,7 @@ module.exports = {
         ).then(async () => {
         //TODO Change this to go to mongo db instead
         const channelTicketConfig = interaction.channel.id;
-        const channel = interaction.guild.channels.cache.get(channelTicketConfig);
+        const channel = interaction.client.channels.cache.get(channelTicketConfig);
         await channel.send("Nsdfs")
       }).catch(console.error);
     } catch (err) {

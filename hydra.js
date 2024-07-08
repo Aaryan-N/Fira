@@ -1,4 +1,5 @@
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const { ClusterClient, getInfo } = require('discord-hybrid-sharding');
 const mongoose = require("mongoose");
 const {commandHandler} = require("./handlers/commandHandler");
 const {eventHandler} = require("./handlers/eventHandler");
@@ -20,7 +21,8 @@ const client = new Client({
     Partials.User,
     Partials.GuildScheduledEvent,
     Partials.ThreadMember,
-  ],
+  ], shards: getInfo().SHARD_LIST,
+    shardCount: getInfo().TOTAL_SHARDS,
 });
 
 module.exports = client;
@@ -48,6 +50,8 @@ try {
 
 commandHandler(client);
 eventHandler(client);
+
+client.cluster = new ClusterClient(client);
 
 try {
     client.login(process.env.TOKEN)

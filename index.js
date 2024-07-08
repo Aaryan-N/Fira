@@ -1,9 +1,14 @@
-const { ShardingManager: Index } = require('discord.js');
+const { ClusterManager } = require('discord-hybrid-sharding');
 const chalk = require('chalk');
 require('dotenv').config()
 
-const manager = new Index('./hydra.js', { token: process.env.TOKEN });
+const manager = new ClusterManager(`${__dirname}/hydra.js`, {
+    totalShards: 'auto',
+    shardsPerClusters: 2,
+    mode: 'process',
+    token: process.env.TOKEN,
+});
 
-manager.on('shardCreate', shard => console.log(chalk.greenBright(`Launched shard ${shard.id}`)));
+manager.on('clusterCreate', cluster => console.log(chalk.greenBright(`Launched shard ${cluster.id}`)));
 
 manager.spawn();

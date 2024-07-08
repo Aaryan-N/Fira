@@ -27,7 +27,7 @@ module.exports = {
         responseType: "json",
       })
         .then(async function (res) {
-            if (res.data.ping === true) {
+            if (res.data.debug.ping === true) {
                 unformattedResponse = res.data.motd.clean.toString();
                 const response = unformattedResponse
                     .replace(/^\s+|\s+$/g, "")

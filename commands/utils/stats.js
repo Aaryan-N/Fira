@@ -6,7 +6,7 @@ module.exports = {
         .setName("stats")
         .setDescription("Replies with amount of guilds the bot is currently in!"),
     async execute(interaction) {
-        interaction.client.shard.fetchClientValues('guilds.cache.size')
+        interaction.client.cluster.fetchClientValues('guilds.cache.size')
             .then(results => {
                 const parsedGuildSize = results.reduce((prev, val) => prev + val, 0)
                 const owner = interaction.guild.ownerId;
