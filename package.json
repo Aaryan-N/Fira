@@ -2,10 +2,10 @@
   "name": "discordbot",
   "version": "1.0.0",
   "description": "",
-  "main": "hydra.js",
   "type": "commonjs",
+  "main": "hydra.ts",
   "scripts": {
-    "test": "node hydra.js"
+    "test": "node hydra.ts"
   },
   "author": "Aaryan Narayan",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "validator": "^13.12.0"
   },
   "devDependencies": {
+    "@types/bun": "^1.1.6",
     "prettier": "3.3.2"
   }
 }

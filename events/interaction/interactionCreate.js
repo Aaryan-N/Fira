@@ -1,25 +1,24 @@
-const {Events} = require("discord.js");
-const {redBright, red} = require("chalk");
-
+const { Events } = require("discord.js");
+const { redBright, red } = require("chalk");
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
-        if (!interaction.isChatInputCommand()) return;
-
+        if (!interaction.isChatInputCommand())
+            return;
         const command = interaction.client.commands.get(interaction.commandName);
-
         if (!command) {
             console.error(redBright(`No command matching ${interaction.commandName} was found.`));
             return;
         }
-
         try {
             await command.execute(interaction);
-        } catch (error) {
+        }
+        catch (error) {
             console.error(redBright(error));
             if (interaction.replied || interaction.deferred) {
                 await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-            } else {
+            }
+            else {
                 await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
             }
         }
