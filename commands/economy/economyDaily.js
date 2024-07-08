@@ -5,7 +5,7 @@ import redBright from 'chalk';
 
 const dailyAmount = 500;
 
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("daily")
     .setDescription("Collect your daily coins!"),
@@ -36,7 +36,7 @@ module.exports = {
               "You have already collected your daily coins today! Come back tomorrow!",
             )
             .setTimestamp()
-            .setFooter({ text: "Sent using Hydra!" });
+            .setFooter({ text: "Sent using Inferna!" });
           interaction.editReply({ embeds: [dailyCollectedTodayEmbed] });
           return;
         }
@@ -59,7 +59,7 @@ module.exports = {
           { name: "Current Balance", value: userProfile.balance.toString() },
         )
         .setTimestamp()
-        .setFooter({ text: "Sent using Hydra" });
+        .setFooter({ text: "Sent using Inferna" });
 
       interaction.editReply({ embeds: [dailiesEmbed] });
     } catch (err) {

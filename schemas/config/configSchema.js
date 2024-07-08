@@ -1,4 +1,4 @@
-import {connectDBs} from "../../hydra.js";
+import {connectDBs} from "../../inferna.js";
 import {default as mongoose} from "mongoose";
 
 const configSchema = mongoose.Schema({

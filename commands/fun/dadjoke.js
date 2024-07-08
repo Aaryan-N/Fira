@@ -21,7 +21,7 @@ export default {
                         { name: "Dad Joke" , value: response.data.joke },
                     )
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Hydra" })
+                    .setFooter({ text: "Sent using Inferna" })
                 interaction.reply({embeds : [dadJokeEmbed]});
             })
             .catch((err) => {

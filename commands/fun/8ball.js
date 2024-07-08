@@ -31,7 +31,7 @@ export default {
                         { name: "The 8 Ball's verdict:" , value: response.data.reading },
                     )
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Hydra" })
+                    .setFooter({ text: "Sent using Inferna" })
                 interaction.reply({embeds : [ballEmbed]});
 
             })

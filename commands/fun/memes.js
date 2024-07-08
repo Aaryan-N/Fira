@@ -19,7 +19,7 @@ export default {
                     .setURL(response.data.postLink)
                     .setImage(response.data.url)
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Hydra" })
+                    .setFooter({ text: "Sent using Inferna" })
                 interaction.reply({ embeds: [memesEmbed] });
             })
             .catch((err) => {

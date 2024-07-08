@@ -38,7 +38,7 @@ export default {
                     .setTitle("Minecraft Server Message of the Day")
                     .addFields({name: "Server: " + serverAddress, value: response})
                     .setTimestamp()
-                    .setFooter({text: "Sent using Hydra!"});
+                    .setFooter({text: "Sent using Inferna!"});
 
                 interaction.reply({embeds: [motdEmbed]});
             } else {

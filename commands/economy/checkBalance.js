@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
 import {economySchemaExport} from "../../schemas/fun/economySchema.js";
 
-module.exports = {
+export default {
     data: new SlashCommandBuilder()
         .setName("checkbalance")
         .setDescription("Check your balance!"),
@@ -16,7 +16,7 @@ module.exports = {
                     .setTitle("Your current balance:")
                     .setDescription(currentUserBalance)
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Hydra" })
+                    .setFooter({ text: "Sent using Inferna" })
                 interaction.reply({embeds : [ballEmbed]});
     },
 };

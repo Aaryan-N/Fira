@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "hydra.js",
+  "main": "inferna.js",
   "scripts": {
-    "test": "node hydra.js"
+    "test": "node inferna.js"
   },
   "author": "Aaryan Narayan",
   "license": "ISC",

@@ -19,7 +19,7 @@ export default {
                         { name: "Fact", value: response.data.text },
                     )
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Hydra" })
+                    .setFooter({ text: "Sent using Inferna" })
                 interaction.reply({embeds : [factsEmbed]});
             }).catch((err) => {
             console.log(redBright(

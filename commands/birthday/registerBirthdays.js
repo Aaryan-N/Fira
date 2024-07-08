@@ -8,7 +8,7 @@ import redBright from 'chalk';
 export default {
     data: new SlashCommandBuilder()
         .setName("registerbirthday")
-        .setDescription("Register your birthday to Hydra!")
+        .setDescription("Register your birthday to Inferna!")
         .addIntegerOption((option) =>
             option
                 .setName("day")
@@ -47,7 +47,7 @@ export default {
                     .setColor(0x0099FF)
                     .setTitle("Your birthday has already been registered in this guild!")
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Hydra" });
+                    .setFooter({ text: "Sent using Inferna" });
 
                 if (analyseBirthDate !== null) {
                     interaction.editReply({ embeds: [preexistingBirthdayRegisterEmbed] });
@@ -87,7 +87,7 @@ export default {
                         {name: "Your birthday has been set to:", value: birthDateFormatted}
                     )
                     .setTimestamp()
-                    .setFooter({text: "Sent using Hydra"})
+                    .setFooter({text: "Sent using Inferna"})
 
                 interaction.editReply({embeds: [successfulBirthdayRegisterEmbed]});
             }

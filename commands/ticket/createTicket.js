@@ -5,8 +5,8 @@ import {
   TextInputStyle,
   ActionRowBuilder,
 } from "discord.js";
-const {ticketSchemaExportExport} = require("../../schemas/ticketing/ticketSchemaExport.js");
-const {errorEmbed} = require("../../templates/embeds/errors/errorEmbed.js");
+import {ticketSchemaExport} from "../../schemas/ticketing/ticketSchema.js";
+import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 
 export default {
   data: new SlashCommandBuilder()

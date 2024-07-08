@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import 'dotenv/config'
 const __dirname = import.meta.dirname;
 
-const manager = new ClusterManager(`${__dirname}/hydra.js`, {
+const manager = new ClusterManager(`${__dirname}/inferna.js`, {
     totalShards: 'auto',
     shardsPerClusters: 2,
     mode: 'process',

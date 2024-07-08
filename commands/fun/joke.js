@@ -20,7 +20,7 @@ export default {
                       { name: "Category: " + response.data.category , value: response.data.joke },
                   )
                   .setTimestamp()
-                  .setFooter({ text: "Sent using Hydra" })
+                  .setFooter({ text: "Sent using Inferna" })
               interaction.reply({embeds : [jokeEmbed]});
           })
           .catch((err) => {

@@ -14,7 +14,7 @@ export default {
         }
 
         try {
-            await command.execute(interaction);
+            await command.default.execute(interaction);
         } catch (error) {
             console.error(chalk.redBright(error));
             if (interaction.replied || interaction.deferred) {

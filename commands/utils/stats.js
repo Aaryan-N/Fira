@@ -18,7 +18,7 @@ export default {
                             { name: "Owner of server:", value: ownerDisplayName.username}
                         )
                         .setTimestamp()
-                        .setFooter({ text: "Sent using Hydra" })
+                        .setFooter({ text: "Sent using Inferna" })
                     interaction.reply({embeds : [statsEmbed]});
             })
             .catch(console.error);

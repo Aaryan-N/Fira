@@ -72,7 +72,7 @@ export default {
             { name: "Result", value: bold(statusMessage)}
         )
         .setTimestamp()
-        .setFooter({ text: "Sent using Hydra" })
+        .setFooter({ text: "Sent using Inferna" })
 
     if(statusMessage.includes("won") === true) {
       rpsEmbed.setColor(0x00FF00)

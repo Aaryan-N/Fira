@@ -1,4 +1,4 @@
-import { connectDBs } from "../../hydra.js";
+import { connectDBs } from "../../inferna.js";
 import mongoose from "mongoose";
 
 const economySchema = mongoose.Schema({

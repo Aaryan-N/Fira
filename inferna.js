@@ -57,3 +57,12 @@ try {
 } catch (err) {
     console.log(chalk.redBright("Something went wrong with logging in. Here is the problem" + err));
 }
+
+try {
+    await console.log(chalk.blueBright("Shard List: " + getInfo().SHARD_LIST))
+    await console.log(chalk.blueBright("Total Shards: " + getInfo().TOTAL_SHARDS))
+    await console.log(chalk.blueBright("Cluster Count: " + getInfo().CLUSTER_COUNT))
+    await console.log(chalk.blueBright("Cluster List: " + getInfo().CLUSTER))
+} catch (err){
+    console.log(chalk.redBright("Something went wrong with sharding. Here is the problem" + err));
+}
