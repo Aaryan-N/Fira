@@ -2,7 +2,7 @@ import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
 import axios from "axios";
 import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 
-module.exports = {
+export default {
     data: new SlashCommandBuilder()
         .setName("memes")
         .setDescription("Replies with an alright meme"),

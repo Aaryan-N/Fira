@@ -2,7 +2,7 @@ import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
 import axios from "axios";
 import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 import redBright from 'chalk';
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("joke")
     .setDescription("Replies with a lovely joke"),

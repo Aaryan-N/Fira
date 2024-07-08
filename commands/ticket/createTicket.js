@@ -8,7 +8,7 @@ import {
 const {ticketSchemaExportExport} = require("../../schemas/ticketing/ticketSchemaExport.js");
 const {errorEmbed} = require("../../templates/embeds/errors/errorEmbed.js");
 
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("createticket")
     .setDescription("Create a ticket for mods to review!"),

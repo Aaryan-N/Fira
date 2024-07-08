@@ -1,9 +1,7 @@
-import Events from 'discord.js';
+import {Events} from 'discord.js';
 const currentDate = new Date();
-import birthdaySchema from '../../schemas/fun/birthdaySchema.js';
-import {blueBright} from "chalk";
 
-module.exports = {
+export default {
     name: Events.ClientReady,
     once: true,
     async execute(interaction) {

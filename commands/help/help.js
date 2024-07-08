@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
 
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("help")
     .setDescription("Replies with information about the bot!"),

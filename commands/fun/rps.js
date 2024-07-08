@@ -3,7 +3,7 @@ import { rando } from "@nastyox/rando.js";
 import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 import redBright from 'chalk';
 
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("rps")
     .setDescription("Play a game of rock, paper and scissors with the bot!")

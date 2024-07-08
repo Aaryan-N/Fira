@@ -8,7 +8,7 @@ import redBright from "chalk";
 function isValidUrl(str) {
     return validator.isURL(str);
 }
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("motd")
     .setDescription("Checks the message of the day of a minecraft server!")

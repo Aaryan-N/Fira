@@ -1,7 +1,7 @@
 import {Events} from "discord.js";
 import chalk from "chalk";
 
-module.exports = {
+export default {
     name: Events.InteractionCreate,
     async execute(interaction) {
         if (!interaction.isChatInputCommand()) return;

@@ -1,7 +1,7 @@
 import { Events } from "discord.js";
 import { guildSchemaExport } from "../../schemas/guild/guildSchema.js";
 
-module.exports = {
+export default {
   name: Events.GuildDelete,
   async execute(args) {
     const guild = args;

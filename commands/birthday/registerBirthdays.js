@@ -5,7 +5,7 @@ import {invalidDate} from "../../templates/embeds/birthday/invalidDate.js";
 import moment from "moment";
 import redBright from 'chalk';
 
-module.exports = {
+export default {
     data: new SlashCommandBuilder()
         .setName("registerbirthday")
         .setDescription("Register your birthday to Hydra!")

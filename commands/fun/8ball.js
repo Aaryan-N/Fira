@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
 import axios from "axios";
 import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
-module.exports = {
+export default {
     data: new SlashCommandBuilder()
         .setName("8ball")
         .setDescription("Play a game of 8 ball!")
