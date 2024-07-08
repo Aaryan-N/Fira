@@ -1,10 +1,10 @@
 import {Client, GatewayIntentBits, Partials} from 'discord.js';
-import {ClusterClient, getInfo} from 'discord-hybrid-sharding';
-import mongoose from 'mongoose';
+import {ClusterClient, getInfo, ClusterManager} from 'discord-hybrid-sharding';
 import {commandHandler} from "./handlers/commandHandler.js";
 import {eventHandler} from "./handlers/eventHandler.js";
 import chalk from "chalk";
 import 'dotenv/config'
+import mongoose from "mongoose";
 
 export const client = new Client({
   intents: [
@@ -22,34 +22,15 @@ export const client = new Client({
     Partials.GuildScheduledEvent,
     Partials.ThreadMember,
   ], shards: getInfo().SHARD_LIST,
-    shardCount: getInfo().TOTAL_SHARDS,
+    shardCount: getInfo().TOTAL_SHARDS
 });
 
-
-export function connectDBs() {
-    try {
-        const economyDb = mongoose.createConnection(process.env.MONGOURLECONOMY, {})
-        const birthdayDb = mongoose.createConnection(process.env.MONGOURLBIRTHDAY, {})
-        const usersDb = mongoose.createConnection(process.env.MONGOURLUSERS, {})
-        const ticketingDb = mongoose.createConnection(process.env.MONGOURLTICKET, {})
-        const configDb = mongoose.createConnection(process.env.MONGOURLCONFIG, {})
-        return { economyDb, birthdayDb, usersDb, ticketingDb, configDb }
-    } catch (error) {
-        console.log(error);
-        process.exit(1)
-    }
-}
-
-try {
-    console.log(chalk.greenBright("Connected to the cluster, all connections to the databases have been established!"));
-} catch(err) {
-    console.error(chalk.redBright("DB connection failed!" + err));
-}
+client.cluster = new ClusterClient(client);
 
 commandHandler(client);
 eventHandler(client);
 
-client.cluster = new ClusterClient(client);
+
 
 try {
     client.login(process.env.TOKEN)

@@ -1,11 +1,13 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v10';
-import path from "node:path";
-import fs from "node:fs";
+import path from 'path';
+import fs from "fs";
 import chalk from "chalk";
 import 'dotenv/config'
 import fileUrl from "file-url";
 const __dirname = import.meta.dirname;
+import fsPromises from 'fs/promises'
+
 
 const commands = [];
 const foldersPath = path.join(__dirname, "../commands/");
@@ -16,13 +18,8 @@ for (const folder of commandFolders) {
   const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
   for (const file of commandFiles) {
     const filePath = fileUrl(path.join(commandsPath, file));
-    console.log(filePath)
-    const command = await import(filePath);
-    if ("data" in command.default && "execute" in command.default) {
-      commands.push(command.default.data.toJSON());
-    } else {
-      console.log(chalk.redBright(`WARNING - The command at ${filePath} is missing a data or execute property`));
-    }
+    const command = await import(filePath)
+    commands.push(command.default.data.toJSON());
   }
 }
 
@@ -34,7 +31,7 @@ const rest = new REST().setToken(process.env.TOKEN);
 
     const data = await rest.put(
         Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
-        { body: commands },
+        {body: commands},
     );
 
     console.log(`Successfully reloaded ${data.length} application (/) commands.`);

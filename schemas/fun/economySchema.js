@@ -1,4 +1,4 @@
-import { connectDBs } from "../../inferna.js";
+import { connectDBs } from "../../index.js";
 import mongoose from "mongoose";
 
 const economySchema = mongoose.Schema({

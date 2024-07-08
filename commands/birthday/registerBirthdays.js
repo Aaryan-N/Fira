@@ -1,9 +1,10 @@
 import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
-import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
-import {birthdaySchemaExport} from "../../schemas/fun/birthdaySchema.js";
+import { errorEmbed } from "../../templates/embeds/errors/errorEmbed.js";
+const {birthdaySchemaExport} = await import("../../schemas/fun/birthdaySchema.js");
 import {invalidDate} from "../../templates/embeds/birthday/invalidDate.js";
 import moment from "moment";
 import redBright from 'chalk';
+
 
 export default {
     data: new SlashCommandBuilder()
@@ -33,6 +34,7 @@ export default {
             interaction.reply({ content: "This command can only be run in servers!", ephemeral: true})
             return;
         }
+
         try {
             await interaction.deferReply();
 
