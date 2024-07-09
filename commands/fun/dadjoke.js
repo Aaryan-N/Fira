@@ -4,27 +4,30 @@ import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 
 export default {
     data: new SlashCommandBuilder()
-        .setName("memes")
-        .setDescription("Replies with an alright meme"),
+        .setName("dadjoke")
+        .setDescription("Replies with a (slightly corny) dad joke"),
     async execute(interaction) {
         axios({
             method: 'get',
-            url: 'https://meme-api.com/gimme?nsfw=false',
-            responseType: 'json'
+            url: 'https://icanhazdadjoke.com/',
+            responseType: 'json',
+            headers: {
+                'Accept': "application/json"
+            }
         })
             .then(function (response) {
-                const memesEmbed = new EmbedBuilder()
+                const dadJokeEmbed = new EmbedBuilder()
                     .setColor(0x0099FF)
-                    .setTitle(response.data.title)
-                    .setURL(response.data.postLink)
-                    .setImage(response.data.url)
+                    .addFields(
+                        { name: "Dad Joke" , value: response.data.joke },
+                    )
                     .setTimestamp()
                     .setFooter({ text: "Sent using Inferna" })
-                interaction.reply({ embeds: [memesEmbed] });
+                interaction.reply({embeds : [dadJokeEmbed]});
             })
             .catch((err) => {
                 console.log(
-                    `Woah there has been an error with the message of the day command. Here it is: 
+                    `Woah there has been an error with the dad joke command. Here it is: 
 ` + err,
                 )
                 interaction.editReply({ embeds: [errorEmbed] });

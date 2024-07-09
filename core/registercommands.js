@@ -1,40 +1,41 @@
-const { REST, Routes } = require("discord.js");
-const path = require("node:path");
-const fs = require("node:fs");
-require('dotenv').config()
+import {REST} from '@discordjs/rest';
+import {Routes} from 'discord-api-types/v10';
+import path from 'path';
+import fs from "fs";
+import chalk from "chalk";
+import 'dotenv/config'
+import fileUrl from "file-url";
+
+const __dirname = import.meta.dirname;
+
 
 const commands = [];
-const foldersPath = path.join(__dirname, "../commands");
-const commandFolders= fs.readdirSync(foldersPath);
+const foldersPath = path.join(__dirname, "../commands/");
+const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
-  const commandFiles = fs
-      .readdirSync(commandsPath)
-      .filter((file) => file.endsWith(".js"));
+  const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
   for (const file of commandFiles) {
-    const filePath = path.join(commandsPath, file);
-    const command = require(filePath);
-    if ("data" in command && "execute" in command) {
-      commands.push(command.data.toJSON());
-    } else {
-      console.log(`WARNING - The command at ${filePath} is missing a data or execute property`);
-    }
+    const filePath = fileUrl(path.join(commandsPath, file));
+    const command = await import(filePath)
+    commands.push(command.default.data.toJSON());
   }
 }
 
-const rest = new REST().setToken(process.env.token, process.env.guildID);
+const rest = new REST().setToken(process.env.TOKEN);
 
-(async ()=> {
+(async () => {
   try {
-  console.log("Started refreshing application (/) commands.");
-  console.log(commands);
+    console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-  await rest.put(Routes.applicationCommands(process.env.clientID), {
-    body: commands});
+    const data = await rest.put(
+        Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
+        {body: commands},
+    );
 
-  console.log("Successfully reloaded application (/) commands.");
-} catch (error) {
-  console.error(error);
-}
+    console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+  } catch (error) {
+    console.error(chalk.redBright(error));
+  }
 })();
