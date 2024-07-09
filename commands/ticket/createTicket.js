@@ -1,10 +1,4 @@
-import {
-  SlashCommandBuilder,
-  ModalBuilder,
-  TextInputBuilder,
-  TextInputStyle,
-  ActionRowBuilder,
-} from "discord.js";
+import {ActionRowBuilder, ModalBuilder, SlashCommandBuilder, TextInputBuilder, TextInputStyle,} from "discord.js";
 import {ticketSchemaExport} from "../../schemas/ticketing/ticketSchema.js";
 import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 

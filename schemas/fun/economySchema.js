@@ -1,4 +1,4 @@
-import { connectDBs } from "../../index.js";
+import {connectDBs} from "../../core/databaseConnect.js";
 import mongoose from "mongoose";
 
 const economySchema = mongoose.Schema({

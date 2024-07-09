@@ -1,5 +1,5 @@
-import { SlashCommandBuilder, EmbedBuilder, bold } from "discord.js";
-import { rando } from "@nastyox/rando.js";
+import {bold, EmbedBuilder, SlashCommandBuilder} from "discord.js";
+import {rando} from "@nastyox/rando.js";
 import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 import redBright from 'chalk';
 

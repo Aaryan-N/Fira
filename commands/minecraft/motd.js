@@ -1,10 +1,11 @@
-import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
+import {EmbedBuilder, SlashCommandBuilder} from "discord.js";
 import axios from "axios";
 import validator from "validator";
 import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 import {invalidServer} from "../../templates/embeds/motd/invalidServer.js"
 import {invalidUrl} from "../../templates/embeds/motd/invalidUrl.js";
 import redBright from "chalk";
+
 function isValidUrl(str) {
     return validator.isURL(str);
 }

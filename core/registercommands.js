@@ -1,12 +1,12 @@
-import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v10';
+import {REST} from '@discordjs/rest';
+import {Routes} from 'discord-api-types/v10';
 import path from 'path';
 import fs from "fs";
 import chalk from "chalk";
 import 'dotenv/config'
 import fileUrl from "file-url";
+
 const __dirname = import.meta.dirname;
-import fsPromises from 'fs/promises'
 
 
 const commands = [];

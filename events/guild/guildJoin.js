@@ -1,4 +1,4 @@
-import { Events } from "discord.js";
+import {Events} from "discord.js";
 import {guildSchemaExport} from "../../schemas/guild/guildSchema.js";
 
 export default {

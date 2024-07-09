@@ -1,4 +1,4 @@
-import { Events, PresenceUpdateStatus } from 'discord.js';
+import {Events, PresenceUpdateStatus} from 'discord.js';
 import chalk from 'chalk';
 import 'dotenv/config'
 

@@ -1,4 +1,4 @@
-import {connectDBs} from "../../index.js";
+import {connectDBs} from "../../core/databaseConnect.js";
 import {default as mongoose} from "mongoose";
 
 const configSchema = mongoose.Schema({

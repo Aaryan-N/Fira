@@ -1,10 +1,9 @@
 import {Client, GatewayIntentBits, Partials} from 'discord.js';
-import {ClusterClient, getInfo, ClusterManager} from 'discord-hybrid-sharding';
+import {ClusterClient, getInfo} from 'discord-hybrid-sharding';
 import {commandHandler} from "./handlers/commandHandler.js";
 import {eventHandler} from "./handlers/eventHandler.js";
 import chalk from "chalk";
 import 'dotenv/config'
-import mongoose from "mongoose";
 
 export const client = new Client({
   intents: [
@@ -29,8 +28,6 @@ client.cluster = new ClusterClient(client);
 
 commandHandler(client);
 eventHandler(client);
-
-
 
 try {
     client.login(process.env.TOKEN)

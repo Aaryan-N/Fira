@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
+import {EmbedBuilder, SlashCommandBuilder} from "discord.js";
 import {economySchemaExport} from "../../schemas/fun/economySchema.js";
 
 export default {

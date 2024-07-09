@@ -3,6 +3,7 @@ import path from "path";
 import fs from "node:fs";
 import chalk from 'chalk';
 import fileUrl from "file-url";
+
 const __dirname = import.meta.dirname;
 
 export const commandHandler = async (client) => {

@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder} from "discord.js";
+import {EmbedBuilder, SlashCommandBuilder} from "discord.js";
 import {economySchemaExport} from "../../schemas/fun/economySchema.js";
 import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
 import redBright from 'chalk';
