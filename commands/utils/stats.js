@@ -3,7 +3,7 @@ import {EmbedBuilder, SlashCommandBuilder} from "discord.js";
 export default {
     data: new SlashCommandBuilder()
         .setName("stats")
-        .setDescription("Replies with amount of guilds the bot is currently in!"),
+        .setDescription("Replies with some handy stats about the server!"),
     async execute(interaction) {
         interaction.client.cluster.fetchClientValues('guilds.cache.size')
             .then(results => {
@@ -18,7 +18,7 @@ export default {
                             { name: "Owner of server:", value: ownerDisplayName.username}
                         )
                         .setTimestamp()
-                        .setFooter({ text: "Sent using Inferna" })
+                        .setFooter({ text: "Sent using Inferna", iconURL: "https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&"})
                     interaction.reply({embeds : [statsEmbed]});
             })
             .catch(console.error);

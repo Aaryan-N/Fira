@@ -50,7 +50,7 @@ export default {
                     .setColor(0x0099FF)
                     .setTitle("Your birthday has already been registered in this guild!")
                     .setTimestamp()
-                    .setFooter({ text: "Sent using Inferna" });
+                    .setFooter({ text: "Sent using Inferna", iconURL: "https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&" });
 
                 if (analyseBirthDate !== null) {
                     interaction.editReply({ embeds: [preexistingBirthdayRegisterEmbed] });
@@ -90,7 +90,7 @@ export default {
                         {name: "Your birthday has been set to:", value: birthDateFormatted}
                     )
                     .setTimestamp()
-                    .setFooter({text: "Sent using Inferna"})
+                    .setFooter({text: "Sent using Inferna", iconURL: "https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&"})
 
                 interaction.editReply({embeds: [successfulBirthdayRegisterEmbed]});
             }
