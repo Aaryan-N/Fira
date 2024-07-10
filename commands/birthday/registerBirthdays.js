@@ -9,7 +9,7 @@ const { birthdaySchemaExport } = await import('../../schemas/fun/birthdaySchema.
 export default {
  data: new SlashCommandBuilder()
   .setName('registerbirthday')
-  .setDescription('Register your birthday to Inferna!')
+  .setDescription('Register your birthday to Fira!')
   .addIntegerOption(option =>
    option.setName('day').setDescription('The day of your birthday as a number (1-31)').setRequired(true),
   )
@@ -42,9 +42,9 @@ export default {
      .setTitle('Your birthday has already been registered in this guild!')
      .setTimestamp()
      .setFooter({
-      text: 'Sent using Inferna',
+      text: 'Sent using Fira',
       iconURL:
-       'https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&',
+       'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
      });
 
     if (analyseBirthDate !== null) {
@@ -85,9 +85,9 @@ export default {
      })
      .setTimestamp()
      .setFooter({
-      text: 'Sent using Inferna',
+      text: 'Sent using Fira',
       iconURL:
-       'https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&',
+       'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
      });
 
     interaction.editReply({ embeds: [successfulBirthdayRegisterEmbed] });

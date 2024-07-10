@@ -27,8 +27,9 @@ export const client = new Client({
 
 client.cluster = new ClusterClient(client);
 
-commandHandler(client);
-eventHandler(client);
+commandHandler(client).then(() => console.log(chalk.greenBright("Command handler is ready!")));
+eventHandler(client).then(() => console.log(chalk.greenBright("Event handler is ready!")));
+
 
 try {
  client.login(process.env.TOKEN);

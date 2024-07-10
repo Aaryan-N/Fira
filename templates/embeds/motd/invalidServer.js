@@ -5,6 +5,6 @@ export const invalidServer = new EmbedBuilder()
   .setTitle('The value you have entered is not a valid Minecraft Server! Please try again.')
   .setTimestamp()
   .setFooter({
-    text: 'Sent using Inferna',
-    iconURL: 'https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&',
+    text: 'Sent using Fira',
+    iconURL: 'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
   });

@@ -4,7 +4,7 @@ import chalk from 'chalk';
 
 const __dirname = import.meta.dirname;
 
-const manager = new ClusterManager(`${__dirname}/inferna.js`, {
+const manager = new ClusterManager(`${__dirname}/fira.js`, {
  totalShards: 'auto',
  shardsPerClusters: 2,
  mode: 'process',

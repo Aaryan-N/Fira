@@ -3,9 +3,9 @@
  "version": "1.0.0",
  "description": "",
  "type": "module",
- "main": "inferna.js",
+ "main": "fira.js",
  "scripts": {
-  "test": "node inferna.js"
+  "test": "node fira.js"
  },
  "author": "Aaryan Narayan",
  "license": "ISC",

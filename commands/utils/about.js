@@ -2,7 +2,7 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { getInfo } from 'discord-hybrid-sharding';
 
 export default {
- data: new SlashCommandBuilder().setName('about').setDescription('Replies with some information about Inferna!'),
+ data: new SlashCommandBuilder().setName('about').setDescription('Replies with some information about Fira!'),
  async execute(interaction) {
   const statsPromises = [
    interaction.client.cluster.fetchClientValues('guilds.cache.size'),
@@ -13,8 +13,21 @@ export default {
   Promise.all(statsPromises).then(results => {
    const guildServed = results[0].reduce((firstValueInArray, otherVals) => firstValueInArray + otherVals);
    const totalChannelsServed = results[1].reduce((firstValueInArray, otherVals) => firstValueInArray + otherVals);
-   const channelCheck = results[2];
-   console.log(channelCheck)
+   const channelListPull = results[2];
+
+   const channelList = [].concat(...channelListPull);
+    function numberOfTextChannels(firstChannelMapFunc) {
+     let counter = 0;
+     for (let index = 0; index < firstChannelMapFunc.length; index++) {
+      if (firstChannelMapFunc[index].type === 0) {
+       counter++;
+      }
+     }
+     return counter;
+    }
+
+    console.log(numberOfTextChannels(channelList));
+
    const statsEmbed = new EmbedBuilder()
     .setTitle('About Me!')
     .setColor(0x0099ff)
