@@ -1,25 +1,25 @@
-import {connectDBs} from "../../core/databaseConnect.js";
-import mongoose from "mongoose";
+import { connectDBs } from '../../core/databaseConnect.js';
+import mongoose from 'mongoose';
 
 const economySchema = mongoose.Schema({
-    userId: {
-        type: String,
-        required: true
-    },
-    guildId: {
-        type: String,
-        required: true
-    },
-    balance: {
-        type: Number,
-        default: 0
-    },
-    lastDailyCollected: {
-        type: Date,
-    },
-})
+  userId: {
+    type: String,
+    required: true,
+  },
+  guildId: {
+    type: String,
+    required: true,
+  },
+  balance: {
+    type: Number,
+    default: 0,
+  },
+  lastDailyCollected: {
+    type: Date,
+  },
+});
 
 const { economyDb } = connectDBs();
-    
-export const economySchemaExport = economyDb.model('economyDailies', economySchema)
+
+export const economySchemaExport = economyDb.model('economyDailies', economySchema);
 

@@ -1,102 +1,100 @@
-import {EmbedBuilder, SlashCommandBuilder} from "discord.js";
-import {errorEmbed} from "../../templates/embeds/errors/errorEmbed.js";
-import {invalidDate} from "../../templates/embeds/birthday/invalidDate.js";
-import moment from "moment";
+import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
+import { invalidDate } from '../../templates/embeds/birthday/invalidDate.js';
+import moment from 'moment';
 import redBright from 'chalk';
 
-const {birthdaySchemaExport} = await import("../../schemas/fun/birthdaySchema.js");
-
+const { birthdaySchemaExport } = await import('../../schemas/fun/birthdaySchema.js');
 
 export default {
-    data: new SlashCommandBuilder()
-        .setName("registerbirthday")
-        .setDescription("Register your birthday to Inferna!")
-        .addIntegerOption((option) =>
-            option
-                .setName("day")
-                .setDescription("The day of your birthday as a number (1-31)")
-                .setRequired(true),
-        )
-    .addIntegerOption((option) =>
-            option
-                .setName("month")
-                .setDescription("The month of your birthday as a number (1-12)")
-                .setRequired(true),
-        )
-        .addIntegerOption((option) =>
-                option
-                    .setName("year")
-                    .setDescription("The year of your birthday as a number")
-                    .setRequired(true),
-        ),
+ data: new SlashCommandBuilder()
+  .setName('registerbirthday')
+  .setDescription('Register your birthday to Inferna!')
+  .addIntegerOption(option =>
+   option.setName('day').setDescription('The day of your birthday as a number (1-31)').setRequired(true),
+  )
+  .addIntegerOption(option =>
+   option.setName('month').setDescription('The month of your birthday as a number (1-12)').setRequired(true),
+  )
+  .addIntegerOption(option => option.setName('year').setDescription('The year of your birthday as a number').setRequired(true)),
 
-    async execute(interaction) {
-        if (!interaction.inGuild()) {
-            interaction.reply({ content: "This command can only be run in servers!", ephemeral: true})
-            return;
-        }
+ async execute(interaction) {
+  if (!interaction.inGuild()) {
+   interaction.reply({
+    content: 'This command can only be run in servers!',
+    ephemeral: true,
+   });
+   return;
+  }
 
-        try {
-            await interaction.deferReply();
+  try {
+   await interaction.deferReply();
 
-            let userProfileBirthday = await birthdaySchemaExport.findOne({
-                userId: interaction.member.id,
-                guildId: interaction.guild.id
-            });
+   let userProfileBirthday = await birthdaySchemaExport.findOne({
+    userId: interaction.member.id,
+    guildId: interaction.guild.id,
+   });
 
-            if(userProfileBirthday) {
-                const analyseBirthDate = userProfileBirthday.birth_date;
-                const preexistingBirthdayRegisterEmbed = new EmbedBuilder()
-                    .setColor(0x0099FF)
-                    .setTitle("Your birthday has already been registered in this guild!")
-                    .setTimestamp()
-                    .setFooter({ text: "Sent using Inferna", iconURL: "https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&" });
+   if (userProfileBirthday) {
+    const analyseBirthDate = userProfileBirthday.birth_date;
+    const preexistingBirthdayRegisterEmbed = new EmbedBuilder()
+     .setColor(0x0099ff)
+     .setTitle('Your birthday has already been registered in this guild!')
+     .setTimestamp()
+     .setFooter({
+      text: 'Sent using Inferna',
+      iconURL:
+       'https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&',
+     });
 
-                if (analyseBirthDate !== null) {
-                    interaction.editReply({ embeds: [preexistingBirthdayRegisterEmbed] });
-                    return;
-                }
+    if (analyseBirthDate !== null) {
+     interaction.editReply({ embeds: [preexistingBirthdayRegisterEmbed] });
+     return;
+    }
+   } else {
+    userProfileBirthday = new birthdaySchemaExport({
+     userId: interaction.member.id,
+     guildId: interaction.guild.id,
+     birth_date: '',
+    });
+   }
 
-            }
-            else {
-                userProfileBirthday = new birthdaySchemaExport({
-                    userId: interaction.member.id,
-                    guildId: interaction.guild.id,
-                    birth_date: ""
-                });
-            }
+   const birthYear = interaction.options.getInteger('year');
+   const birthMonth = interaction.options.getInteger('month');
+   const birthDay = interaction.options.getInteger('day');
+   const birthDateFormatted = birthDay.toString() + '/' + birthMonth.toString() + '/' + birthYear.toString();
+   const jsDateValidator = birthYear + '-' + birthMonth + '-' + birthDay;
+   const formattedBirthDateJoined = birthDay.toString() + ' ' + birthMonth.toString();
+   const momentJsDateValidator = moment(jsDateValidator, 'YYYY MM DD');
+   if (momentJsDateValidator.isValid() === false) {
+    await interaction.editReply({ embeds: [invalidDate] });
+   } else {
+    userProfileBirthday.birthDateConcat = formattedBirthDateJoined;
+    userProfileBirthday.day = birthDay;
+    userProfileBirthday.month = birthMonth;
+    userProfileBirthday.year = birthYear;
 
-            const birthYear = interaction.options.getInteger("year");
-            const birthMonth = interaction.options.getInteger("month");
-            const birthDay = interaction.options.getInteger("day");
-            const birthDateFormatted = birthDay.toString() + "/" + birthMonth.toString()+ "/" + birthYear.toString();
-            const jsDateValidator = birthYear+"-"+birthMonth+"-"+birthDay
-            const formattedBirthDateJoined = birthDay.toString() + " " + birthMonth.toString();
-            const momentJsDateValidator = moment(jsDateValidator, "YYYY MM DD");
-            if (momentJsDateValidator.isValid() === false) {
-                await interaction.editReply({embeds: [invalidDate]})
-            } else {
-                userProfileBirthday.birthDateConcat = formattedBirthDateJoined;
-                userProfileBirthday.day = birthDay;
-                userProfileBirthday.month = birthMonth;
-                userProfileBirthday.year = birthYear;
+    await userProfileBirthday.save();
 
-                await userProfileBirthday.save();
+    const successfulBirthdayRegisterEmbed = new EmbedBuilder()
+     .setColor(0x0099ff)
+     .setTitle('Birthday Registered!')
+     .addFields({
+      name: 'Your birthday has been set to:',
+      value: birthDateFormatted,
+     })
+     .setTimestamp()
+     .setFooter({
+      text: 'Sent using Inferna',
+      iconURL:
+       'https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&',
+     });
 
-                const successfulBirthdayRegisterEmbed = new EmbedBuilder()
-                    .setColor(0x0099FF)
-                    .setTitle("Birthday Registered!")
-                    .addFields(
-                        {name: "Your birthday has been set to:", value: birthDateFormatted}
-                    )
-                    .setTimestamp()
-                    .setFooter({text: "Sent using Inferna", iconURL: "https://cdn.discordapp.com/attachments/1126688226590085230/1260169728073404469/InfernaLogo.jpeg?ex=668e5803&is=668d0683&hm=e84b1cec8c78ae2142842ba9b7154b65d8e9801bc21f0dd4c2b7a860cf2e4d18&"})
-
-                interaction.editReply({embeds: [successfulBirthdayRegisterEmbed]});
-            }
-        } catch(err) {
-            console.log(redBright("Woah there has been an error with the birthday daily command. Here it is: \n" + err))
-            await interaction.editReply({ embeds: [errorEmbed] });
-        }
-    },
+    interaction.editReply({ embeds: [successfulBirthdayRegisterEmbed] });
+   }
+  } catch (err) {
+   console.log(redBright('Woah there has been an error with the birthday daily command. Here it is: \n' + err));
+   await interaction.editReply({ embeds: [errorEmbed] });
+  }
+ },
 };

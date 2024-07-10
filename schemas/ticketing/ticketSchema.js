@@ -1,5 +1,5 @@
-import {connectDBs} from "../../core/databaseConnect.js";
-import mongoose from "mongoose";
+import { connectDBs } from '../../core/databaseConnect.js';
+import mongoose from 'mongoose';
 
 const ticketSchema = mongoose.Schema({
   userId: {
@@ -24,9 +24,9 @@ const ticketSchema = mongoose.Schema({
   }, isOpen: {
     type: Boolean,
     required: true,
-  }
+  },
 });
 
 const { ticketingDb } = connectDBs();
 
-export const ticketSchemaExport = ticketingDb.model("tickets", ticketSchema);
+export const ticketSchemaExport = ticketingDb.model('tickets', ticketSchema);

@@ -1,5 +1,5 @@
-import {Events} from "discord.js";
-import {guildSchemaExport} from "../../schemas/guild/guildSchema.js";
+import { Events } from 'discord.js';
+import { guildSchemaExport } from '../../schemas/guild/guildSchema.js';
 
 export default {
   name: Events.GuildDelete,
@@ -19,7 +19,7 @@ export default {
       guildCreatedProfileId === null ||
       guildLeftProfile.guildJoinedCurrently === false
     ) {
-      console.log("Guild does not exist. Investigate");
+      console.log('Guild does not exist. Investigate');
     }
 
     guildLeftProfile.guildJoinedCurrently = false;
