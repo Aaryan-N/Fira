@@ -7,26 +7,48 @@ export default {
   const statsPromises = [
    interaction.client.cluster.fetchClientValues('guilds.cache.size'),
    interaction.client.cluster.fetchClientValues('channels.cache.size'),
-   interaction.client.cluster.fetchClientValues('channels.cache')
+   interaction.client.cluster.fetchClientValues('channels.cache'),
+   interaction.client.cluster.fetchClientValues('guilds.cache')
   ];
 
   Promise.all(statsPromises).then(results => {
    const guildServed = results[0].reduce((firstValueInArray, otherVals) => firstValueInArray + otherVals);
    const totalChannelsServed = results[1].reduce((firstValueInArray, otherVals) => firstValueInArray + otherVals);
    const channelListPull = results[2];
+   const totalUsers = results[3];
 
    const channelList = [].concat(...channelListPull);
-    function numberOfTextChannels(firstChannelMapFunc) {
-     let counter = 0;
-     for (let index = 0; index < firstChannelMapFunc.length; index++) {
-      if (firstChannelMapFunc[index].type === 0) {
-       counter++;
-      }
-     }
-     return counter;
-    }
+   const totalUsersList = [].concat(...totalUsers);
 
-    console.log(numberOfTextChannels(channelList));
+   function numberOfMembers(firstMemberMap) {
+    let counter = 0;
+    for (let index = 0; index < firstMemberMap.length; index++) {
+     counter = firstMemberMap[index].members
+    }
+    return counter;
+   }
+
+   function numberOfTextChannels(firstChannelMapFunc) {
+    let counter = 0;
+    for (let index = 0; index < firstChannelMapFunc.length; index++) {
+     if (firstChannelMapFunc[index].type === 0 || firstChannelMapFunc[index].type === 5 || firstChannelMapFunc[index].type === 15) {
+      counter++;
+     }
+    }
+    return counter;
+   }
+
+   function numberOfVoiceChannels(firstChannelMapFunc) {
+    let counter = 0;
+    for (let index = 0; index < firstChannelMapFunc.length; index++) {
+     if (firstChannelMapFunc[index].type === 2 || firstChannelMapFunc[index].type === 13) {
+      counter++;
+     }
+    }
+    return counter;
+   }
+
+   console.log(numberOfMembers(totalUsersList))
 
    const statsEmbed = new EmbedBuilder()
     .setTitle('About Me!')
@@ -48,7 +70,7 @@ export default {
      },
      {
       name: 'Channels:',
-      value: totalChannelsServed.toString() + ' total',
+      value: totalChannelsServed.toString() + ' total' + "\n" + numberOfTextChannels(channelList).toString() + " text channels" +"\n" + numberOfVoiceChannels(channelList).toString() + " voice channels",
       inline: true,
      },
      { name: 'Owner:', value: 'navygood12', inline: true },
