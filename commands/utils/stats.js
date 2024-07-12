@@ -3,10 +3,14 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 export default {
  data: new SlashCommandBuilder().setName('stats').setDescription('Replies with some handy stats about the server!'),
  async execute(interaction) {
+  let totalUsersFetch = '';
+  const totalUsers = interaction.guild.members.fetch().then((totalUsers) => {
+   totalUsersFetch = totalUsers.map((x) => x)
+  })
+  console.log(totalUsersFetch)
   interaction.client.cluster
    .fetchClientValues('guilds.cache.size')
-   .then(results => {
-    const parsedGuildSize = results.reduce((prev, val) => prev + val, 0);
+   .then(() => {
     const owner = interaction.guild.ownerId;
     const ownerDisplayName = interaction.client.users.cache.get(owner);
 
@@ -14,10 +18,10 @@ export default {
      .setColor(0x0099ff)
      .addFields(
       {
-       name: 'Amount of guilds the bot is currently in:',
-       value: parsedGuildSize.toString(),
+       name: 'Owner of server:',
+       value: ownerDisplayName.username,
       },
-      { name: 'Owner of server:', value: ownerDisplayName.username },
+      { name: 'Amount of members:', value: totalUsersFetch[0].guild.memberCount },
      )
      .setTimestamp()
      .setFooter({

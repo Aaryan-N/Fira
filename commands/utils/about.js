@@ -8,27 +8,14 @@ export default {
    interaction.client.cluster.fetchClientValues('guilds.cache.size'),
    interaction.client.cluster.fetchClientValues('channels.cache.size'),
    interaction.client.cluster.fetchClientValues('channels.cache'),
-   interaction.client.cluster.fetchClientValues('guilds.cache')
   ];
 
   Promise.all(statsPromises).then(results => {
    const guildServed = results[0].reduce((firstValueInArray, otherVals) => firstValueInArray + otherVals);
    const totalChannelsServed = results[1].reduce((firstValueInArray, otherVals) => firstValueInArray + otherVals);
    const channelListPull = results[2];
-   const totalUsers = results[3];
 
    const channelList = [].concat(...channelListPull);
-   const totalUsersList = [].concat(...totalUsers);
-
-   console.log(totalUsersList)
-
-   function numberOfMembers(firstMemberMap) {
-    let counter = 0;
-    for (let index = 0; index < firstMemberMap.length; index++) {
-     counter = firstMemberMap[index].members
-    } 
-    return counter;
-   }
 
    function numberOfTextChannels(firstChannelMapFunc) {
     let counter = 0;
@@ -50,7 +37,6 @@ export default {
     return counter;
    }
 
-   console.log(numberOfMembers(totalUsersList))
 
    const statsEmbed = new EmbedBuilder()
     .setTitle('About Me!')
