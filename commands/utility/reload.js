@@ -1,5 +1,4 @@
-import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import chalk from 'chalk';
+import { SlashCommandBuilder } from 'discord.js';
 
 export default {
  data: new SlashCommandBuilder()
@@ -17,14 +16,14 @@ export default {
   if (!command) {
    return interaction.reply(`There is no command with name ${commandName}!`);
   }
+  delete [import.meta.resolve(`../${command.default.category}/${command.default.data.name}.js`)];
 
-   delete import.meta.cache[import.meta.resolve(`../commands/${command.default.category}/${command.default.data.name}.js`)];
+  await interaction.client.commands.delete(command.default.data.name);
 
-   interaction.client.cluster.commands.delete(command.default.data.name);
-   const newCommand = require(`../commands/${command.default.category}/${command.default.data.name}.js`);
+  const newCommand = import(`../${command.default.category}/${command.default.data.name}.js`);
 
-   interaction.client.cluster.commands.set(newCommand.default.data.name, newCommand);
-   await interaction.reply(`The command ${newCommand.default.data.name} was reloaded!`);
+  interaction.client.commands.set(newCommand.default.data.name, newCommand);
+  await interaction.reply(`The command ${newCommand.default.data.name} was reloaded!`);
 
  },
 };
