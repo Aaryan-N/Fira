@@ -4,7 +4,6 @@ import { commandHandler } from './handlers/commandHandler.js';
 import { eventHandler } from './handlers/eventHandler.js';
 import chalk from 'chalk';
 import 'dotenv/config';
-import { CommandKit } from 'commandkit';
 
 export const client = new Client({
  intents: [
@@ -30,14 +29,6 @@ client.cluster = new ClusterClient(client);
 
 commandHandler(client).then(() => console.log(chalk.greenBright("Command handler is ready!")));
 eventHandler(client).then(() => console.log(chalk.greenBright("Event handler is ready!")));
-
-new CommandKit({
- client,
- devGuildIds: [process.env.GUILDID],
- devUserIds: [process.env.NAVYUSERID],
- skipBuiltInValidations: true,
- bulkRegister: true,
-});
 
 try {
  client.login(process.env.TOKEN).then(() => {console.log(chalk.greenBright('Successfully logged in!'));})

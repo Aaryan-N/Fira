@@ -20,11 +20,13 @@ export default {
    const channelList = [].concat(...channelListPull);
    const totalUsersList = [].concat(...totalUsers);
 
+   console.log(totalUsersList)
+
    function numberOfMembers(firstMemberMap) {
     let counter = 0;
     for (let index = 0; index < firstMemberMap.length; index++) {
      counter = firstMemberMap[index].members
-    }
+    } 
     return counter;
    }
 
