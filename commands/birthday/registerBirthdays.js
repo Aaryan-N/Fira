@@ -38,7 +38,7 @@ export default {
    if (userProfileBirthday) {
     const analyseBirthDate = userProfileBirthday.birth_date;
     const preexistingBirthdayRegisterEmbed = new EmbedBuilder()
-     .setColor(0x0099ff)
+     .setColor([255, 231, 188])
      .setTitle('Your birthday has already been registered in this guild!')
      .setTimestamp()
      .setFooter({
@@ -77,7 +77,7 @@ export default {
     await userProfileBirthday.save();
 
     const successfulBirthdayRegisterEmbed = new EmbedBuilder()
-     .setColor(0x0099ff)
+     .setColor([255, 231, 188])
      .setTitle('Birthday Registered!')
      .addFields({
       name: 'Your birthday has been set to:',

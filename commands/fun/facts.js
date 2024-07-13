@@ -13,7 +13,7 @@ export default {
   })
    .then(function (response) {
     const factsEmbed = new EmbedBuilder()
-     .setColor(0x0099ff)
+     .setColor([255, 231, 188])
      .addFields({ name: 'Fact', value: response.data.text })
      .setTimestamp()
      .setFooter({

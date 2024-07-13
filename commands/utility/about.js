@@ -40,7 +40,7 @@ export default {
 
    const statsEmbed = new EmbedBuilder()
     .setTitle('About Me!')
-    .setColor(0x0099ff)
+    .setColor([255, 231, 188])
     .setAuthor({
      name: 'navygood12',
      iconURL: 'https://cdn.discordapp.com/avatars/652433042153144321/1f214c012718abc36181d4c88ac75e0b.webp?size=100',

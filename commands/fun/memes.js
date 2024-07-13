@@ -12,7 +12,7 @@ export default {
   })
    .then(function (response) {
     const memesEmbed = new EmbedBuilder()
-     .setColor(0x0099ff)
+     .setColor([255, 231, 188])
      .setTitle(response.data.title)
      .setURL(response.data.postLink)
      .setImage(response.data.url)

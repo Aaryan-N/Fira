@@ -21,7 +21,7 @@ export default {
   })
    .then(function (response) {
     const ballEmbed = new EmbedBuilder()
-     .setColor(0x0099ff)
+     .setColor([255, 231, 188])
      .setTitle('8 Ball')
      .addFields({ name: "The 8 Ball's verdict:", value: response.data.reading })
      .setTimestamp()

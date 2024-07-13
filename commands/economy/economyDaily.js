@@ -29,7 +29,7 @@ export default {
 
     if (currentDate === lastDailyDate) {
      const dailyCollectedTodayEmbed = new EmbedBuilder()
-      .setColor(0x0099ff)
+      .setColor([255, 231, 188])
       .setTitle('You have already collected your daily coins today! Come back tomorrow!')
       .setTimestamp()
       .setFooter({
@@ -53,7 +53,7 @@ export default {
    await userProfile.save();
 
    const dailiesEmbed = new EmbedBuilder()
-    .setColor(0x0099ff)
+    .setColor([255, 231, 188])
     .addFields(
      { name: 'Amount added', value: dailyAmount.toString() },
      { name: 'Current Balance', value: userProfile.balance.toString() },

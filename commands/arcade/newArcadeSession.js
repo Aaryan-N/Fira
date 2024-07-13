@@ -31,7 +31,7 @@ export default {
   }).then(() => {
     const successfulStartArcade = new EmbedBuilder()
      .setTitle("The arcade session has been started!")
-     .setColor(0x0099ff)
+     .setColor([255, 231, 188])
      .setTimestamp()
      .setFooter({
       text: 'Sent using Fira!',

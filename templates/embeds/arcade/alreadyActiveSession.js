@@ -2,7 +2,7 @@ import { EmbedBuilder } from 'discord.js';
 
 export const alreadyActiveSession = new EmbedBuilder()
  .setTitle("You already have an arcade session active!")
- .setColor(0x0099ff)
+ .setColor([255, 231, 188])
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira!',

@@ -31,7 +31,7 @@ export default {
       const response = unformattedResponse.replace(/^\s+|\s+$/g, '').replace(/,/g, '');
 
       const motdEmbed = new EmbedBuilder()
-       .setColor(0x0099ff)
+       .setColor([255, 231, 188])
        .setTitle('Minecraft Server Message of the Day')
        .addFields({ name: 'Server: ' + serverAddress, value: response })
        .setTimestamp()

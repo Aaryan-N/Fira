@@ -18,7 +18,7 @@ export default {
    const ownerDisplayName = interaction.client.users.cache.get(owner);
 
     const statsEmbed = new EmbedBuilder()
-     .setColor(0x0099ff)
+     .setColor([255, 231, 188])
      .addFields(
       {
        name: 'Owner of server:',

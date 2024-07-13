@@ -80,7 +80,7 @@ export default {
   } else if (statusMessage.includes('draw') === true) {
    rpsEmbed.setColor(0x808080);
   } else {
-   rpsEmbed.setColor(0x0099ff);
+   rpsEmbed.setColor([255, 231, 188]);
   }
 
   interaction.reply({ embeds: [rpsEmbed] });

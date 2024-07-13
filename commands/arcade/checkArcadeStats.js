@@ -43,7 +43,7 @@ export default {
      const commandRemovedGoals = formattedGoals.split(",").join("")
      const arcadeStats = new EmbedBuilder()
       .setTitle("Your Arcade Stats!")
-      .setColor(0x0099ff)
+      .setColor([255, 231, 188])
       .addFields({ name: 'Total number of sessions completed: ', value: sessionCount.toString() + " sessions" },
        { name: "Total time on Arcade: ", value: totalTimeSessionCount.toString() + " minutes" },
        { name: "Goals: ", value: commandRemovedGoals }

@@ -10,7 +10,7 @@ export default {
   });
   const currentUserBalance = economyProfile.balance.toString();
   const ballEmbed = new EmbedBuilder()
-   .setColor(0x0099ff)
+   .setColor([255, 231, 188])
    .setTitle('Your current balance:')
    .setDescription(currentUserBalance)
    .setTimestamp()
