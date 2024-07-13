@@ -2,7 +2,7 @@ import { EmbedBuilder } from 'discord.js';
 
 export const mainMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Fweah.')
+ .setTitle('Main Menu Help')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

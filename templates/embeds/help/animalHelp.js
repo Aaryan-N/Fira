@@ -2,7 +2,7 @@ import { EmbedBuilder } from 'discord.js';
 
 export const animalHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Hullo sigma.')
+ .setTitle('Animal Commands')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',
