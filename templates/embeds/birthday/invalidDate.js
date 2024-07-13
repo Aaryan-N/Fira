@@ -1,7 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 
 export const invalidDate = new EmbedBuilder()
-  .setColor(0x0099FF)
+  .setColor([255, 231, 188])
   .setTitle('The value you have entered is not a valid date! Please try again.')
   .setTimestamp()
   .setFooter({
