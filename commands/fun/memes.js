@@ -10,7 +10,7 @@ export default {
    url: 'https://meme-api.com/gimme?nsfw=false',
    responseType: 'json',
   })
-   .then(function (response) {
+   .then(function(response) {
     const memesEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
      .setTitle(response.data.title)

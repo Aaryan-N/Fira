@@ -8,12 +8,12 @@ export default {
   .setName('fact')
   .setDescription('Replies with a fact!')
   .addStringOption(option =>
-  option
-   .setName('type')
-   .setRequired(true)
-   .setDescription('Type of fact!')
-   .addChoices({ name: 'Random', value: 'random' }, { name: 'Cat', value: 'cat' }, { name: 'Dog', value: 'dog' }),
- ),
+   option
+    .setName('type')
+    .setRequired(true)
+    .setDescription('Type of fact!')
+    .addChoices({ name: 'Random', value: 'random' }, { name: 'Cat', value: 'cat' }, { name: 'Dog', value: 'dog' }),
+  ),
  async execute(interaction) {
 
   const typeOfFact = interaction.options.getString('type');

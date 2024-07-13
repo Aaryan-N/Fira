@@ -1,4 +1,4 @@
-import { ClusterManager, HeartbeatManager, ReClusterManager } from 'discord-hybrid-sharding';
+import { ClusterManager, HeartbeatManager } from 'discord-hybrid-sharding';
 import 'dotenv/config';
 import chalk from 'chalk';
 
@@ -22,8 +22,10 @@ manager.extend(
  new HeartbeatManager({
   interval: 3000,
   maxMissedHeartbeats: 6,
- })
-)
+ }),
+);
 
-manager.spawn().then(() => console.log(chalk.greenBright(`Cluster manager has been spawned!`))).catch((err) => {console.log(chalk.redBright(`Cluster manager died due to: ${err.message}`))})
+manager.spawn().then(() => console.log(chalk.greenBright(`Cluster manager has been spawned!`))).catch((err) => {
+ console.log(chalk.redBright(`Cluster manager died due to: ${err.message}`));
+});
 

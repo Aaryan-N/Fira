@@ -19,11 +19,11 @@ export default {
    url: `https://eightballapi.com/api?question=${formattedUserBallQuery}&lucky=${userLuckyChoice}`,
    responseType: 'json',
   })
-   .then(function (response) {
+   .then(function(response) {
     const ballEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
      .setTitle('8 Ball')
-     .addFields({ name: "The 8 Ball's verdict:", value: response.data.reading })
+     .addFields({ name: 'The 8 Ball\'s verdict:', value: response.data.reading })
      .setTimestamp()
      .setFooter({
       text: 'Sent using Fira',

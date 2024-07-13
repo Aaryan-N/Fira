@@ -27,11 +27,13 @@ export const client = new Client({
 
 client.cluster = new ClusterClient(client);
 
-commandHandler(client).then(() => console.log(chalk.greenBright("Command handler is ready!")));
-eventHandler(client).then(() => console.log(chalk.greenBright("Event handler is ready!")));
+commandHandler(client).then(() => console.log(chalk.greenBright('Command handler is ready!')));
+eventHandler(client).then(() => console.log(chalk.greenBright('Event handler is ready!')));
 
 try {
- client.login(process.env.TOKEN).then(() => {console.log(chalk.greenBright('Successfully logged in!'));})
+ client.login(process.env.TOKEN).then(() => {
+  console.log(chalk.greenBright('Successfully logged in!'));
+ });
 } catch (err) {
  console.log(chalk.redBright('Something went wrong with logging in. Here is the problem' + err));
 }

@@ -14,28 +14,28 @@ const foldersPath = path.join(__dirname, '../commands/');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
-  const commandsPath = path.join(foldersPath, folder);
-  const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
-  for (const file of commandFiles) {
-    const filePath = fileUrl(path.join(commandsPath, file));
-    const command = await import(filePath);
-    commands.push(command.default.data.toJSON());
-  }
+ const commandsPath = path.join(foldersPath, folder);
+ const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+ for (const file of commandFiles) {
+  const filePath = fileUrl(path.join(commandsPath, file));
+  const command = await import(filePath);
+  commands.push(command.default.data.toJSON());
+ }
 }
 
 const rest = new REST().setToken(process.env.TOKEN);
 
 (async () => {
-  try {
-    console.log(`Started refreshing ${commands.length} application (/) commands.`);
+ try {
+  console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-    const data = await rest.put(
-      Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
-      { body: commands },
-    );
+  const data = await rest.put(
+   Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
+   { body: commands },
+  );
 
-    console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-  } catch (error) {
-    console.error(chalk.redBright(error));
-  }
+  console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+ } catch (error) {
+  console.error(chalk.redBright(error));
+ }
 })();

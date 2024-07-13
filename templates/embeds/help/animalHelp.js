@@ -1,6 +1,6 @@
 import { EmbedBuilder } from 'discord.js';
 
-export const animalHelp = new EmbedBuilder()
+export const animalMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
  .setTitle('Animal Commands')
  .setTimestamp()

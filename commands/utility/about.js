@@ -58,7 +58,7 @@ export default {
      },
      {
       name: 'Channels:',
-      value: totalChannelsServed.toString() + ' total' + "\n" + numberOfTextChannels(channelList).toString() + " text channels" +"\n" + numberOfVoiceChannels(channelList).toString() + " voice channels",
+      value: totalChannelsServed.toString() + ' total' + '\n' + numberOfTextChannels(channelList).toString() + ' text channels' + '\n' + numberOfVoiceChannels(channelList).toString() + ' voice channels',
       inline: true,
      },
      { name: 'Owner:', value: 'navygood12', inline: true },

@@ -12,7 +12,10 @@ export default {
     .setName('userchoice')
     .setRequired(true)
     .setDescription('Play a game of rock, paper, scissors!')
-    .addChoices({ name: 'Rock', value: 'rock' }, { name: 'Paper', value: 'paper' }, { name: 'Scissors', value: 'scissors' }),
+    .addChoices({ name: 'Rock', value: 'rock' }, { name: 'Paper', value: 'paper' }, {
+     name: 'Scissors',
+     value: 'scissors',
+    }),
   ),
 
  async execute(interaction) {
@@ -63,7 +66,7 @@ export default {
    .setTitle('RPS')
    .addFields(
     { name: 'Your choice', value: formattedUserInput },
-    { name: "The computer's choice", value: formattedPcChoice },
+    { name: 'The computer\'s choice', value: formattedPcChoice },
     { name: 'Result', value: bold(statusMessage) },
    )
    .setTimestamp()

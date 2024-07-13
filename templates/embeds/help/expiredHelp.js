@@ -1,8 +1,8 @@
 import { EmbedBuilder } from 'discord.js';
 
-export const errorEmbed = new EmbedBuilder()
+export const expiredMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('We are sorry, something has gone terribly wrong. The developer has been notified!')
+ .setTitle('This embed has expired please re-run the command!')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',
