@@ -1,4 +1,4 @@
-import { ComponentType, SlashCommandBuilder } from 'discord.js';
+import { ComponentType, SlashCommandBuilder, MessageManager } from 'discord.js';
 import { mainMenuHelp } from '../../templates/embeds/help/mainMenuHelp.js';
 import { helpRow } from '../../templates/actionRows/helpActionRow.js';
 import { economyMenuHelp } from '../../templates/embeds/help/economyHelp.js';
@@ -47,6 +47,14 @@ export default {
    } else if (selection === 'utilityhelp') {
     await interact.update({ embeds: [utilityMenuHelp], components: [helpRow] });
    }
+
+
+   collector.on('end', async collected => {
+    const collectedMap = collected.map((x) => x);
+    const channelId = collectedMap[0].message.channelId
+    const messageChannel = await interaction.client.cluster.channels.fetch(channelId)
+    messageChannel.messages.edit(collectedMap[0].message.id, "fweah");
+   })
   });
  },
 };

@@ -1,8 +1,13 @@
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, codeBlock, bold } from 'discord.js';
 
 export const animalMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Animal Commands')
+ .setTitle('Animal Commands 🐕')
+ .setDescription('A bunch of commands that are related to the cute animals we love!')
+ .setFields(
+  { name: bold(codeBlock("/catPictures")),value:"Sends a picture of a cute cat! Thanks to thecatapi.com"},
+  {name: bold(codeBlock("/dogPictures")),value:"Sends a picture of a cute dog! Thanks to the dog.ceo"}
+ )
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',
