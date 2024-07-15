@@ -1,8 +1,11 @@
-import { EmbedBuilder } from 'discord.js';
+import { bold, codeBlock, EmbedBuilder } from 'discord.js';
 
 export const ticketMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Ticketing Commands')
+ .setTitle('Ticketing Commands 🎫')
+ .setFields(
+  { name: bold(codeBlock("/createticket")),value:"Create a ticket to be reviewed by the moderators."},
+ )
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

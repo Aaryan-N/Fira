@@ -2,7 +2,7 @@ import { EmbedBuilder } from 'discord.js';
 
 export const expiredMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('This embed has expired please re-run the command!')
+ .setTitle('This embed has expired, please re-run the command!')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

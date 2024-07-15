@@ -1,8 +1,12 @@
-import { EmbedBuilder } from 'discord.js';
+import { bold, codeBlock, EmbedBuilder } from 'discord.js';
 
 export const economyMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Economy Commands')
+ .setTitle('Economy Commands 🤑')
+ .setFields(
+  { name: bold(codeBlock("/checkbalance")),value:"Check your current balance!"},
+  {name: bold(codeBlock("/daily")),value:"Get your daily allowance of coins!"}
+ )
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

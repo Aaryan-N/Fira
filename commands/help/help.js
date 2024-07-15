@@ -51,9 +51,11 @@ export default {
 
    collector.on('end', async collected => {
     const collectedMap = collected.map((x) => x);
-    const channelId = collectedMap[0].message.channelId
-    const messageChannel = await interaction.client.cluster.channels.fetch(channelId)
-    messageChannel.messages.edit(collectedMap[0].message.id, "fweah");
+    const channelId = collectedMap[0].message.channelId;
+    const messageId = collectedMap[0].message.id
+    interaction.client.channels.fetch(channelId).then((channel) => {
+     channel.messages.edit(messageId, { embeds:[expiredMenuHelp], components:[] });
+    })
    })
   });
  },

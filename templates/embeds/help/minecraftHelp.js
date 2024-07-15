@@ -1,8 +1,11 @@
-import { EmbedBuilder } from 'discord.js';
+import { bold, codeBlock, EmbedBuilder } from 'discord.js';
 
 export const minecraftMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Minecraft Commands')
+ .setTitle('Minecraft Commands 🪓')
+ .setFields(
+  { name: bold(codeBlock("/motd")),value:"Fetch the message of the day of any minecraft server. Thanks to mcsrvstat.us"},
+ )
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

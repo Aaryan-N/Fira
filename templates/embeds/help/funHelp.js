@@ -1,8 +1,16 @@
-import { EmbedBuilder } from 'discord.js';
+import { bold, codeBlock, EmbedBuilder } from 'discord.js';
 
 export const funMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Fun Commands')
+ .setTitle('Fun Commands 😁')
+ .setFields(
+  { name: bold(codeBlock("/8ball")),value:"Ask the 8 Ball a question! Thanks to eightballapi.com!"},
+  { name: bold(codeBlock("/dadjoke")),value:"A (slight corny) dadjoke!"},
+  { name: bold(codeBlock("/fact")),value:"An interesting fact 🧐"},
+  { name: bold(codeBlock("/joke")),value:"A more funny joke!"},
+  { name: bold(codeBlock("/memes")),value:"An alright meme."},
+  { name: bold(codeBlock("/rps")),value:"Play a game of rock,paper,scissors with Fira!"},
+ )
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

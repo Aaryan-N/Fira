@@ -1,8 +1,11 @@
-import { EmbedBuilder } from 'discord.js';
+import { bold, codeBlock, EmbedBuilder } from 'discord.js';
 
 export const birthdayMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
  .setTitle('Birthday Commands')
+ .setFields(
+  { name: bold(codeBlock("/registerbirthday")),value:"Register your birthday to Fira!"},
+ )
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

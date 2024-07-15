@@ -1,8 +1,12 @@
-import { EmbedBuilder } from 'discord.js';
+import { bold,codeBlock, EmbedBuilder } from 'discord.js';
 
 export const utilityMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Utility Commands')
+ .setTitle('Utility Commands ⚙️')
+ .setFields(
+  { name: bold(codeBlock("/about")),value:"Get some interstating about Fira!"},
+  { name: bold(codeBlock("/stats")),value:"Get some interstating stats about the server!"},
+ )
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

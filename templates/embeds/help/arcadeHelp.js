@@ -1,8 +1,12 @@
-import { EmbedBuilder } from 'discord.js';
+import { bold, codeBlock, EmbedBuilder } from 'discord.js';
 
 export const arcadeMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Arcade Commands')
+ .setTitle('Arcade Commands 🎮')
+ .setFields(
+  { name: bold(codeBlock("/arcadestats")),value:"Check your current stats in arcade. Requires a slack ID."},
+  { name: bold(codeBlock("/newarcadesession")),value:"Creates a new arcade session. Requires a slack ID."}
+ )
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',
