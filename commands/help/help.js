@@ -12,6 +12,7 @@ import { funMenuHelp } from '../../templates/embeds/help/funHelp.js';
 import { expiredMenuHelp } from '../../templates/embeds/help/expiredHelp.js';
 
 export default {
+ cooldown: 5,
  category: 'help',
  data: new SlashCommandBuilder()
   .setName('help')

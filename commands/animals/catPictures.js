@@ -4,6 +4,7 @@ import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 import redBright from 'chalk';
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('catpic')
   .setDescription('Replies with a random picture of a cat!'),

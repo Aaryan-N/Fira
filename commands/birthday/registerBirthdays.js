@@ -7,6 +7,7 @@ import redBright from 'chalk';
 const { birthdaySchemaExport } = await import('../../schemas/fun/birthdaySchema.js');
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('registerbirthday')
   .setDescription('Register your birthday to Fira!')

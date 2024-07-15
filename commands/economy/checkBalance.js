@@ -2,6 +2,7 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { economySchemaExport } from '../../schemas/fun/economySchema.js';
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder().setName('checkbalance').setDescription('Check your balance!'),
  async execute(interaction) {
   let economyProfile = await economySchemaExport.findOne({

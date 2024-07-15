@@ -3,6 +3,7 @@ import axios from 'axios';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder().setName('dadjoke').setDescription('Replies with a (slightly corny) dad joke'),
  async execute(interaction) {
   axios({

@@ -6,6 +6,7 @@ import redBright from 'chalk';
 const dailyAmount = 500;
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder().setName('daily').setDescription('Collect your daily coins!'),
  async execute(interaction) {
   if (!interaction.inGuild()) {

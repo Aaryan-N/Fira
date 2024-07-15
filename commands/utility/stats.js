@@ -1,6 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('stats')
   .setDescription('Replies with some handy stats about the server!'),

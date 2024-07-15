@@ -5,6 +5,7 @@ import redBright from 'chalk';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('arcadestats')
   .setDescription(

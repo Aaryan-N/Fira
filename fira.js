@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, Partials } from 'discord.js';
+import { Client, Collection, GatewayIntentBits, Partials } from 'discord.js';
 import { ClusterClient, getInfo } from 'discord-hybrid-sharding';
 import { commandHandler } from './handlers/commandHandler.js';
 import { eventHandler } from './handlers/eventHandler.js';
@@ -25,6 +25,7 @@ export const client = new Client({
  shardCount: getInfo().TOTAL_SHARDS,
 });
 
+client.cooldowns = new Collection();
 client.cluster = new ClusterClient(client);
 
 commandHandler(client).then(() => console.log(chalk.greenBright('Command handler is ready!')));

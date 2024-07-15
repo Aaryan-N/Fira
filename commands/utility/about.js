@@ -2,6 +2,7 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { getInfo } from 'discord-hybrid-sharding';
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('about')
   .setDescription('Replies with some information about Fira!'),

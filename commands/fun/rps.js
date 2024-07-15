@@ -4,6 +4,7 @@ import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 import redBright from 'chalk';
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('rps')
   .setDescription('Play a game of rock, paper and scissors with the bot!')

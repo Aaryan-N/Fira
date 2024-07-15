@@ -11,6 +11,7 @@ function isValidUrl(str) {
 }
 
 export default {
+ cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('motd')
   .setDescription('Checks the message of the day of a minecraft server!')
