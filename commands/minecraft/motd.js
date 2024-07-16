@@ -11,12 +11,16 @@ function isValidUrl(str) {
 }
 
 export default {
+ category: 'minecraft',
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('motd')
   .setDescription('Checks the message of the day of a minecraft server!')
   .addStringOption(option =>
-   option.setName('serveraddress').setDescription('The address of the server (url or ip)').setRequired(true),
+   option
+    .setName('serveraddress')
+    .setDescription('The address of the server (url or ip)')
+    .setRequired(true),
   ),
  async execute(interaction) {
   const serverAddress = interaction.options.getString('serveraddress');
@@ -26,7 +30,7 @@ export default {
     url: `https://api.mcsrvstat.us/3/${serverAddress}`,
     responseType: 'json',
    })
-    .then(async function(res) {
+    .then(async function (res) {
      if (res.data.debug.ping === true) {
       const unformattedResponse = res.data.motd.clean.toString();
       const response = unformattedResponse.replace(/^\s+|\s+$/g, '').replace(/,/g, '');
@@ -48,7 +52,11 @@ export default {
      }
     })
     .catch(async err => {
-     console.log(redBright(`Woah there has been an error with the message of the day command. Here it is:` + err));
+     console.log(
+      redBright(
+       `Woah there has been an error with the message of the day command. Here it is:` + err,
+      ),
+     );
      await interaction.reply({ embeds: [errorEmbed] });
     });
   } else {

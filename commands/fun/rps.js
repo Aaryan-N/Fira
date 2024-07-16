@@ -4,6 +4,7 @@ import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 import redBright from 'chalk';
 
 export default {
+ category: 'fun',
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('rps')
@@ -13,10 +14,14 @@ export default {
     .setName('userchoice')
     .setRequired(true)
     .setDescription('Play a game of rock, paper, scissors!')
-    .addChoices({ name: 'Rock', value: 'rock' }, { name: 'Paper', value: 'paper' }, {
-     name: 'Scissors',
-     value: 'scissors',
-    }),
+    .addChoices(
+     { name: 'Rock', value: 'rock' },
+     { name: 'Paper', value: 'paper' },
+     {
+      name: 'Scissors',
+      value: 'scissors',
+     },
+    ),
   ),
 
  async execute(interaction) {
@@ -53,13 +58,18 @@ export default {
     }
    }
   } catch (err) {
-   console.log(redBright(`Woah there has been an error with the message of the day command. Here it is:` + err));
+   console.log(
+    redBright(
+     `Woah there has been an error with the message of the day command. Here it is:` + err,
+    ),
+   );
    interaction.editReply({ embeds: [errorEmbed] });
   }
 
   const unformattedPcChoice = pcOptions[pcChoice];
 
-  const formattedPcChoice = unformattedPcChoice.charAt(0).toUpperCase() + unformattedPcChoice.slice(1);
+  const formattedPcChoice =
+   unformattedPcChoice.charAt(0).toUpperCase() + unformattedPcChoice.slice(1);
 
   const formattedUserInput = userInput.charAt(0).toUpperCase() + userInput.slice(1);
 
@@ -67,7 +77,7 @@ export default {
    .setTitle('RPS')
    .addFields(
     { name: 'Your choice', value: formattedUserInput },
-    { name: 'The computer\'s choice', value: formattedPcChoice },
+    { name: "The computer's choice", value: formattedPcChoice },
     { name: 'Result', value: bold(statusMessage) },
    )
    .setTimestamp()

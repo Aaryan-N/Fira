@@ -4,7 +4,10 @@ export const minecraftMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
  .setTitle('Minecraft Commands 🪓')
  .setFields(
-  { name: bold(codeBlock("/motd")),value:"Fetch the message of the day of any minecraft server. Thanks to mcsrvstat.us"},
+  {
+   name: bold(codeBlock('/motd')),
+   value: 'Fetch the message of the day of any minecraft server. Thanks to mcsrvstat.us',
+  },
  )
  .setTimestamp()
  .setFooter({

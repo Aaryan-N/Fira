@@ -4,6 +4,7 @@ import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 import redBright from 'chalk';
 
 export default {
+ category: 'fun',
  cooldown: 5,
  data: new SlashCommandBuilder().setName('joke').setDescription('Replies with a lovely joke'),
  async execute(interaction) {
@@ -12,7 +13,7 @@ export default {
    url: 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single',
    responseType: 'json',
   })
-   .then(function(response) {
+   .then(function (response) {
     const jokeEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
      .setTitle('Jokes')

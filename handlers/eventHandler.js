@@ -4,8 +4,7 @@ import fileUrl from 'file-url';
 
 const __dirname = import.meta.dirname;
 
-
-export const eventHandler = async (client) => {
+export const eventHandler = async client => {
  const eventsFoldersPath = path.join(__dirname, '../events/');
  const eventFolders = fs.readdirSync(eventsFoldersPath);
 
@@ -20,8 +19,6 @@ export const eventHandler = async (client) => {
    } else {
     client.on(event.default.name, (...args) => event.default.execute(...args));
    }
-
   }
  }
 };
-

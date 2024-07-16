@@ -6,7 +6,7 @@ import fileUrl from 'file-url';
 
 const __dirname = import.meta.dirname;
 
-export const commandHandler = async (client) => {
+export const commandHandler = async client => {
  client.commands = new Collection();
  const foldersPath = path.join(__dirname, `../commands/`);
  const commandFolders = fs.readdirSync(foldersPath);
@@ -20,7 +20,11 @@ export const commandHandler = async (client) => {
    if ('data' in command.default && 'execute' in command.default) {
     client.commands.set(command.default.data.name, command);
    } else {
-    console.log(chalk.redBright(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`));
+    console.log(
+     chalk.redBright(
+      `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`,
+     ),
+    );
    }
   }
  }

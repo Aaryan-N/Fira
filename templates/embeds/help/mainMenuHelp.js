@@ -3,7 +3,7 @@ import { EmbedBuilder } from 'discord.js';
 export const mainMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
  .setTitle('Main Menu Help')
- .setDescription("Pick one of the categories to learn more about it!")
+ .setDescription('Pick one of the categories to learn more about it!')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

@@ -1,6 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 
 export default {
+ category: 'utility',
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('stats')

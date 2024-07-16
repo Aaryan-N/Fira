@@ -3,6 +3,7 @@ import axios from 'axios';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
+ category: 'fun',
  cooldown: 5,
  data: new SlashCommandBuilder().setName('memes').setDescription('Replies with an alright meme'),
  async execute(interaction) {
@@ -11,7 +12,7 @@ export default {
    url: 'https://meme-api.com/gimme?nsfw=false',
    responseType: 'json',
   })
-   .then(function(response) {
+   .then(function (response) {
     const memesEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
      .setTitle(response.data.title)

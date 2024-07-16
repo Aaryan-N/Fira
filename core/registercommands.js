@@ -8,7 +8,6 @@ import fileUrl from 'file-url';
 
 const __dirname = import.meta.dirname;
 
-
 const commands = [];
 const foldersPath = path.join(__dirname, '../commands/');
 const commandFolders = fs.readdirSync(foldersPath);

@@ -12,12 +12,20 @@ export default {
   .setName('registerbirthday')
   .setDescription('Register your birthday to Fira!')
   .addIntegerOption(option =>
-   option.setName('day').setDescription('The day of your birthday as a number (1-31)').setRequired(true),
+   option
+    .setName('day')
+    .setDescription('The day of your birthday as a number (1-31)')
+    .setRequired(true),
   )
   .addIntegerOption(option =>
-   option.setName('month').setDescription('The month of your birthday as a number (1-12)').setRequired(true),
+   option
+    .setName('month')
+    .setDescription('The month of your birthday as a number (1-12)')
+    .setRequired(true),
   )
-  .addIntegerOption(option => option.setName('year').setDescription('The year of your birthday as a number').setRequired(true)),
+  .addIntegerOption(option =>
+   option.setName('year').setDescription('The year of your birthday as a number').setRequired(true),
+  ),
 
  async execute(interaction) {
   if (!interaction.inGuild()) {
@@ -63,7 +71,8 @@ export default {
    const birthYear = interaction.options.getInteger('year');
    const birthMonth = interaction.options.getInteger('month');
    const birthDay = interaction.options.getInteger('day');
-   const birthDateFormatted = birthDay.toString() + '/' + birthMonth.toString() + '/' + birthYear.toString();
+   const birthDateFormatted =
+    birthDay.toString() + '/' + birthMonth.toString() + '/' + birthYear.toString();
    const jsDateValidator = birthYear + '-' + birthMonth + '-' + birthDay;
    const formattedBirthDateJoined = birthDay.toString() + ' ' + birthMonth.toString();
    const momentJsDateValidator = moment(jsDateValidator, 'YYYY MM DD');
@@ -94,7 +103,9 @@ export default {
     interaction.editReply({ embeds: [successfulBirthdayRegisterEmbed] });
    }
   } catch (err) {
-   console.log(redBright('Woah there has been an error with the birthday daily command. Here it is: \n' + err));
+   console.log(
+    redBright('Woah there has been an error with the birthday daily command. Here it is: \n' + err),
+   );
    await interaction.editReply({ embeds: [errorEmbed] });
   }
  },

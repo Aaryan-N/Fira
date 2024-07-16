@@ -1,10 +1,19 @@
-import { ActionRowBuilder, ModalBuilder, SlashCommandBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
+import {
+ ActionRowBuilder,
+ ModalBuilder,
+ SlashCommandBuilder,
+ TextInputBuilder,
+ TextInputStyle,
+} from 'discord.js';
 import { ticketSchemaExport } from '../../schemas/ticketing/ticketSchema.js';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
+ category: 'ticket',
  cooldown: 5,
- data: new SlashCommandBuilder().setName('createticket').setDescription('Create a ticket for mods to review!'),
+ data: new SlashCommandBuilder()
+  .setName('createticket')
+  .setDescription('Create a ticket for mods to review!'),
  async execute(interaction) {
   try {
    if (!interaction.inGuild()) {
@@ -20,7 +29,9 @@ export default {
     guildId: interaction.guild.id,
    });
 
-   const ticketingModal = new ModalBuilder().setCustomId(`ticketModal`).setTitle('Create a ticket for mods to review!');
+   const ticketingModal = new ModalBuilder()
+    .setCustomId(`ticketModal`)
+    .setTitle('Create a ticket for mods to review!');
 
    const ticketSubjectInput = new TextInputBuilder()
     .setCustomId('ticketInputSubject')

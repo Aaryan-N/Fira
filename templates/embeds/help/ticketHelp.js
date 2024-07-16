@@ -4,7 +4,7 @@ export const ticketMenuHelp = new EmbedBuilder()
  .setColor([255, 231, 188])
  .setTitle('Ticketing Commands 🎫')
  .setFields(
-  { name: bold(codeBlock("/createticket")),value:"Create a ticket to be reviewed by the moderators."},
+  { name: bold(codeBlock('/createticket')), value: 'Create a ticket to be reviewed by the moderators.' },
  )
  .setTimestamp()
  .setFooter({

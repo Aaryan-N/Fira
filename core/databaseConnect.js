@@ -17,9 +17,11 @@ export function connectDBs() {
 }
 
 try {
- console.log(chalk.greenBright('Connected to the cluster, all connections to the databases have been established!'));
+ console.log(
+  chalk.greenBright(
+   'Connected to the cluster, all connections to the databases have been established!',
+  ),
+ );
 } catch (err) {
  console.error(chalk.redBright('DB connection failed!' + err));
-
 }
-

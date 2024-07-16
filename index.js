@@ -16,7 +16,9 @@ const manager = new ClusterManager(`${__dirname}/fira.js`, {
  },
 });
 
-manager.on('clusterCreate', cluster => console.log(chalk.greenBright(`Launched Cluster ${cluster.id}`)));
+manager.on('clusterCreate', cluster =>
+ console.log(chalk.greenBright(`Launched Cluster ${cluster.id}`)),
+);
 
 manager.extend(
  new HeartbeatManager({
@@ -25,7 +27,9 @@ manager.extend(
  }),
 );
 
-manager.spawn().then(() => console.log(chalk.greenBright(`Cluster manager has been spawned!`))).catch((err) => {
- console.log(chalk.redBright(`Cluster manager died due to: ${err.message}`));
-});
-
+manager
+ .spawn()
+ .then(() => console.log(chalk.greenBright(`Cluster manager has been spawned!`)))
+ .catch(err => {
+  console.log(chalk.redBright(`Cluster manager died due to: ${err.message}`));
+ });

@@ -2,6 +2,7 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { getInfo } from 'discord-hybrid-sharding';
 
 export default {
+ category: 'utility',
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('about')

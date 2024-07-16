@@ -3,12 +3,17 @@ import axios from 'axios';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
+ category: 'fun',
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('8ball')
   .setDescription('Play a game of 8 ball!')
-  .addStringOption(option => option.setName('query').setDescription('Ask the 8 Ball what you want!').setRequired(true))
-  .addBooleanOption(option => option.setName('lucky').setDescription('Feeling lucky? Set this to true!')),
+  .addStringOption(option =>
+   option.setName('query').setDescription('Ask the 8 Ball what you want!').setRequired(true),
+  )
+  .addBooleanOption(option =>
+   option.setName('lucky').setDescription('Feeling lucky? Set this to true!'),
+  ),
 
  async execute(interaction) {
   const userLuckyChoice = interaction.options.get('lucky')?.value;
@@ -20,11 +25,11 @@ export default {
    url: `https://eightballapi.com/api?question=${formattedUserBallQuery}&lucky=${userLuckyChoice}`,
    responseType: 'json',
   })
-   .then(function(response) {
+   .then(function (response) {
     const ballEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
      .setTitle('8 Ball')
-     .addFields({ name: 'The 8 Ball\'s verdict:', value: response.data.reading })
+     .addFields({ name: "The 8 Ball's verdict:", value: response.data.reading })
      .setTimestamp()
      .setFooter({
       text: 'Sent using Fira',

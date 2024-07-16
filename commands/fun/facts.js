@@ -4,6 +4,7 @@ import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 import redBright from 'chalk';
 
 export default {
+ category: 'fun',
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('fact')
@@ -13,10 +14,13 @@ export default {
     .setName('type')
     .setRequired(true)
     .setDescription('Type of fact!')
-    .addChoices({ name: 'Random', value: 'random' }, { name: 'Cat', value: 'cat' }, { name: 'Dog', value: 'dog' }),
+    .addChoices(
+     { name: 'Random', value: 'random' },
+     { name: 'Cat', value: 'cat' },
+     { name: 'Dog', value: 'dog' },
+    ),
   ),
  async execute(interaction) {
-
   const typeOfFact = interaction.options.getString('type');
   if (typeOfFact === 'random') {
    axios({
@@ -24,7 +28,7 @@ export default {
     url: 'https://uselessfacts.jsph.pl/api/v2/facts/random',
     responseType: 'json',
    })
-    .then(function(response) {
+    .then(function (response) {
      const factsEmbed = new EmbedBuilder()
       .setColor([255, 231, 188])
       .addFields({ name: 'Fact', value: response.data.text })
@@ -51,7 +55,7 @@ export default {
     url: 'https://cat-fact.herokuapp.com/facts/random?animal_type=cat',
     responseType: 'json',
    })
-    .then(function(response) {
+    .then(function (response) {
      const catFactsEmbed = new EmbedBuilder()
       .setColor([255, 231, 188])
       .addFields({ name: 'Cat Fact', value: response.data.text })
@@ -78,7 +82,7 @@ export default {
     url: 'https://cat-fact.herokuapp.com/facts/random?animal_type=dog',
     responseType: 'json',
    })
-    .then(function(response) {
+    .then(function (response) {
      const dogFactsEmbed = new EmbedBuilder()
       .setColor([255, 231, 188])
       .addFields({ name: 'Fact', value: response.data.text })

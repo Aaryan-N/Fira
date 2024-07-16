@@ -3,8 +3,11 @@ import axios from 'axios';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
+ category: 'fun',
  cooldown: 5,
- data: new SlashCommandBuilder().setName('dadjoke').setDescription('Replies with a (slightly corny) dad joke'),
+ data: new SlashCommandBuilder()
+  .setName('dadjoke')
+  .setDescription('Replies with a (slightly corny) dad joke'),
  async execute(interaction) {
   axios({
    method: 'get',
@@ -14,7 +17,7 @@ export default {
     Accept: 'application/json',
    },
   })
-   .then(function(response) {
+   .then(function (response) {
     const dadJokeEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
      .addFields({ name: 'Dad Joke', value: response.data.joke })

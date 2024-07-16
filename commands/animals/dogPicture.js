@@ -4,6 +4,7 @@ import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 import redBright from 'chalk';
 
 export default {
+ category: 'animals',
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('dogpic')
@@ -14,7 +15,7 @@ export default {
    url: 'https://dog.ceo/api/breeds/image/random',
    responseType: 'json',
   })
-   .then(function(response) {
+   .then(function (response) {
     if (response.data.status === 'success') {
      const dogEmbed = new EmbedBuilder()
       .setColor([255, 231, 188])

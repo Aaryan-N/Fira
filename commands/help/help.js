@@ -1,4 +1,4 @@
-import { ComponentType, SlashCommandBuilder, MessageManager } from 'discord.js';
+import { ComponentType, SlashCommandBuilder } from 'discord.js';
 import { mainMenuHelp } from '../../templates/embeds/help/mainMenuHelp.js';
 import { helpRow } from '../../templates/actionRows/helpActionRow.js';
 import { economyMenuHelp } from '../../templates/embeds/help/economyHelp.js';
@@ -12,8 +12,8 @@ import { funMenuHelp } from '../../templates/embeds/help/funHelp.js';
 import { expiredMenuHelp } from '../../templates/embeds/help/expiredHelp.js';
 
 export default {
- cooldown: 5,
  category: 'help',
+ cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('help')
   .setDescription('Replies with information about the various commands and features of Fira!'),
@@ -49,15 +49,14 @@ export default {
     await interact.update({ embeds: [utilityMenuHelp], components: [helpRow] });
    }
 
-
    collector.on('end', async collected => {
-    const collectedMap = collected.map((x) => x);
+    const collectedMap = collected.map(x => x);
     const channelId = collectedMap[0].message.channelId;
-    const messageId = collectedMap[0].message.id
-    interaction.client.channels.fetch(channelId).then((channel) => {
-     channel.messages.edit(messageId, { embeds:[expiredMenuHelp], components:[] });
-    })
-   })
+    const messageId = collectedMap[0].message.id;
+    interaction.client.channels.fetch(channelId).then(channel => {
+     channel.messages.edit(messageId, { embeds: [expiredMenuHelp], components: [] });
+    });
+   });
   });
  },
 };

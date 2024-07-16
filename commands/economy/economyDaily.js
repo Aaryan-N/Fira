@@ -6,6 +6,7 @@ import redBright from 'chalk';
 const dailyAmount = 500;
 
 export default {
+ category: 'economy',
  cooldown: 5,
  data: new SlashCommandBuilder().setName('daily').setDescription('Collect your daily coins!'),
  async execute(interaction) {
@@ -64,7 +65,9 @@ export default {
 
    interaction.editReply({ embeds: [dailiesEmbed] });
   } catch (err) {
-   console.log(redBright('Woah there has been an error with the economy daily command. Here it is: \n' + err));
+   console.log(
+    redBright('Woah there has been an error with the economy daily command. Here it is: \n' + err),
+   );
    await interaction.editReply({ embeds: [errorEmbed] });
   }
  },
