@@ -1,5 +1,6 @@
 import { Events } from 'discord.js';
 import { guildSchemaExport } from '../../schemas/guild/guildSchema.js';
+import { configSchemaExport } from '../../schemas/config/configSchema.js';
 
 export default {
  name: Events.GuildCreate,
@@ -16,6 +17,11 @@ export default {
    guildId: guildSetId,
    guildCreatedAt: guildSetCreatedAt,
   });
+
+  let guildConfigProfile = await configSchemaExport.findOne({
+   guildId: guildSetId,
+  })
+
   if (guildCreatedProfile) {
    const guildJoinedChecker = guildCreatedProfile.guildJoinedCurrently;
    if (guildJoinedChecker === false) {
@@ -24,6 +30,10 @@ export default {
     guildCreatedProfile.save();
    }
   } else {
+   guildConfigProfile = new configSchemaExport({
+    guildId: "hi hi",
+   });
+   await guildConfigProfile.save();
    guildCreatedProfile = new guildSchemaExport({
     guildId: guildSetId,
     guildName: guildSetName,
