@@ -43,7 +43,6 @@ export default {
   timestamps.set(interaction.user.id, now);
   setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
-
   try {
    await command.default.execute(interaction);
   } catch (error) {

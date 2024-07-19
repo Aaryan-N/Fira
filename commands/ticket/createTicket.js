@@ -1,5 +1,5 @@
 import {
- ActionRowBuilder,
+ ActionRowBuilder, bold, EmbedBuilder,
  ModalBuilder,
  SlashCommandBuilder,
  TextInputBuilder,
@@ -8,6 +8,7 @@ import {
 import { ticketSchemaExport } from '../../schemas/ticketing/ticketSchema.js';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 import { configSchemaExport } from '../../schemas/config/configSchema.js';
+import { unConfiguredTicketChannel } from '../../templates/embeds/ticketing/errors/unConfiguredTicketChannel.js';
 
 export default {
  category: 'ticket',
@@ -64,7 +65,7 @@ export default {
      modalSubjectContent = interaction.fields.getTextInputValue('ticketInputSubject');
      modalMainContent = interaction.fields.getTextInputValue('ticketInputMain');
      if (guildConfigProfile.ticketChannel === "") {
-      interaction.reply({ content:"You need to configure a ticket channel!", ephemeral: true})
+      interaction.reply({ embeds:[unConfiguredTicketChannel], ephemeral: true})
       throw new Error("unConfigChannel");
      }
       interaction.reply({
@@ -86,6 +87,15 @@ export default {
     .then(async () => {
       const channelTicketConfig = guildConfigProfile.ticketChannel;
       const channel = interaction.client.channels.cache.get(channelTicketConfig);
+      const ticketEmbed = new EmbedBuilder()
+      .setTitle('Ticket')
+      .setTimestamp()
+      .setFooter({
+       text: 'Sent using Fira',
+       iconURL:
+        'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
+      });
+
       channel.send('Skbidi will be mine');
     }).catch((err) => {
     if (err.message === 'unConfigChannel') {
