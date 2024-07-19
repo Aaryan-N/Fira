@@ -31,7 +31,7 @@ export default {
    }
   } else {
    guildConfigProfile = new configSchemaExport({
-    guildId: "hi hi",
+    guildId: guildSetId,
    });
    await guildConfigProfile.save();
    guildCreatedProfile = new guildSchemaExport({

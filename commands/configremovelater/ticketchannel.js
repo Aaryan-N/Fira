@@ -1,5 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { getInfo } from 'discord-hybrid-sharding';
+import { configSchemaExport } from '../../schemas/config/configSchema.js';
+import redBright from 'chalk';
+import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
  category: 'ticketconfig',
@@ -17,5 +19,21 @@ export default {
     const userChannel = interaction.options.getChannel("channel")
     const userChannelId = userChannel.id;
     const guildId = interaction.guild.id;
- },
+
+  let guildConfigProfile = await configSchemaExport.findOne({
+   guildId: guildId,
+  })
+
+  if (guildConfigProfile) {
+   guildConfigProfile.ticketChannel = userChannelId;
+   await guildConfigProfile.save();
+   interaction.reply("Call John Pork. Mr Beast just bought Ohio.")
+  } else {
+   console.log(
+    redBright(
+     `Woah there has been an error with the ticket register command command.`),
+   );
+   interaction.reply({ embeds: [errorEmbed] });
+  }
+  }
 };

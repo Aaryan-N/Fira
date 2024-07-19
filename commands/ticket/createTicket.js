@@ -7,6 +7,7 @@ import {
 } from 'discord.js';
 import { ticketSchemaExport } from '../../schemas/ticketing/ticketSchema.js';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
+import { configSchemaExport } from '../../schemas/config/configSchema.js';
 
 export default {
  category: 'ticket',
@@ -52,17 +53,24 @@ export default {
 
    let modalSubjectContent;
    let modalMainContent;
+   let guildConfigProfile = await configSchemaExport.findOne({
+    guildId: interaction.guild.id,
+   })
 
    const filter = interaction => interaction.customId === 'ticketModal';
    interaction
     .awaitModalSubmit({ filter, time: 30_000 })
-    .then(interaction => {
-     interaction.reply({
-      content: 'Your ticket was successfully created!',
-      ephemeral: true,
-     });
+    .then(async interaction => {
      modalSubjectContent = interaction.fields.getTextInputValue('ticketInputSubject');
      modalMainContent = interaction.fields.getTextInputValue('ticketInputMain');
+     if (guildConfigProfile.ticketChannel === "") {
+      interaction.reply({ content:"You need to configure a ticket channel!", ephemeral: true})
+      throw new Error("unConfigChannel");
+     }
+      interaction.reply({
+       content: 'Your ticket was successfully created!',
+       ephemeral: true,
+      })
     })
     .then(() => {
      ticketingProfile = new ticketSchemaExport({
@@ -76,13 +84,17 @@ export default {
      ticketingProfile.save();
     })
     .then(async () => {
-     //TODO Change this to go to mongo db instead
-     const channelTicketConfig = interaction.channel.id;
-     const channel = interaction.client.channels.cache.get(channelTicketConfig);
-     await channel.send('Nsdfs');
-    })
-    .catch(console.error);
+      const channelTicketConfig = guildConfigProfile.ticketChannel;
+      const channel = interaction.client.channels.cache.get(channelTicketConfig);
+      channel.send('Skbidi will be mine');
+    }).catch((err) => {
+    if (err.message === 'unConfigChannel') {
+    }
+   })
   } catch (err) {
+   if (err.message === 'unConfigChannel') {
+    return;
+   }
    console.error('Something went badly wrong in the ticketing command. Here it is!' + err);
    interaction.reply({ embeds: [errorEmbed] });
   }
