@@ -1,10 +1,9 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 import { invalidDate } from '../../templates/embeds/birthday/invalidDate.js';
+const { birthdaySchemaExport } = await import('../../schemas/fun/birthdaySchema.js');
 import moment from 'moment';
 import redBright from 'chalk';
-
-const { birthdaySchemaExport } = await import('../../schemas/fun/birthdaySchema.js');
 
 export default {
  cooldown: 5,

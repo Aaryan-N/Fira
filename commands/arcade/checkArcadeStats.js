@@ -18,7 +18,6 @@ export default {
   let sessionCount = '';
   let totalTimeSessionCount = '';
   let goalName = [];
-  let goalTime = [];
   axios({
    method: 'get',
    url: `https://hackhour.hackclub.com/api/stats/${slackId}`,

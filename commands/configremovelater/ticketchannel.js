@@ -28,12 +28,6 @@ export default {
    guildConfigProfile.ticketChannel = userChannelId;
    await guildConfigProfile.save();
    interaction.reply("Call John Pork. Mr Beast just bought Ohio.")
-  } else {
-   console.log(
-    redBright(
-     `Woah there has been an error with the ticket register command command.`),
-   );
-   interaction.reply({ embeds: [errorEmbed] });
   }
   }
 };

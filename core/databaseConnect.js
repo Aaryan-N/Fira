@@ -1,5 +1,5 @@
+import "dotenv/config"
 import chalk from 'chalk';
-import 'dotenv/config';
 import mongoose from 'mongoose';
 
 export function connectDBs() {

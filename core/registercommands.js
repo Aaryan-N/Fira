@@ -1,9 +1,10 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v10';
-import path from 'path';
-import fs from 'fs';
+import path from 'node:path';
+import fs from 'node:fs';
 import chalk from 'chalk';
-import 'dotenv/config';
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '../.env', encoding: 'utf8' })
 import fileUrl from 'file-url';
 
 const __dirname = import.meta.dirname;
@@ -21,7 +22,6 @@ for (const folder of commandFolders) {
   commands.push(command.default.data.toJSON());
  }
 }
-
 const rest = new REST().setToken(process.env.TOKEN);
 
 (async () => {

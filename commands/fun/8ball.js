@@ -43,7 +43,7 @@ export default {
      `Woah there has been an error with the 8 ball command. Here it is: 
 ` + err,
     );
-    interaction.editReply({ embeds: [errorEmbed] });
+    interaction.reply({ embeds: [errorEmbed] });
    });
  },
 };
