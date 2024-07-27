@@ -47,7 +47,8 @@ export default {
     const analyseBirthDate = userProfileBirthday.birth_date;
     const preexistingBirthdayRegisterEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
-     .setTitle('Your birthday has already been registered in this guild!')
+     .setTitle('Error Code: 4205')
+     .setDescription("Your birthday has already been registered in this guild!")
      .setTimestamp()
      .setFooter({
       text: 'Sent using Fira',
