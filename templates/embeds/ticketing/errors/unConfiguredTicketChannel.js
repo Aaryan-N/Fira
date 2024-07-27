@@ -2,7 +2,8 @@ import { EmbedBuilder } from 'discord.js';
 
 export const unConfiguredTicketChannel = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('You must configure a channel to send tickets to. Please message the server moderators to fix this issue!')
+ .setTitle('Error Code: 4204')
+ .setDescription("You must configure a channel to send tickets to. Please message the server moderators to fix this issue!")
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

@@ -2,7 +2,7 @@ import { EmbedBuilder } from 'discord.js';
 
 export const invalidUrl = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('Error Code: 4200')
+ .setTitle('Error Code: 4202')
  .setDescription(`The value you have entered is not a valid URL! Please try again. For more information please go to the official website!`)
  .setTimestamp()
  .setFooter({

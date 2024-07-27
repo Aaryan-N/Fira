@@ -27,7 +27,7 @@ export default {
   if (guildConfigProfile) {
    guildConfigProfile.ticketChannel = userChannelId;
    await guildConfigProfile.save();
-   interaction.reply("Call John Pork. Mr Beast just bought Ohio.")
+   interaction.reply({ content:"Ticket channel successfully registered!", ephemeral:true})
   }
   }
 };
