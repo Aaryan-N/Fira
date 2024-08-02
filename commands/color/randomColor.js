@@ -1,7 +1,7 @@
 import { AttachmentBuilder, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import Canvas from '@napi-rs/canvas';
-import { rando } from '@nastyox/rando.js'
-import convert from 'color-convert'
+import { rando } from '@nastyox/rando.js';
+import convert from 'color-convert';
 
 export default {
  category: 'color',
@@ -11,16 +11,16 @@ export default {
   const canvas = Canvas.createCanvas(200, 200);
   const context = canvas.getContext('2d');
 
-  const redRgb = rando(255)
-  const blueRgb = rando(255)
-  const greenRbg = rando(255)
+  const redRgb = rando(255);
+  const blueRgb = rando(255);
+  const greenRbg = rando(255);
 
-  const randoFill = convert.rgb.hex([redRgb, blueRgb, greenRbg])
-  const hslRandoFill = convert.rgb.hsl([redRgb, blueRgb, greenRbg])
-  const cmykRandoFill = convert.rgb.cmyk([redRgb, blueRgb, greenRbg])
+  const randoFill = convert.rgb.hex([redRgb, blueRgb, greenRbg]);
+  const hslRandoFill = convert.rgb.hsl([redRgb, blueRgb, greenRbg]);
+  const cmykRandoFill = convert.rgb.cmyk([redRgb, blueRgb, greenRbg]);
 
-  context.strokeStyle = "#" + randoFill;
-  context.fillStyle = "#" + randoFill;
+  context.strokeStyle = '#' + randoFill;
+  context.fillStyle = '#' + randoFill;
 
   context.strokeRect(0, 0, canvas.width, canvas.height);
   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -31,11 +31,11 @@ export default {
 
   const randomColorEmbed = new EmbedBuilder()
    .setColor([255, 231, 188])
-   .setTitle("Random Color")
-   .addFields({ name: 'Hex Code:', value: "#" + randoFill, inline: true },
-    {name: 'RGB Code:', value: redRgb + " " + blueRgb + " " + greenRbg, inline: true},
-    {name: 'HSL Code:', value: hslRandoFill.toString(), inline: true},
-    {name: 'CMYK Code:', value: cmykRandoFill.toString(), inline: true})
+   .setTitle('Random Color')
+   .addFields({ name: 'Hex Code:', value: '#' + randoFill, inline: true },
+    { name: 'RGB Code:', value: redRgb + ' ' + blueRgb + ' ' + greenRbg, inline: true },
+    { name: 'HSL Code:', value: hslRandoFill.toString(), inline: true },
+    { name: 'CMYK Code:', value: cmykRandoFill.toString(), inline: true })
    .setTimestamp()
    .setFooter({
     text: 'Sent using Fira',

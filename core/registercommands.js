@@ -4,8 +4,9 @@ import path from 'node:path';
 import fs from 'node:fs';
 import chalk from 'chalk';
 import * as dotenv from 'dotenv';
-dotenv.config({ path: '../.env', encoding: 'utf8' })
 import fileUrl from 'file-url';
+
+dotenv.config({ path: '../.env', encoding: 'utf8' });
 
 const __dirname = import.meta.dirname;
 

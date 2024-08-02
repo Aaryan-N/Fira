@@ -3,7 +3,7 @@ import { EmbedBuilder } from 'discord.js';
 export const invalidServer = new EmbedBuilder()
  .setColor([255, 231, 188])
  .setTitle('Error Code: 4203')
- .setDescription(" The value you have entered is not a valid Minecraft Server! Please try again. For more information please go to the official website!")
+ .setDescription(' The value you have entered is not a valid Minecraft Server! Please try again. For more information please go to the official website!')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

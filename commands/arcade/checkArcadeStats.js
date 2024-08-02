@@ -15,7 +15,7 @@ export default {
   ),
  async execute(interaction) {
   const slackId = interaction.options.getString('slackid');
-  console.log(slackId)
+  console.log(slackId);
   let sessionCount = '';
   let totalTimeSessionCount = '';
   let goalName = [];

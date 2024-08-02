@@ -17,7 +17,7 @@ export default {
     Accept: 'application/json',
    },
   })
-   .then(function (response) {
+   .then(function(response) {
     const dadJokeEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
      .addFields({ name: 'Dad Joke', value: response.data.joke })

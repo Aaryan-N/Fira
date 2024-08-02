@@ -7,10 +7,10 @@ const configSchema = mongoose.Schema({
   required: true,
  }, ticketChannel: {
   type: String,
-  default: "",
+  default: '',
  }, updateChannel: {
   type: String,
-  default: "",
+  default: '',
  },
 });
 

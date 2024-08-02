@@ -1,9 +1,8 @@
-import { Collection, EmbedBuilder, Events } from 'discord.js';
-import chalk from 'chalk';
+import { Events } from 'discord.js';
 
 
 export default {
  name: Events.InteractionCreate,
  async execute(interaction) {
-  }
+ },
 };

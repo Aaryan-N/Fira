@@ -1,7 +1,5 @@
-import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder } from 'discord.js';
 import { configSchemaExport } from '../../schemas/config/configSchema.js';
-import redBright from 'chalk';
-import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
  category: 'ticketconfig',
@@ -12,22 +10,22 @@ export default {
   .addChannelOption(option =>
    option
     .setName('channel')
-   .setDescription('The channel to echo into')
-  .setRequired(true)
+    .setDescription('The channel to echo into')
+    .setRequired(true),
   ),
  async execute(interaction) {
-    const userChannel = interaction.options.getChannel("channel")
-    const userChannelId = userChannel.id;
-    const guildId = interaction.guild.id;
+  const userChannel = interaction.options.getChannel('channel');
+  const userChannelId = userChannel.id;
+  const guildId = interaction.guild.id;
 
   let guildConfigProfile = await configSchemaExport.findOne({
    guildId: guildId,
-  })
+  });
 
   if (guildConfigProfile) {
    guildConfigProfile.ticketChannel = userChannelId;
    await guildConfigProfile.save();
-   interaction.reply({ content:"Ticket channel successfully registered!", ephemeral:true})
+   interaction.reply({ content: 'Ticket channel successfully registered!', ephemeral: true });
   }
-  }
+ },
 };

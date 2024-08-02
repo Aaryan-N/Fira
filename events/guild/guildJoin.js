@@ -20,7 +20,7 @@ export default {
 
   let guildConfigProfile = await configSchemaExport.findOne({
    guildId: guildSetId,
-  })
+  });
 
   if (guildCreatedProfile) {
    const guildJoinedChecker = guildCreatedProfile.guildJoinedCurrently;

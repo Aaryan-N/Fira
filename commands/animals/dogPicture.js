@@ -15,7 +15,7 @@ export default {
    url: 'https://dog.ceo/api/breeds/image/random',
    responseType: 'json',
   })
-   .then(function (response) {
+   .then(function(response) {
     if (response.data.status === 'success') {
      const dogEmbed = new EmbedBuilder()
       .setColor([255, 231, 188])

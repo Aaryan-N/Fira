@@ -30,7 +30,7 @@ export default {
     url: `https://api.mcsrvstat.us/3/${serverAddress}`,
     responseType: 'json',
    })
-    .then(async function (res) {
+    .then(async function(res) {
      if (res.data.debug.ping === true) {
       const unformattedResponse = res.data.motd.clean.toString();
       const response = unformattedResponse.replace(/^\s+|\s+$/g, '').replace(/,/g, '');

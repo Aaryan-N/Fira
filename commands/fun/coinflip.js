@@ -10,24 +10,24 @@ export default {
   .setDescription('Flip a coin!'),
  async execute(interaction) {
   let result;
-  const cf = rando(1)
+  const cf = rando(1);
   if (cf === 0) {
-   result = "Heads"
+   result = 'Heads';
   } else if (cf === 1) {
-   result = "Tails"
+   result = 'Tails';
   } else {
-   console.log("Woah something went wrong with the coin flip command!")
-   interaction.reply({ embeds: [errorEmbed]})
+   console.log('Woah something went wrong with the coin flip command!');
+   interaction.reply({ embeds: [errorEmbed] });
   }
-    const coinEmbed = new EmbedBuilder()
-     .setColor([255, 231, 188])
-     .setTitle(bold(result))
-     .setTimestamp()
-     .setFooter({
-      text: 'Sent using Fira',
-      iconURL:
-       'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
-     });
-    interaction.reply({ embeds: [coinEmbed] });
-   }
+  const coinEmbed = new EmbedBuilder()
+   .setColor([255, 231, 188])
+   .setTitle(bold(result))
+   .setTimestamp()
+   .setFooter({
+    text: 'Sent using Fira',
+    iconURL:
+     'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
+   });
+  interaction.reply({ embeds: [coinEmbed] });
+ },
 };

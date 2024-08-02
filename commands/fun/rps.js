@@ -77,7 +77,7 @@ export default {
    .setTitle('RPS')
    .addFields(
     { name: 'Your choice', value: formattedUserInput },
-    { name: "The computer's choice", value: formattedPcChoice },
+    { name: 'The computer\'s choice', value: formattedPcChoice },
     { name: 'Result', value: bold(statusMessage) },
    )
    .setTimestamp()

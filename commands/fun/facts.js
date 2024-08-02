@@ -28,7 +28,7 @@ export default {
     url: 'https://uselessfacts.jsph.pl/api/v2/facts/random',
     responseType: 'json',
    })
-    .then(function (response) {
+    .then(function(response) {
      const factsEmbed = new EmbedBuilder()
       .setColor([255, 231, 188])
       .addFields({ name: 'Fact', value: response.data.text })
@@ -55,7 +55,7 @@ export default {
     url: 'https://cat-fact.herokuapp.com/facts/random?animal_type=cat',
     responseType: 'json',
    })
-    .then(function (response) {
+    .then(function(response) {
      const catFactsEmbed = new EmbedBuilder()
       .setColor([255, 231, 188])
       .addFields({ name: 'Cat Fact', value: response.data.text })
@@ -82,7 +82,7 @@ export default {
     url: 'https://cat-fact.herokuapp.com/facts/random?animal_type=dog',
     responseType: 'json',
    })
-    .then(function (response) {
+    .then(function(response) {
      const dogFactsEmbed = new EmbedBuilder()
       .setColor([255, 231, 188])
       .addFields({ name: 'Fact', value: response.data.text })

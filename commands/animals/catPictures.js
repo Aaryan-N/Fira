@@ -14,7 +14,7 @@ export default {
    method: 'get',
    url: 'https://api.thecatapi.com/v1/images/search',
   })
-   .then(function (response) {
+   .then(function(response) {
     const catEmbed = new EmbedBuilder()
      .setColor([255, 231, 188])
      .setTitle('Cat Pic!')

@@ -3,7 +3,7 @@ import { EmbedBuilder } from 'discord.js';
 export const invalidDate = new EmbedBuilder()
  .setColor([255, 231, 188])
  .setTitle('Error Code: 4206')
- .setDescription("The value you have entered is not a valid date! Please try again.")
+ .setDescription('The value you have entered is not a valid date! Please try again.')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

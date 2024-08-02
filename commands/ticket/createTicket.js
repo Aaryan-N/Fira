@@ -1,5 +1,6 @@
 import {
- ActionRowBuilder, bold, EmbedBuilder,
+ ActionRowBuilder,
+ EmbedBuilder,
  ModalBuilder,
  SlashCommandBuilder,
  TextInputBuilder,
@@ -56,7 +57,7 @@ export default {
    let modalMainContent;
    let guildConfigProfile = await configSchemaExport.findOne({
     guildId: interaction.guild.id,
-   })
+   });
 
    const filter = interaction => interaction.customId === 'ticketModal';
    interaction
@@ -64,14 +65,14 @@ export default {
     .then(async interaction => {
      modalSubjectContent = interaction.fields.getTextInputValue('ticketInputSubject');
      modalMainContent = interaction.fields.getTextInputValue('ticketInputMain');
-     if (guildConfigProfile.ticketChannel === "") {
-      interaction.reply({ embeds:[unConfiguredTicketChannel], ephemeral: true})
-      throw new Error("unConfigChannel");
+     if (guildConfigProfile.ticketChannel === '') {
+      interaction.reply({ embeds: [unConfiguredTicketChannel], ephemeral: true });
+      throw new Error('unConfigChannel');
      }
-      interaction.reply({
-       content: 'Your ticket was successfully created!',
-       ephemeral: true,
-      })
+     interaction.reply({
+      content: 'Your ticket was successfully created!',
+      ephemeral: true,
+     });
     })
     .then(() => {
      ticketingProfile = new ticketSchemaExport({
@@ -85,9 +86,9 @@ export default {
      ticketingProfile.save();
     })
     .then(async () => {
-      const channelTicketConfig = guildConfigProfile.ticketChannel;
-      const channel = interaction.client.channels.cache.get(channelTicketConfig);
-      const ticketEmbed = new EmbedBuilder()
+     const channelTicketConfig = guildConfigProfile.ticketChannel;
+     const channel = interaction.client.channels.cache.get(channelTicketConfig);
+     const ticketEmbed = new EmbedBuilder()
       .setTitle('Ticket')
       .setTimestamp()
       .setFooter({
@@ -96,11 +97,11 @@ export default {
         'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
       });
 
-      channel.send('Skbidi will be mine');
+     channel.send('Skbidi will be mine');
     }).catch((err) => {
     if (err.message === 'unConfigChannel') {
     }
-   })
+   });
   } catch (err) {
    if (err.message === 'unConfigChannel') {
     return;
