@@ -27,15 +27,127 @@ export default {
    if (isValidUrl(query) === true) {
     axios({
      method: 'get',
-     url: `https://who-dat.as93.net/${query}`,
+     url: `https://fira-whois.vercel.app/${query}`,
      responseType: 'json',
     })
      .then(async function(response) {
+      if (response.data.registrant.name === undefined) {
+       let registrantName = 'None provided';
+      }
+
+      let registrantStreet = ''
+      if (response.data.registrant.street === undefined) {
+       registrantStreet = "None provided";
+      } else {
+       registrantStreet = response.data.registrant.street
+      }
+
+      let registrantCity = "None provided"
+      try {
+       registrantCity = response.data.registrant.city;
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let registrantProvince = "None provided"
+      try {
+       registrantProvince = response.data.registrant.province;
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let registrantPostalCode = "None provided"
+      try {
+       registrantPostalCode = response.data.registrant.postal_code;
+      } catch (e) {
+       console.log("nah")
+      }
+      // ---------------------------------------------------------------------------
+      let administrativeName = 'None provided';
+      try {
+       administrativeName = response.data.administrative.name
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let administrativeStreet = "None provided"
+      try {
+       administrativeStreet = response.data.administrative.street;
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let administrativeCity = "None provided"
+      try {
+       administrativeCity = response.data.administrative.city;
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let administrativeProvince = "None provided"
+      try {
+       administrativeProvince = response.data.administrative.province;
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let administrativePostalCode = "None provided"
+      try {
+       administrativePostalCode = response.data.administrative.postal_code;
+      } catch (e) {
+       console.log("nah")
+      }
+      // -------------------------------------------------------------------------------
+      let technicalName = 'None provided';
+      try {
+       technicalName = response.data.technical.name
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let technicalStreet = "None provided"
+      try {
+       technicalStreet = response.data.technical.street;
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let technicalCity = "None provided"
+      try {
+       technicalCity = response.data.technical.city;
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let technicalProvince = "None provided"
+      try {
+       technicalProvince = response.data.technical.province;
+      } catch (e) {
+       console.log("nah")
+      }
+
+      let technicalPostalCode = "None provided"
+      try {
+       technicalPostalCode = response.data.technical.postal_code;
+      } catch (e) {
+       console.log("nah")
+      }
+      // -------------------------------------------------------------------------------
+
       let nameserverList = ''
 
       for (let index = 0; index < response.data.domain.name_servers.length; index++) {
        nameserverList += response.data.domain.name_servers[index] + "\n";
       }
+
+      const domainMainMenu = new EmbedBuilder()
+       .setColor([255, 231, 188])
+       .setTitle('Pick any one of the below categories to learn more about: ' + response.data.domain.domain)
+       .setTimestamp()
+       .setFooter({
+        text: 'Sent using Fira',
+        iconURL: 'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
+       });
 
       const domainNameserverEmbed = new EmbedBuilder()
        .setColor([255, 231, 188])
@@ -81,13 +193,13 @@ export default {
          'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
        });
 
-      const domainRegistrantAddress = response.data.registrant.street + ', ' + response.data.registrant.city + ', ' + response.data.registrant.province + ', ' + response.data.registrant.postal_code + " " + response.data.registrant.country
+      const domainRegistrantAddress = registrantStreet + ', ' + registrantCity + ', ' + registrantProvince + ', ' + registrantPostalCode + " " + response.data.registrant.country
 
       const domainRegistrantEmbed = new EmbedBuilder()
        .setColor([255, 231, 188])
        .setTitle('Domain: ' + response.data.domain.domain + " | " + "Registrant Info")
        .addFields(
-        { name: "Registrant Name:", value: response.data.registrant.name },
+        { name: "Registrant Name:", value: registrantName },
         { name: "Registrant Organization:", value: response.data.registrant.organization },
         { name: "Registrar Address:", value: domainRegistrantAddress },
         { name: "Registrar Phone:", value: response.data.registrant.phone, inline: true },
@@ -100,7 +212,7 @@ export default {
          'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
        });
 
-      const domainAdministrativeAddress = response.data.administrative.street + ', ' + response.data.administrative.city + ', ' + response.data.administrative.province + ', ' + response.data.administrative.postal_code + " " + response.data.administrative.country
+      const domainAdministrativeAddress = administrativeStreet + ', ' + administrativeCity + ', ' + administrativeProvince + ', ' + administrativeStreet + " " + response.data.administrative.country
 
       const domainAdministrativeEmbed = new EmbedBuilder()
        .setColor([255, 231, 188])
@@ -119,7 +231,7 @@ export default {
          'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
        });
 
-      const domainTechnicalAddress = response.data.technical.street + ', ' + response.data.technical.city + ', ' + response.data.technical.province + ', ' + response.data.technical.postal_code + " " + response.data.technical.country
+      const domainTechnicalAddress = technicalStreet + ', ' + technicalCity + ', ' + technicalProvince + ', ' + technicalPostalCode + " " + response.data.technical.country
 
       const domainTechnicalEmbed = new EmbedBuilder()
        .setColor([255, 231, 188])
@@ -142,7 +254,7 @@ export default {
       // ---------------------------------------------------------------------------------
 
       const domainSearchResponse = await interaction.reply({
-       embeds: [domainNameserverEmbed],
+       embeds: [domainMainMenu],
        components: [domainSearchRow]
       });
 
@@ -184,8 +296,7 @@ export default {
      if (err.code === "ERR_BAD_RESPONSE") {
       interaction.reply({ embeds: [domainInactiveUrl], ephemeral: true })
      } else {
-      console.log(`Woah there has been an error with the domain search command. Here it is:` + err,);
-      interaction.reply({ embeds: [errorEmbed] });
+        console.log(err);
      }
     })
    } else {
