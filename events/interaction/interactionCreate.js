@@ -20,8 +20,7 @@ export default {
 
   const now = Date.now();
   const timestamps = cooldowns.get(command.default.data.name);
-  const defaultCooldownDuration = 3;
-  const cooldownAmount = (command.default.cooldown ?? defaultCooldownDuration) * 1_000;
+  const cooldownAmount = (command.default.cooldown) * 1_000;
 
   if (timestamps.has(interaction.user.id)) {
    const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;

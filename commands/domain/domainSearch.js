@@ -6,6 +6,7 @@ import { expiredDomainHelp } from '../../templates/embeds/domain/expiredDomainHe
 import { domainInvalidUrl } from '../../templates/embeds/domain/invalidUrl.js';
 import validator from 'validator';
 import { domainInactiveUrl } from '../../templates/embeds/domain/inactiveUrl.js';
+import redBright from 'chalk';
 
 function isValidUrl(str) {
  return validator.isURL(str);
@@ -18,7 +19,7 @@ export default {
   .setName('domainsearch')
   .setDescription('Rasssss')
   .addStringOption(option =>
-   option.setName('query').setDescription('Domain to search! (example.com)').setRequired(true),
+   option.setName('query').setDescription('Domain to WHOIS Lookup! (example.com)').setRequired(true),
   ),
  async execute(interaction) {
   try {
@@ -310,7 +311,7 @@ export default {
        }
       });
 
-      collector.on('end', async collected => {
+      collector.on('end', collected => {
        const collectedMap = collected.map(x => x);
        const channelId = collectedMap[0].message.channelId;
        const messageId = collectedMap[0].message.id;
@@ -318,18 +319,24 @@ export default {
         channel.messages.edit(messageId, { embeds: [expiredDomainHelp], components: [] });
        });
       });
+
      }).catch(err => {
      if (err.code === 'ERR_BAD_RESPONSE') {
       interaction.reply({ embeds: [domainInactiveUrl], ephemeral: true });
      } else {
-      console.log(err);
+      console.log(
+       redBright('Woah there has been an error with the domain search command. Here it is: \n' + err),
+      );
+      interaction.reply({ embeds: [errorEmbed] });
      }
     });
    } else {
     interaction.reply({ embeds: [domainInvalidUrl], ephemeral: true });
    }
   } catch (err) {
-   console.log(`Woah there has been an error with the domain search command. Here it is:` + err);
+   console.log(
+    redBright('Woah there has been an error with the domain search command. Here it is: \n' + err),
+   );
    interaction.reply({ embeds: [errorEmbed] });
   }
  },

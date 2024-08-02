@@ -5,11 +5,12 @@ import redBright from 'chalk';
 
 export default {
  category: 'animals',
- cooldown: 5,
+ cooldown: 3,
  data: new SlashCommandBuilder()
   .setName('dogpic')
   .setDescription('Replies with a random picture of a dog!'),
  async execute(interaction) {
+  try {
   axios({
    method: 'get',
    url: 'https://dog.ceo/api/breeds/image/random',
@@ -38,5 +39,10 @@ export default {
     );
     interaction.reply({ embeds: [errorEmbed] });
    });
- },
-};
+  } catch (err) {
+   console.log(
+    redBright(`Woah there has been an error with the dog picture command. Here it is:` + err),
+   );
+   interaction.reply({ embeds: [errorEmbed] });
+ }
+}}
