@@ -31,42 +31,42 @@ export default {
      responseType: 'json',
     })
      .then(async function(response) {
-      let registrantName = '';
+      let registrantName;
       if (response.data.registrant.name === undefined) {
        registrantName = 'None provided';
       } else {
        registrantName = response.data.registrant.name
       }
 
-      let registrantStreet = ''
+      let registrantStreet
       if (response.data.registrant.street === undefined) {
        registrantStreet = "None provided";
       } else {
        registrantStreet = response.data.registrant.street
       }
 
-      let registrantCity = ''
+      let registrantCity
       if (response.data.registrant.city === undefined) {
        registrantCity = "None provided";
       } else {
        registrantCity = response.data.registrant.city
       }
 
-      let registrantProvince = ''
+      let registrantProvince
       if (response.data.registrant.province === undefined) {
        registrantProvince = "None provided";
       } else {
        registrantProvince = response.data.registrant.province
       }
 
-      let registrantPostalCode = ''
+      let registrantPostalCode
       if (response.data.registrant.postal_code === undefined) {
        registrantPostalCode = "None provided";
       } else {
        registrantPostalCode = response.data.registrant.postal_code
       }
 
-      let registrantPhone = '';
+      let registrantPhone;
       if (response.data.registrant.phone === undefined) {
        registrantPhone = 'None provided';
       } else {
@@ -74,42 +74,42 @@ export default {
       }
 
       // ---------------------------------------------------------------------------
-      let administrativeName = '';
+      let administrativeName;
       if (response.data.administrative.name === undefined) {
        administrativeName = "None provided";
       } else {
        administrativeName = response.data.administrative.name
       }
 
-      let administrativeStreet = ''
+      let administrativeStreet
       if (response.data.administrative.street === undefined) {
        administrativeStreet = "None provided";
       } else {
        administrativeStreet = response.data.administrative.street
       }
 
-      let administrativeCity = ''
+      let administrativeCity
       if (response.data.administrative.city === undefined) {
        administrativeCity = "None provided";
       } else {
        administrativeCity = response.data.administrative.city
       }
 
-      let administrativeProvince = ''
+      let administrativeProvince
       if (response.data.administrative.province === undefined) {
        administrativeProvince = "None provided";
       } else {
        administrativeProvince = response.data.administrative.province
       }
 
-      let administrativePostalCode = ''
+      let administrativePostalCode
       if (response.data.administrative.postal_code === undefined) {
        administrativePostalCode = "None provided";
       } else {
        administrativePostalCode = response.data.administrative.postal_code
       }
 
-      let administrativePhone = ''
+      let administrativePhone
       if (response.data.administrative.phone === undefined) {
        administrativePhone = "None provided";
       } else {
@@ -117,42 +117,42 @@ export default {
       }
 
       // -------------------------------------------------------------------------------
-      let technicalName = ''
+      let technicalName
       if (response.data.technical.name === undefined) {
        technicalName = "None provided";
       } else {
        technicalName = response.data.technical.name
       }
 
-      let technicalStreet = ''
+      let technicalStreet
       if (response.data.technical.street === undefined) {
        technicalStreet = "None provided";
       } else {
        technicalStreet = response.data.technical.street
       }
 
-      let technicalCity = ''
+      let technicalCity
       if (response.data.technical.city === undefined) {
        technicalCity = "None provided";
       } else {
        technicalCity = response.data.technical.city
       }
 
-      let technicalProvince = ''
+      let technicalProvince
       if (response.data.technical.province === undefined) {
        technicalProvince = "None provided";
       } else {
        technicalProvince = response.data.technical.province
       }
 
-      let technicalPostalCode = ''
+      let technicalPostalCode
       if (response.data.technical.postal_code === undefined) {
        technicalPostalCode = "None provided";
       } else {
        technicalPostalCode = response.data.technical.postal_code
       }
 
-      let technicalPhone = ''
+      let technicalPhone
       if (response.data.technical.phone === undefined) {
        technicalPhone = "None provided";
       } else {
@@ -238,7 +238,7 @@ export default {
          'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
        });
 
-      const domainAdministrativeAddress = administrativeStreet + ', ' + administrativeCity + ', ' + administrativeProvince + ', ' + administrativeStreet + " " + response.data.administrative.country
+      const domainAdministrativeAddress = administrativeStreet + ', ' + administrativeCity + ', ' + administrativeProvince + ', ' + administrativePostalCode + " " + response.data.administrative.country
 
       const domainAdministrativeEmbed = new EmbedBuilder()
        .setColor([255, 231, 188])
@@ -263,8 +263,8 @@ export default {
        .setColor([255, 231, 188])
        .setTitle('Domain: ' + response.data.domain.domain + " | " + "Technical Info")
        .addFields(
-        { name: "Technical Adminstrator Name:", value: administrativeName },
-        { name: "Technical Adminstrator Organization:", value: response.data.administrative.organization },
+        { name: "Technical Adminstrator Name:", value: technicalName },
+        { name: "Technical Adminstrator Organization:", value: response.data.technical.organization },
         { name: "Technical Adminstrator Address:", value: domainTechnicalAddress },
         { name: "Technical Adminstrator Phone:", value: technicalPhone, inline: true },
         { name: "Technical Adminstrator Email:", value: response.data.technical.email, inline: true },
