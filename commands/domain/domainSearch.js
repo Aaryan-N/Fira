@@ -31,8 +31,11 @@ export default {
      responseType: 'json',
     })
      .then(async function(response) {
+      let registrantName = '';
       if (response.data.registrant.name === undefined) {
-       let registrantName = 'None provided';
+       registrantName = 'None provided';
+      } else {
+       registrantName = response.data.registrant.name
       }
 
       let registrantStreet = ''
@@ -42,95 +45,118 @@ export default {
        registrantStreet = response.data.registrant.street
       }
 
-      let registrantCity = "None provided"
-      try {
-       registrantCity = response.data.registrant.city;
-      } catch (e) {
-       console.log("nah")
+      let registrantCity = ''
+      if (response.data.registrant.city === undefined) {
+       registrantCity = "None provided";
+      } else {
+       registrantCity = response.data.registrant.city
       }
 
-      let registrantProvince = "None provided"
-      try {
-       registrantProvince = response.data.registrant.province;
-      } catch (e) {
-       console.log("nah")
+      let registrantProvince = ''
+      if (response.data.registrant.province === undefined) {
+       registrantProvince = "None provided";
+      } else {
+       registrantProvince = response.data.registrant.province
       }
 
-      let registrantPostalCode = "None provided"
-      try {
-       registrantPostalCode = response.data.registrant.postal_code;
-      } catch (e) {
-       console.log("nah")
+      let registrantPostalCode = ''
+      if (response.data.registrant.postal_code === undefined) {
+       registrantPostalCode = "None provided";
+      } else {
+       registrantPostalCode = response.data.registrant.postal_code
       }
+
+      let registrantPhone = '';
+      if (response.data.registrant.phone === undefined) {
+       registrantPhone = 'None provided';
+      } else {
+       registrantPhone = response.data.registrant.phone
+      }
+
       // ---------------------------------------------------------------------------
-      let administrativeName = 'None provided';
-      try {
+      let administrativeName = '';
+      if (response.data.administrative.name === undefined) {
+       administrativeName = "None provided";
+      } else {
        administrativeName = response.data.administrative.name
-      } catch (e) {
-       console.log("nah")
       }
 
-      let administrativeStreet = "None provided"
-      try {
-       administrativeStreet = response.data.administrative.street;
-      } catch (e) {
-       console.log("nah")
+      let administrativeStreet = ''
+      if (response.data.administrative.street === undefined) {
+       administrativeStreet = "None provided";
+      } else {
+       administrativeStreet = response.data.administrative.street
       }
 
-      let administrativeCity = "None provided"
-      try {
-       administrativeCity = response.data.administrative.city;
-      } catch (e) {
-       console.log("nah")
+      let administrativeCity = ''
+      if (response.data.administrative.city === undefined) {
+       administrativeCity = "None provided";
+      } else {
+       administrativeCity = response.data.administrative.city
       }
 
-      let administrativeProvince = "None provided"
-      try {
-       administrativeProvince = response.data.administrative.province;
-      } catch (e) {
-       console.log("nah")
+      let administrativeProvince = ''
+      if (response.data.administrative.province === undefined) {
+       administrativeProvince = "None provided";
+      } else {
+       administrativeProvince = response.data.administrative.province
       }
 
-      let administrativePostalCode = "None provided"
-      try {
-       administrativePostalCode = response.data.administrative.postal_code;
-      } catch (e) {
-       console.log("nah")
+      let administrativePostalCode = ''
+      if (response.data.administrative.postal_code === undefined) {
+       administrativePostalCode = "None provided";
+      } else {
+       administrativePostalCode = response.data.administrative.postal_code
       }
+
+      let administrativePhone = ''
+      if (response.data.administrative.phone === undefined) {
+       administrativePhone = "None provided";
+      } else {
+       administrativePhone = response.data.administrative.phone
+      }
+
       // -------------------------------------------------------------------------------
-      let technicalName = 'None provided';
-      try {
+      let technicalName = ''
+      if (response.data.technical.name === undefined) {
+       technicalName = "None provided";
+      } else {
        technicalName = response.data.technical.name
-      } catch (e) {
-       console.log("nah")
       }
 
-      let technicalStreet = "None provided"
-      try {
-       technicalStreet = response.data.technical.street;
-      } catch (e) {
-       console.log("nah")
+      let technicalStreet = ''
+      if (response.data.technical.street === undefined) {
+       technicalStreet = "None provided";
+      } else {
+       technicalStreet = response.data.technical.street
       }
 
-      let technicalCity = "None provided"
-      try {
-       technicalCity = response.data.technical.city;
-      } catch (e) {
-       console.log("nah")
+      let technicalCity = ''
+      if (response.data.technical.city === undefined) {
+       technicalCity = "None provided";
+      } else {
+       technicalCity = response.data.technical.city
       }
 
-      let technicalProvince = "None provided"
-      try {
-       technicalProvince = response.data.technical.province;
-      } catch (e) {
-       console.log("nah")
+      let technicalProvince = ''
+      if (response.data.technical.province === undefined) {
+       technicalProvince = "None provided";
+      } else {
+       technicalProvince = response.data.technical.province
       }
 
-      let technicalPostalCode = "None provided"
-      try {
-       technicalPostalCode = response.data.technical.postal_code;
-      } catch (e) {
-       console.log("nah")
+      let technicalPostalCode = ''
+      if (response.data.technical.postal_code === undefined) {
+       technicalPostalCode = "None provided";
+      } else {
+       technicalPostalCode = response.data.technical.postal_code
+      }
+
+      let technicalPhone = ''
+      if (response.data.technical.phone === undefined) {
+       technicalPhone = "None provided";
+      } else {
+       technicalPhone = response.data.technical.phone
       }
       // -------------------------------------------------------------------------------
 
@@ -202,8 +228,8 @@ export default {
         { name: "Registrant Name:", value: registrantName },
         { name: "Registrant Organization:", value: response.data.registrant.organization },
         { name: "Registrar Address:", value: domainRegistrantAddress },
-        { name: "Registrar Phone:", value: response.data.registrant.phone, inline: true },
-        { name: "Registrar Email:", value: response.data.registrar.email, inline: true },
+        { name: "Registrar Phone:", value: registrantPhone, inline: true },
+        { name: "Registrar Email:", value: response.data.registrant.email, inline: true },
        )
        .setTimestamp()
        .setFooter({
@@ -218,10 +244,10 @@ export default {
        .setColor([255, 231, 188])
        .setTitle('Domain: ' + response.data.domain.domain + " | " + "Administrator Info")
        .addFields(
-        { name: "Adminstrator Name:", value: response.data.administrative.name },
+        { name: "Adminstrator Name:", value: administrativeName },
         { name: "Adminstrator Organization:", value: response.data.administrative.organization },
         { name: "Adminstrator Address:", value: domainAdministrativeAddress },
-        { name: "Adminstrator Phone:", value: response.data.administrative.phone, inline: true },
+        { name: "Adminstrator Phone:", value: administrativePhone, inline: true },
         { name: "Adminstrator Email:", value: response.data.administrative.email, inline: true },
        )
        .setTimestamp()
@@ -237,10 +263,10 @@ export default {
        .setColor([255, 231, 188])
        .setTitle('Domain: ' + response.data.domain.domain + " | " + "Technical Info")
        .addFields(
-        { name: "Technical Adminstrator Name:", value: response.data.administrative.name },
+        { name: "Technical Adminstrator Name:", value: administrativeName },
         { name: "Technical Adminstrator Organization:", value: response.data.administrative.organization },
         { name: "Technical Adminstrator Address:", value: domainTechnicalAddress },
-        { name: "Technical Adminstrator Phone:", value: response.data.technical.phone, inline: true },
+        { name: "Technical Adminstrator Phone:", value: technicalPhone, inline: true },
         { name: "Technical Adminstrator Email:", value: response.data.technical.email, inline: true },
        )
        .setTimestamp()
