@@ -17,6 +17,7 @@ export default {
   context.strokeRect(0, 0, canvas.width, canvas.height);
 
   const { body } = await request(interaction.user.displayAvatarURL({ extension: 'jpg' }));
+  console.log(body);
   const avatar = await Canvas.loadImage(await body.arrayBuffer());
 
   context.drawImage(avatar, 25, 25, 200, 200);

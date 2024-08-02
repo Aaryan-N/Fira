@@ -5,7 +5,7 @@ import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 export default {
  category: 'fun',
  cooldown: 5,
- data: new SlashCommandBuilder().setName('memes').setDescription('Replies with an alright meme'),
+ data: new SlashCommandBuilder().setName('memes').setDescription('Replies with an alright meme!'),
  async execute(interaction) {
   axios({
    method: 'get',

@@ -6,7 +6,7 @@ import redBright from 'chalk';
 export default {
  category: 'fun',
  cooldown: 5,
- data: new SlashCommandBuilder().setName('joke').setDescription('Replies with a lovely joke'),
+ data: new SlashCommandBuilder().setName('joke').setDescription('Replies with a lovely joke!'),
  async execute(interaction) {
   axios({
    method: 'get',
