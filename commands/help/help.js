@@ -1,6 +1,6 @@
 import { ComponentType, SlashCommandBuilder } from 'discord.js';
 import { mainMenuHelp } from '../../templates/embeds/help/mainMenuHelp.js';
-import { helpRow } from '../../templates/actionRows/helpActionRow.js';
+import { helpRow } from '../../templates/actionRows/help/helpActionRow.js';
 import { economyMenuHelp } from '../../templates/embeds/help/economyHelp.js';
 import { birthdayMenuHelp } from '../../templates/embeds/help/birthdayHelp.js';
 import { arcadeMenuHelp } from '../../templates/embeds/help/arcadeHelp.js';
