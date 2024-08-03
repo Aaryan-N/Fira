@@ -7,7 +7,7 @@ import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
  category: 'color',
- cooldown: 5,
+ cooldown: 2,
  data: new SlashCommandBuilder().setName('randomcolor').setDescription('A random color'),
  async execute(interaction) {
   try {

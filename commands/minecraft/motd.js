@@ -23,44 +23,51 @@ export default {
     .setRequired(true),
   ),
  async execute(interaction) {
-  const serverAddress = interaction.options.getString('serveraddress');
-  if (isValidUrl(serverAddress) === true) {
-   axios({
-    method: 'get',
-    url: `https://api.mcsrvstat.us/3/${serverAddress}`,
-    responseType: 'json',
-   })
-    .then(async function(res) {
-     if (res.data.debug.ping === true) {
-      const unformattedResponse = res.data.motd.clean.toString();
-      const response = unformattedResponse.replace(/^\s+|\s+$/g, '').replace(/,/g, '');
-
-      const motdEmbed = new EmbedBuilder()
-       .setColor([255, 231, 188])
-       .setTitle('Minecraft Server Message of the Day')
-       .addFields({ name: 'Server: ' + serverAddress, value: response })
-       .setTimestamp()
-       .setFooter({
-        text: 'Sent using Fira!',
-        iconURL:
-         'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
-       });
-
-      interaction.reply({ embeds: [motdEmbed] });
-     } else {
-      interaction.reply({ embeds: [invalidServer] });
-     }
+  try {
+   const serverAddress = interaction.options.getString('serveraddress');
+   if (isValidUrl(serverAddress) === true) {
+    axios({
+     method: 'get',
+     url: `https://api.mcsrvstat.us/3/${serverAddress}`,
+     responseType: 'json',
     })
-    .catch(async err => {
-     console.log(
-      redBright(
-       `Woah there has been an error with the message of the day command. Here it is:` + err,
-      ),
-     );
-     await interaction.reply({ embeds: [errorEmbed] });
-    });
-  } else {
-   interaction.reply({ embeds: [invalidUrl] });
+     .then(async function(res) {
+      if (res.data.debug.ping === true) {
+       const unformattedResponse = res.data.motd.clean.toString();
+       const response = unformattedResponse.replace(/^\s+|\s+$/g, '').replace(/,/g, '');
+
+       const motdEmbed = new EmbedBuilder()
+        .setColor([255, 231, 188])
+        .setTitle('Minecraft Server Message of the Day')
+        .addFields({ name: 'Server: ' + serverAddress, value: response })
+        .setTimestamp()
+        .setFooter({
+         text: 'Sent using Fira!',
+         iconURL:
+          'https://cdn.discordapp.com/attachments/1171358299409617011/1260485101905645568/FiraLogo.jpeg?ex=668f7dba&is=668e2c3a&hm=7c023e2a9df44ca40816a976179870f3b55941196a431c537a5768a330690032&',
+        });
+
+       interaction.reply({ embeds: [motdEmbed] });
+      } else {
+       interaction.reply({ embeds: [invalidServer] });
+      }
+     })
+     .catch(async err => {
+      console.log(
+       redBright(
+        `Woah there has been an error with the message of the day command. Here it is:` + err,
+       ),
+      );
+      await interaction.reply({ embeds: [errorEmbed] });
+     });
+   } else {
+    interaction.reply({ embeds: [invalidUrl] });
+   }
+  } catch (e) {
+   console.log(
+    `Woah there has been an error with the motd command. Here it is: 
+ ` + err,
+   );
+   interaction.reply({ embeds: [errorEmbed] });
   }
- },
-};
+},};
