@@ -29,7 +29,7 @@ export default {
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   const attachment = new AttachmentBuilder(await canvas.encode('png'), {
-   name: 'random-color.png',
+   name: 'random-color-fira.png',
   });
 
   const randomColorEmbed = new EmbedBuilder()
