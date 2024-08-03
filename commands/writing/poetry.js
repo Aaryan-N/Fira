@@ -3,7 +3,7 @@ import axios from 'axios';
 import { errorEmbed } from '../../templates/embeds/errors/errorEmbed.js';
 
 export default {
- category: 'poetry',
+ category: 'writing',
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('poetry')

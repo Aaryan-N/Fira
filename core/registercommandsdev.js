@@ -27,14 +27,14 @@ const rest = new REST().setToken(process.env.TOKEN);
 
 (async () => {
  try {
-  console.log(`Started refreshing ${commands.length} application (/) commands.`);
+  console.log(chalk.blueBright(`Started refreshing dev ${commands.length} application (/) commands.`));
 
   const data = await rest.put(
    Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
    { body: commands },
   );
 
-  console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+  console.log(chalk.blueBright(`Successfully reloaded dev ${data.length} application (/) commands.`));
  } catch (error) {
   console.error(chalk.redBright(error));
  }
