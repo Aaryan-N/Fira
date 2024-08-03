@@ -2,7 +2,8 @@ import { EmbedBuilder } from 'discord.js';
 
 export const domainInvalidUrl = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('This is an invalid URL! Please input an actual url.')
+ .setTitle('Error Code: 4202')
+ .setDescription('This is an invalid URL! Please input an actual url.')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

@@ -2,7 +2,8 @@ import { EmbedBuilder } from 'discord.js';
 
 export const invalidHex = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('This is not a hex code! Please input a hex code.')
+ .setTitle('Error Code: 4208')
+ .setDescription('This is not a hex code! Please input a hex code.')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',

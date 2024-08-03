@@ -17,7 +17,7 @@ export default {
  cooldown: 5,
  data: new SlashCommandBuilder()
   .setName('domainsearch')
-  .setDescription('Rasssss')
+  .setDescription('Lookup a domain using WHOIS')
   .addStringOption(option =>
    option.setName('query').setDescription('Domain to WHOIS Lookup! (example.com)').setRequired(true),
   ),

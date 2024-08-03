@@ -37,7 +37,7 @@ export default {
 
    const randomColorEmbed = new EmbedBuilder()
     .setColor([255, 231, 188])
-    .setTitle('Random Color')
+    .setTitle('Converted Color')
     .addFields({ name: 'Hex Code:', value: query, inline:true },
      { name: 'RGB Code:', value: rgb.toString(), inline:true },
      { name: 'HSL Code:', value: hsl.toString(), inline: true },

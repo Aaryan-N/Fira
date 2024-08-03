@@ -2,7 +2,8 @@ import { EmbedBuilder } from 'discord.js';
 
 export const domainInactiveUrl = new EmbedBuilder()
  .setColor([255, 231, 188])
- .setTitle('This is an inactive URL! Please input an active url.')
+ .setTitle('Error Code: 4207')
+ .setDescription('This is an inactive URL! Please input an active url.')
  .setTimestamp()
  .setFooter({
   text: 'Sent using Fira',
