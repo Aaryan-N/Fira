@@ -50,6 +50,6 @@ export default {
    console.log(
     redBright('Woah there has been an error with the random color command. Here it is: \n' + err),
    );
-   await interaction.editReply({ embeds: [errorEmbed] });
+   await interaction.reply({ embeds: [errorEmbed] });
  }
 },}
