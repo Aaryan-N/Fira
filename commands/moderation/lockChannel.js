@@ -14,7 +14,7 @@ export default {
  category: 'minecraft',
  cooldown: 5,
  data: new SlashCommandBuilder()
-  .setName('motd')
+  .setName('lockchannel')
   .setDescription('Checks the message of the day of a minecraft server!')
   .addStringOption(option =>
    option
