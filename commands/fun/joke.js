@@ -44,6 +44,7 @@ export default {
     `Woah there has been an error with the joke command. Here it is: 
  ` + err,
    );
-   interaction.reply({ embeds: [errorEmbed] });}
- }
+   interaction.reply({ embeds: [errorEmbed] });
+  }
+ },
 };

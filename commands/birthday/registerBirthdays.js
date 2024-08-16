@@ -110,10 +110,11 @@ export default {
     );
     await interaction.editReply({ embeds: [errorEmbed] });
    }
- } catch (err) {
+  } catch (err) {
    console.log(
     redBright('Woah there has been an error with the register birthday command. Here it is: \n' + err),
    );
    await interaction.editReply({ embeds: [errorEmbed] });
- }
-},}
+  }
+ },
+};

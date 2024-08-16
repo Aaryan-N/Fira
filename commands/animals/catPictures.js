@@ -34,11 +34,11 @@ export default {
      );
      interaction.reply({ embeds: [errorEmbed] });
     });
- } catch (err) {
+  } catch (err) {
    console.log(
     redBright(`Woah there has been an error with the cat pictures command. Here it is:` + err),
    );
    interaction.reply({ embeds: [errorEmbed] });
   }
- }
+ },
 };

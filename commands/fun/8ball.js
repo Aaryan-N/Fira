@@ -52,11 +52,12 @@ export default {
      );
      interaction.reply({ embeds: [errorEmbed] });
     });
- } catch (e) {
+  } catch (e) {
    console.log(
     `Woah there has been an error with the 8 ball command. Here it is: 
  ` + err,
    );
    interaction.reply({ embeds: [errorEmbed] });
   }
-},}
+ },
+};

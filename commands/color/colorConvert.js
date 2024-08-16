@@ -16,7 +16,7 @@ export default {
   try {
    const query = interaction.options.getString('hexcolor');
    if (validator.isHexColor(query) === false) {
-     interaction.reply({ embeds: [invalidHex] })
+    interaction.reply({ embeds: [invalidHex] });
    }
    const canvas = Canvas.createCanvas(200, 200);
    const context = canvas.getContext('2d');
@@ -38,8 +38,8 @@ export default {
    const randomColorEmbed = new EmbedBuilder()
     .setColor([255, 231, 188])
     .setTitle('Converted Color')
-    .addFields({ name: 'Hex Code:', value: query, inline:true },
-     { name: 'RGB Code:', value: rgb.toString(), inline:true },
+    .addFields({ name: 'Hex Code:', value: query, inline: true },
+     { name: 'RGB Code:', value: rgb.toString(), inline: true },
      { name: 'HSL Code:', value: hsl.toString(), inline: true },
      { name: 'CMYK Code:', value: cmyk.toString(), inline: true })
     .setTimestamp()
@@ -55,4 +55,5 @@ export default {
    );
    await interaction.reply({ embeds: [errorEmbed] });
   }
- },}
+ },
+};

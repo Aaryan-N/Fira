@@ -30,11 +30,11 @@ export default {
     await guildConfigProfile.save();
     interaction.reply({ content: 'Ticket channel successfully registered!', ephemeral: true });
    }
- } catch(err){
+  } catch (err) {
    console.log(
     redBright('Woah there has been an error with the config ticket channel command. Here it is: \n' + err),
    );
    await interaction.editReply({ embeds: [errorEmbed] });
   }
- }
+ },
 };

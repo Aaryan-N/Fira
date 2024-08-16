@@ -59,7 +59,7 @@ export default {
       interaction.reply({ embeds: [errorEmbed] });
      }
     });
- } catch (err) {
+  } catch (err) {
    console.log(
     redBright(
      `Woah there has been an error with the new arcade session command. Here it is:` + err,
@@ -67,5 +67,5 @@ export default {
    );
    interaction.reply({ embeds: [errorEmbed] });
   }
- }
+ },
 };

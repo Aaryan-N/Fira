@@ -69,10 +69,11 @@ export default {
       await interaction.reply({ embeds: [errorEmbed] });
      });
    });
- } catch (err) {
+  } catch (err) {
    console.log(
     redBright(`Woah there has been an error with the arcade stats command. Here it is:` + err),
    );
    await interaction.reply({ embeds: [errorEmbed] });
- }
-},}
+  }
+ },
+};

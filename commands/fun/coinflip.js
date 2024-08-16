@@ -37,5 +37,5 @@ export default {
    );
    interaction.reply({ embeds: [errorEmbed] });
   }
- }
+ },
 };

@@ -96,11 +96,12 @@ export default {
      });
     interaction.reply({ embeds: [statsEmbed] });
    });
- } catch (e){
+  } catch (e) {
    console.log(
     `Woah there has been an error with the about command. Here it is: 
  ` + err,
    );
    interaction.reply({ embeds: [errorEmbed] });
- }
-},};
+  }
+ },
+};

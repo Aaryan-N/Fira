@@ -206,7 +206,7 @@ export default {
       let technicalPhone;
       let technicalCountry;
 
-      if(response.data.technical === undefined) {
+      if (response.data.technical === undefined) {
        technicalName = 'None provided';
        technicalStreet = 'None provided';
        technicalOrganization = 'None provided';
@@ -307,7 +307,7 @@ export default {
        if (response.data.registrar.email === undefined) {
         registrarEmail = 'None provided';
        } else {
-        registrarEmail = response.data.registrar.email
+        registrarEmail = response.data.registrar.email;
        }
 
        if (response.data.registrar.referral_url === undefined) {
