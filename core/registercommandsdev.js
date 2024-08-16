@@ -20,7 +20,6 @@ for (const folder of commandFolders) {
  for (const file of commandFiles) {
   const filePath = fileUrl(path.join(commandsPath, file));
   const command = await import(filePath);
-  console.log(command);
   commands.push(command.default.data.toJSON());
  }
 }
