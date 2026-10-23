@@ -1,0 +1,5 @@
+# Keep LF everywhere so Prettier checks pass on Windows checkouts too.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
