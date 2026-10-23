@@ -1,7 +1,14 @@
 node_modules
-.env
+coverage
 
+.env
 .env*
+!.env.example
 .flaskenv*
 !.env.project
 !.env.vault
+
+# IDE
+.idea
+.vscode
+*.log
