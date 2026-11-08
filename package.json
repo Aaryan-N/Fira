@@ -26,12 +26,12 @@
  "author": "Aaryan Narayan",
  "license": "ISC",
  "dependencies": {
-  "@napi-rs/canvas": "^1.0.13",
+  "@napi-rs/canvas": "^1.1.0",
   "chalk": "^6.0.1",
   "color-convert": "^3.1.3",
   "discord-hybrid-sharding": "^3.0.1",
-  "discord.js": "^14.27.0",
-  "mongoose": "^9.11.3"
+  "discord.js": "^14.28.1",
+  "mongoose": "^9.12.0"
  },
  "devDependencies": {
   "@eslint/js": "^10.0.1",
